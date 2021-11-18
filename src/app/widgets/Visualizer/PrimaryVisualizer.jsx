@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
 import * as WebGL from 'app/lib/three/WebGL';
 import { GRBL_ACTIVE_STATE_ALARM, GRBL_ACTIVE_STATE_HOLD, WORKFLOW_STATE_IDLE } from 'app/constants';
 import Widget from 'app/components/Widget';

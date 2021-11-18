@@ -325,7 +325,7 @@ class ProbeWidget extends PureComponent {
             );
             toolDiameter = PROBE_TYPE_AUTO;
         } else {
-            const toolDiameter = availableTools[0][units === METRIC_UNITS ? 'metricDiameter' : 'imperialDiameter'];
+            toolDiameter = availableTools[0][units === METRIC_UNITS ? 'metricDiameter' : 'imperialDiameter'];
         }
 
         return {

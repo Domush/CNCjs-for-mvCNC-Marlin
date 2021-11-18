@@ -1,12 +1,12 @@
 import ensureArray from 'ensure-array';
 import noop from 'lodash/noop';
-import partition from 'lodash/partition';
+// import partition from 'lodash/partition';
 import SerialPort from 'serialport';
 import socketIO from 'socket.io';
 //import socketioJwt from 'socketio-jwt';
 import EventTrigger from '../../lib/EventTrigger';
 import logger from '../../lib/logger';
-import settings from '../../config/settings';
+// import settings from '../../config/settings';
 import store from '../../store';
 import config from '../configstore';
 import taskRunner from '../taskrunner';
@@ -74,6 +74,7 @@ class CNCEngine {
 
     // File content and metadata
     gcode = null;
+
     meta = null;
 
     // Event Trigger
@@ -202,7 +203,7 @@ class CNCEngine {
                         ports = ports.concat(ensureArray(config.get('ports', [])));
 
                         const controllers = store.get('controllers', {});
-                        const portsInUse = 
+                        const portsInUse =
                         Object.keys(controllers).filter(port => {
                                 const controller = controllers[port];
                                 return controller && controller.isOpen();

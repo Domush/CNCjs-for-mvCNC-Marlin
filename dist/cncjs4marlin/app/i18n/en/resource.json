@@ -22,6 +22,7 @@
     "Password": "Password",
     "Sign In": "Sign In",
     "Units": "Units",
+    "A web-based interface for CNC milling controller running Grbl, Marlin": "A web-based interface for CNC milling controller running Grbl or Marlin",
     "Checking for updates...": "Checking for updates...",
     "A new version of {{name}} is available": "A new version of {{name}} is available",
     "Version {{version}}": "Version {{version}}",
@@ -388,6 +389,5 @@
     "It looks like the server connection has been lost - attempt to reconnect?": "It looks like the server connection has been lost - attempt to reconnect?",
     "Attempt Reconnect": "Attempt Reconnect",
     "Click \"Resume\" to continue execution.": "Click \"Resume\" to continue execution.",
-    "A web-based interface for CNC milling controller running Grbl, Marlin": "A web-based interface for CNC milling controller running Grbl, Marlin",
     "Edit Macro": "Edit Macro"
 }

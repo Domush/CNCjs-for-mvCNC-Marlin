@@ -19,6 +19,7 @@ const RecentFileButton = () => {
     const toggle = () => setShowPullout(!showPullout);
 
     return (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div
             role="button"
             aria-label="Recent Files"

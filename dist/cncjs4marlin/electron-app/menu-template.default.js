@@ -3,13 +3,25 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _electron = require("electron");
 
 var _trimStart = _interopRequireDefault(require("lodash/trimStart"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -18,20 +30,20 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // https://github.com/electron/electron/blob/master/docs/api/menu/
-var _default = options => {
+var _default = function _default(options) {
   // mountPoints = [
   //   {
   //     route: '/widget',
   //     target: '~+/widget'
   //   }
   // ]
-  const {
-    address,
-    port,
-    mountPoints = []
-  } = _objectSpread({}, options);
+  var _options = _objectSpread({}, options),
+      address = _options.address,
+      port = _options.port,
+      _options$mountPoints = _options.mountPoints,
+      mountPoints = _options$mountPoints === void 0 ? [] : _options$mountPoints;
 
-  let menuItems = [];
+  var menuItems = [];
 
   if (mountPoints.length > 0) {
     menuItems = [{
@@ -39,18 +51,20 @@ var _default = options => {
     }, {
       label: 'Mount Points',
       enabled: false
-    }].concat(mountPoints.map(mountPoint => ({
-      label: "  ".concat(mountPoint.route),
-      click: () => {
-        const routePath = (0, _trimStart.default)(mountPoint.route, '/');
-        const url = "http://".concat(address, ":").concat(port, "/").concat(routePath);
+    }].concat(mountPoints.map(function (mountPoint) {
+      return {
+        label: "  ".concat(mountPoint.route),
+        click: function click() {
+          var routePath = (0, _trimStart["default"])(mountPoint.route, '/');
+          var url = "http://".concat(address, ":").concat(port, "/").concat(routePath);
 
-        _electron.shell.openExternal(url);
-      }
-    })));
+          _electron.shell.openExternal(url);
+        }
+      };
+    }));
   }
 
-  const template = [{
+  var template = [{
     label: 'Edit',
     submenu: [{
       role: 'undo'
@@ -95,12 +109,12 @@ var _default = options => {
       type: 'separator'
     }, {
       label: 'View In Browser',
-      click: () => {
-        const url = "http://".concat(address, ":").concat(port);
+      click: function click() {
+        var url = "http://".concat(address, ":").concat(port);
 
         _electron.shell.openExternal(url);
       }
-    }, ...menuItems]
+    }].concat(_toConsumableArray(menuItems))
   }, {
     role: 'window',
     submenu: [{
@@ -112,7 +126,7 @@ var _default = options => {
     role: 'help',
     submenu: [{
       label: 'Learn More',
-      click: () => {
+      click: function click() {
         _electron.shell.openExternal('https://github.com/Domush/cncjs4marlin#readme');
       }
     }]
@@ -120,4 +134,4 @@ var _default = options => {
   return template;
 };
 
-exports.default = _default;
+exports["default"] = _default;

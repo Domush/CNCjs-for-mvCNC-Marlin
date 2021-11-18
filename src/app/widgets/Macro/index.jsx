@@ -354,8 +354,8 @@ class MacroWidget extends PureComponent {
         }
         if (type === MARLIN) {
             // Marlin does not have machine state
-            return true;
         }
+        return true;
     }
 
     render() {

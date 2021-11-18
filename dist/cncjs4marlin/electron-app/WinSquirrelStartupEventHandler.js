@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _path = _interopRequireDefault(require("path"));
 
@@ -13,17 +13,17 @@ var _electron = require("electron");
 
 var _log = _interopRequireDefault(require("./log"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint import/no-unresolved: 0 */
-const run = (args, done) => {
-  const appPath = _path.default.resolve(process.execPath, '..');
+var run = function run(args, done) {
+  var appPath = _path["default"].resolve(process.execPath, '..');
 
-  const rootAtomPath = _path.default.resolve(appPath, '..');
+  var rootAtomPath = _path["default"].resolve(appPath, '..');
 
-  const updateExe = _path.default.resolve(_path.default.join(rootAtomPath, 'Update.exe'));
+  var updateExe = _path["default"].resolve(_path["default"].join(rootAtomPath, 'Update.exe'));
 
-  _log.default.debug('Spawning `%s` with args `%s`', updateExe, args);
+  _log["default"].debug('Spawning `%s` with args `%s`', updateExe, args);
 
   (0, _child_process.spawn)(updateExe, args, {
     detached: true
@@ -32,16 +32,16 @@ const run = (args, done) => {
 // https://github.com/electron/windows-installer#handling-squirrel-events
 
 
-const handleStartupEvent = () => {
+var handleStartupEvent = function handleStartupEvent() {
   if (process.platform !== 'win32') {
     return false;
   }
 
-  const cmd = process.argv[1];
+  var cmd = process.argv[1];
 
-  const exeName = _path.default.basename(process.execPath);
+  var exeName = _path["default"].basename(process.execPath);
 
-  _log.default.debug('Processing squirrel command `%s`', cmd); // Optionally do things such as:
+  _log["default"].debug('Processing squirrel command `%s`', cmd); // Optionally do things such as:
   // - Install desktop and start menu shortcuts
   // - Add your .exe to the PATH
   // - Write to the registry for things like file associations and explorer context menus
@@ -72,4 +72,4 @@ const handleStartupEvent = () => {
 };
 
 var _default = handleStartupEvent;
-exports.default = _default;
+exports["default"] = _default;
