@@ -1,3 +1,19 @@
+package-lock.json
+/.eslintcache
+/.nyc_output
+/coverage
+/dist
+/output
+/releases
+.idea
+.yarn*
+/.vscode
+.pnp.*
+electron-builder.yml
+yarn.lock
+cncjs4marlin_server_log.txt
+
+
 # Logs
 logs
 *.log
