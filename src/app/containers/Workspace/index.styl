@@ -1,0 +1,114 @@
+@import '../variables';
+
+
+::root {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+.disabled {
+    opacity: .5;
+    cursor: no-drop;
+    color: #999;
+    pointer-events: none;
+}
+
+.workspace {
+    overflow-y: overlay;
+    display: flex;
+    flex-direction: row;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    background: none;
+    position: relative;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .dropzone-overlay {
+        position: fixed;
+        z-index: 100;
+        background-color: rgba(255, 255, 255, .5);
+        border: 4px dashed #286090;
+        text-align: center;
+        pointer-events: none;
+
+        &.hidden {
+            display: none;
+        }
+
+        .text-block {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+            font-size: 32px;
+        }
+    }
+
+    .dropzone {
+        height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .workspace-table {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        background-color: #d1d5db;
+        position: relative;
+    }
+
+    .workspace-table-row {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        box-sizing: border-box;
+        padding: 10px 15px;
+        height: calc(100% - 4.5rem);
+    }
+
+    .primary-container, .secondary-container, .primary-toggler, .secondary-toggler, .default-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+
+    .secondary-container {
+        border-left: 1px solid #ccc;
+    }
+
+    .primary-container {
+        height: 100%;
+        width: 33%;
+        max-width: 500px;
+        overflow: hidden;
+        &.hidden {
+            display: none;
+        }
+    }
+
+.reverse-workspace {
+    flex-direction: row-reverse;
+}
+    .primary-toggler {
+        border-right: 1px solid #ccc;
+    }
+
+    .secondary-toggler {
+        border-left: 1px solid #ccc;
+    }
+
+    .default-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+        background-color: #d1d5db;
+        width: 66%;
+    }
+}

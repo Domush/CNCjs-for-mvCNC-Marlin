@@ -1,0 +1,55 @@
+
+:global {
+    #nav-dropdown-user,
+    #nav-dropdown-menu {
+        padding: 14px 8px;
+
+    }
+}
+
+.navBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.5rem;
+    background: #000000;
+    height: 4.5rem;
+}
+
+.btn-icon {
+    color: #444;
+    &:hover,
+    &:focus {
+        color: #222;
+    }
+}
+
+.quick-access-toolbar {
+    margin: 10px 0 10px 15px;
+
+    @media (min-width: 768px) {
+        float: right;
+    }
+
+    :global {
+        .btn-group {
+            float: left;
+            margin-right: 10px;
+        }
+        .btn {
+            height: 30px;
+        }
+
+        // Remove the outline on buttons
+        button:focus {
+            outline: 0;
+        }
+    }
+}
+
+.primary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    }

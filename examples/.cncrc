@@ -1,0 +1,35 @@
+{
+  "ports": [
+     {
+       "comName": "/dev/ttyAMA0",
+       "manufacturer": ""
+     }
+  ],
+  "baudrates": [115200, 250000],
+  "mountPoints": [
+    {
+      "route": "/widget",
+      "target": ""
+    }
+  ],
+  "watchDirectory": "/path/to/dir",
+  "accessTokenLifetime": "30d",
+  "allowRemoteAccess": false,
+  "controller": "",
+  "state": {
+    "checkForUpdates": true
+  },
+  "commands": [
+    {
+      "title": "Reboot",
+      "commands": "sudo /sbin/reboot"
+    },
+    {
+      "title": "Shutdown",
+      "commands": "sudo /sbin/shutdown"
+    }
+  ],
+  "events": [],
+  "macros": [],
+  "users": []
+}

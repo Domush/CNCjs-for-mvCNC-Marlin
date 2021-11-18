@@ -1,0 +1,64 @@
+.widgets {
+    height: 100%;
+    display: grid;
+    grid-template-rows: minmax(0, 32fr) minmax(0, 38fr) minmax(0, 30fr);
+    grid-gap: 0.5rem;
+    width: 100%;
+    // margin-top: 1vh;
+    :global {
+        // Class name for the chosen item
+        .sortable-chosen {
+            opacity: .8;
+        }
+
+        // Class name for the drop placeholder
+        .sortable-ghost {
+            opacity: .4;
+        }
+    }
+}
+
+.default-widgets {
+    margin-right: 10px;
+    padding: 0 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    justify-content space-between;
+    min-width: 360px;
+    background-color: #d1d5db;
+    width: auto;
+    @media (min-width: 1921px) {
+        width: calc(100vw - 630px) !important;
+    }
+
+}
+
+.margin-left {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+
+.default-widget-wrapper {
+    display: flex;
+    margin: 0 20px;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flex-grow {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.visualizer-container {
+    flex-shrink: 1;
+}
+
+.job-status-container {
+    flex-shrink: 1;
+}
