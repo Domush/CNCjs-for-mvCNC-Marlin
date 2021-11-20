@@ -27,6 +27,7 @@ module.exports = {
     'curly': 0,
     'lines-around-comment': 0,
     'max-len': 0,
+    'max-lines-per-function': 0,
     'no-confusing-arrow': 0,
     'no-mixed-operators': 0,
     'no-tabs': 0,

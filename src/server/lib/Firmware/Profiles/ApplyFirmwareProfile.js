@@ -1,10 +1,10 @@
+import map from 'lodash/map';
 import defaultGrbl from '!raw-loader!./EepromFiles/DefaultGrblSettings.txt';
 import LongMill12x12 from '!raw-loader!./EepromFiles/Sienci Long Mill12X12.txt';
 import LongMill12x30 from '!raw-loader!./EepromFiles/Sienci Long Mill12X30.txt';
 import LongMill30x30 from '!raw-loader!./EepromFiles/Sienci Long Mill30X30.txt';
 import MillOne from '!raw-loader!./EepromFiles/Sienci Mill One.txt';
 import MillOneV3 from '!raw-loader!./EepromFiles/Sienci Mill OneV3.txt';
-import map from 'lodash/map';
 import store from '../../../store';
 
 const ApplyFirmwareProfile = (nameOfMachine, typeOfMachine, recievedPortNumber) => {

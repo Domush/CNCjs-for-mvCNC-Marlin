@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-require('@babel/polyfill');
+// require('@babel/polyfill');
 
-const launchServer = (process.env.NODE_ENV === 'development')
+const launchServer =
+  process.env.NODE_ENV === 'development'
     ? require('../output/server-cli').default
     : require('../dist/cncjs4marlin/server-cli').default;
 
-launchServer().catch(err => {
-    console.error('Error:', err);
+launchServer().catch((err) => {
+  console.error('Error:', err);
 });
