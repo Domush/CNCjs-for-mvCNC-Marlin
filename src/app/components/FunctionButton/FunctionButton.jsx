@@ -6,6 +6,7 @@ import styles from './index.styl';
 const FunctionButton = ({ className, primary = false, children, ...props }) => {
     return (
         <button
+            type="button"
             className={cx(className, styles.functionButton, { [styles.functionButtonPrimary]: primary })}
             {...props}
         >

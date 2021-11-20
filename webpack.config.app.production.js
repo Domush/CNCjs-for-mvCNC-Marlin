@@ -188,10 +188,7 @@ module.exports = {
     node: {
         fs: 'empty',
         net: 'empty',
-        tls: 'empty',
-        global: true,
-        __filename: true, // Use relative path
-        __dirname: true, // Use relative path
+        tls: 'empty'
     },
     optimization: {
         minimizer: [

@@ -285,6 +285,17 @@ class TerminalWrapper extends PureComponent {
                                 this.updateInputHistoryIndex(terminalInputIndex + 1);
                                 break;
                             }
+
+                                case 'g': {
+                                    e.key = 'G';
+                                    break;
+                                }
+
+                                case 'm': {
+                                    e.key = 'M';
+                                    break;
+                                }
+
                             default: {
                                 break;
                             }

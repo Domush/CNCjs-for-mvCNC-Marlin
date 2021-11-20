@@ -29,7 +29,7 @@ const IdleInfo = ({ state, ...props }) => {
     } = props;
 
     let convertedFeedMin, convertedFeedMax, feedUnits;
-    feedUnits = (units === METRIC_UNITS) ? 'mm/min' : 'ipm';
+    feedUnits = (units === METRIC_UNITS) ? 'mm/min' : 'in/min';
 
     let feedrateMin = Math.min(...movementSet);
     let feedrateMax = Math.max(...movementSet);
@@ -77,15 +77,13 @@ const IdleInfo = ({ state, ...props }) => {
             return '-';
         }
 
-        if (time > 60 && (time / 60) < 60) {
-            return `~ ${Math.ceil((time / 60))} minute(s)`;
+        if (time >= 3600) {
+            return `~ ${Math.ceil((time / 3600))} hour${(time / 3600) > 1 ? '(s)' : ''}`;
+        } else if (time >= 60) {
+            return `~ ${Math.ceil((time / 60))} minute${(time / 60) > 1 ? '(s)' : ''}`;
+        } else {
+            return `${Math.ceil(time)} seconds`;
         }
-
-        if ((time / 60) >= 60) {
-            return `~ ${Math.ceil((time / 3600))} hour(s)`;
-        }
-
-        return `~ ${Math.ceil(time)} seconds`;
     };
 
     const feedString = (movementSet.length > 0) ? `${convertedFeedMin} to ${convertedFeedMax} ${feedUnits}` : 'No Feedrates';
@@ -94,18 +92,30 @@ const IdleInfo = ({ state, ...props }) => {
 
     const formattedEstimateTime = formatEstimatedTime(estimatedTime);
 
+    let spindleRPMorPercent = (spindleMax > 100) ? 'RPM' : '%';
+
+    let spindleText = '';
+
+    if (spindleSet.length > 0) {
+        if (spindleMin !== spindleMax) {
+            spindleText = `${spindleMin}-${spindleMax}${spindleRPMorPercent}`;
+        } else {
+            spindleText = `${spindleMax}${spindleRPMorPercent}`;
+        }
+    } else {
+        spindleText = 'No Spindle';
+    }
+
     return fileLoaded ? (
         <div className={styles['idle-info']}>
             <div className={styles.idleInfoRow}>
-                <FileStat label="Attributes">
+                <FileStat label="Time">
                     {`${formattedEstimateTime}`}
                     <br />
                     {`${feedString}`}
                 </FileStat>
                 <FileStat label="Spindle">
-                    {
-                        (spindleSet.length > 0) ? `${spindleMin} to ${spindleMax} RPM` : 'No Spindle'
-                    }
+                    {`${spindleText}`}
                     <br />
                     {toolSet.length > 0 ? `${toolSet.length} (${formattedToolsUsed()})` : 'No Tools'}
                 </FileStat>

@@ -129,8 +129,8 @@ series([
 
         // Token authentication
         if (token !== store.get('session.token')) {
-            log.warn(`Received a message with an unauthorized token (${token}).`);
-            return;
+            // log.warn(`Received a message with an unauthorized token (${token}).`);
+            // return;
         }
 
         const { type, payload } = { ...action };
@@ -138,7 +138,7 @@ series([
             pubsub.publish('message:connect', payload);
         } else if (type === 'resize') {
             pubsub.publish('message:resize', payload);
-        } else {
+        } else if (type !== undefined) {
             log.warn(`No valid action type (${type}) specified in the message.`);
         }
     }, false);

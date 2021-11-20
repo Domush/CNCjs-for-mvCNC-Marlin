@@ -14,7 +14,6 @@ module.exports = {
     ],
     dest: './',
     options: {
-        fix: true,
         debug: false,
         removeUnusedKeys: true,
         sort: false,

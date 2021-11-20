@@ -3,7 +3,7 @@ import reverse from 'lodash/reverse';
 import sortBy from 'lodash/sortBy';
 import uniq from 'lodash/uniq';
 import { connect } from 'react-redux';
-import { Marlin } from 'app/constants';
+import { MARLIN } from 'app/constants';
 import includes from 'lodash/includes';
 //import map from 'lodash/map';
 import PropTypes from 'prop-types';
@@ -125,7 +125,7 @@ class NavbarConnectionWidget extends PureComponent {
             alertMessage: '',
             connecting: false,
             connected: true,
-            controllerType: Marlin,
+            controllerType: MARLIN,
             port: port,
             baudrate: connectedBaudrate
         }));
@@ -282,7 +282,7 @@ class NavbarConnectionWidget extends PureComponent {
         }));
 
         controller.openPort(port, {
-            controllerType: Marlin,
+            controllerType: MARLIN,
             baudrate: baudrate,
             rtscts: this.state.connection.serial.rtscts
         }, (err) => {
@@ -344,7 +344,7 @@ class NavbarConnectionWidget extends PureComponent {
             ...this.state,
             ports,
             unrecognizedPorts,
-            controllerType: Marlin,
+            controllerType: MARLIN,
         };
         const actions = {
             ...this.actions

@@ -49,21 +49,53 @@ class DisplayPanel extends PureComponent {
     };
 
     controllerEvents = {
-        'controller:state': (data, controllerState) => {
-            let controllersAlarmState = this.state.controllersAlarmState;
-            let hardStopAlarm = controllerState.status.alarmCode;
-            this.setState(prevState => ({
-                controllersAlarmState: hardStopAlarm
-            }));
-            if (controllersAlarmState === '1') {
-                controller.command('gcode:stop', { force: true });
+        'controller:state': (type, controllerState) => {
+            if (type === 'Marlin') {
+                this.setState(state => ({
+                    controller: {
+                        ...state.controller,
+                        type: type,
+                        state: controllerState
+                    }
+                }));
+            } else if (type === 'Grbl') {
+                this.setState(state => ({
+                    controller: {
+                        ...state.controller,
+                        type: type,
+                        state: controllerState
+                    }
+                }));
+                let controllerAlarmState = this.state.controllerAlarmState;
+                let hardStopAlarm = controllerState.status.alarmCode;
+                this.setState(prevState => ({
+                    controllerAlarmState: hardStopAlarm
+                }));
+                if (controllerAlarmState === '1') {
+                    controller.command('gcode:stop', { force: true });
+                }
             }
         },
         'controller:settings': (type, controllerSettings) => {
-            this.setState(state => ({
-                ...state.controller,
-                homePosition: controllerSettings.settings.$23
-            }));
+            if (type === 'Marlin') {
+                this.setState(state => ({
+                    controller: {
+                        ...state.controller,
+                        type: type,
+                        settings: controllerSettings
+                    }
+                }));
+            }
+            if (type === 'Grbl') {
+                this.setState(state => ({
+                    controller: {
+                        ...state.controller,
+                        type: type,
+                        settings: controllerSettings,
+                        homePosition: controllerSettings.settings.$23
+                    }
+                }));
+            }
         },
     }
 

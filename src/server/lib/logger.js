@@ -12,7 +12,8 @@ const getStackTrace = () => {
 
 const VERBOSITY_MAX = 3; // -vvv
 
-const { combine, colorize, timestamp, printf } = winston.format;
+// const { combine, colorize, timestamp, printf } = winston.format;
+const { combine, timestamp, printf } = winston.format;
 
 // https://github.com/winstonjs/winston/blob/master/README.md#creating-your-own-logger
 const logger = winston.createLogger({
@@ -22,7 +23,7 @@ const logger = winston.createLogger({
     transports: [
         new winston.transports.Console({
             format: combine(
-                colorize(),
+                // colorize(),
                 timestamp(),
                 printf(log => `${log.timestamp} - ${log.level} ${log.message}`)
             ),
@@ -30,7 +31,7 @@ const logger = winston.createLogger({
         }),
         new winston.transports.File({
             filename: 'cncjs4marlin_server_log.txt',
-            level: 'info'
+            level: 'silly'
         })
     ]
 });

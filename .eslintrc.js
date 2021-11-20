@@ -3,12 +3,6 @@ const path = require('path');
 module.exports = {
   extends: 'trendmicro',
   parser: 'babel-eslint',
-  parserOptions: {
-    'fix': true,
-    'ecmaFeatures': {
-      'experimentalObjectRestSpread': true
-    }
-  },
   env: {
     browser: true,
     node: true
