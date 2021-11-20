@@ -24,7 +24,7 @@ const SpindleControls = ({ actions, state }) => {
             </div>
             <Slider
                 label="Speed"
-                unitString="RPM"
+                unitString={(state.spindleMax <= 100) ? '%' : 'RPM'}
                 value={state.spindleSpeed}
                 min={state.spindleMin}
                 max={state.spindleMax}

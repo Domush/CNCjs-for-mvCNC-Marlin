@@ -1,4 +1,3 @@
-
 /* eslint max-len: 0 */
 // Grbl
 export const GRBL = 'Grbl';

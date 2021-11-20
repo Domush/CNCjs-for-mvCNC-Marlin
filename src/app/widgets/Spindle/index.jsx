@@ -203,7 +203,7 @@ class SpindleWidget extends PureComponent {
             isFullscreen: false,
             canClick: true, // Defaults to true
             mode: this.config.get('mode'),
-            spindleSpeed: this.config.get('speed', 1000),
+            spindleSpeed: this.config.get('speed', 100),
             laser: this.config.get('laser')
         };
     }
@@ -214,7 +214,9 @@ class SpindleWidget extends PureComponent {
             controller.command('gcode', 'M5');
             this.setInactive();
         }
-        controller.command('gcode', '$32=0');
+        if (controller.type === GRBL) {
+            controller.command('gcode', '$32=0');
+        }
     }
 
     debouncedSpindleOverride = debounce((spindleSpeed) => {
@@ -226,7 +228,9 @@ class SpindleWidget extends PureComponent {
         if (active) {
             controller.command('gcode', 'M5');
         }
-        controller.command('gcode', '$32=1');
+        if (controller.type === GRBL) {
+            controller.command('gcode', '$32=1');
+        }
     }
 
     getSpindleActiveState() {
@@ -315,7 +319,7 @@ export default connect((store) => {
     const spindleModal = get(store, 'controller.modal.spindle', 'M5');
     const settings = get(store, 'controller.settings');
     const spindleMin = Number(get(settings, 'settings.$31', 0));
-    const spindleMax = Number(get(settings, 'settings.$30', 2000));
+    const spindleMax = Number(get(settings, 'settings.$30', 100));
 
     return {
         workflow,

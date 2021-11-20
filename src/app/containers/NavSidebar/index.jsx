@@ -12,13 +12,13 @@ import styles from './index.styl';
 import {
     MODAL_NONE,
     MODAL_PREFERENCES,
-    MODAL_FIRMWARE,
+    // MODAL_FIRMWARE,
     MODAL_SURFACING,
     MODAL_CALIBRATE,
     MODAL_HELP
 } from './constants';
 import Preferences from '../Preferences/Preferences';
-import Firmware from '../Firmware/Firmware';
+// import Firmware from '../Firmware/Firmware';
 import Surfacing from '../Surfacing';
 import Calibration from '../Calibration';
 
@@ -142,12 +142,12 @@ class NavSidebar extends PureComponent {
                     icon="fa fa-ruler"
                     label="Calibrate"
                 />
-                <NavSidebarLink
+                {/* <NavSidebarLink
                     url=""
                     onClick={() => actions.openModal(MODAL_FIRMWARE)}
                     icon="fa fa-microchip"
                     label="Firmware"
-                />
+                /> */}
                 <NavSidebarLink
                     url=""
                     icon="fa fa-question"
@@ -158,7 +158,7 @@ class NavSidebar extends PureComponent {
                     url="" onClick={() => actions.openModal(MODAL_PREFERENCES)} icon="fa fa-cog"
                     label=""
                 />
-                { state.modal.name === MODAL_FIRMWARE && <Firmware state={state} modalClose={actions.closeModal} /> }
+                {/* { state.modal.name === MODAL_FIRMWARE && <Firmware state={state} modalClose={actions.closeModal} /> } */}
                 { state.modal.name === MODAL_PREFERENCES && <Preferences state={state} modalClose={actions.closeModal} /> }
                 { state.modal.name === MODAL_SURFACING && <Surfacing state={state} modalClose={actions.closeModal} /> }
                 { state.modal.name === MODAL_CALIBRATE && <Calibration state={state} modalClose={actions.closeModal} /> }

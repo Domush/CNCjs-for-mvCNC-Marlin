@@ -17,7 +17,7 @@ import {
 } from 'app/constants';
 import {
     MODAL_PREFERENCES,
-    MODAL_FIRMWARE,
+    // MODAL_FIRMWARE,
     MODAL_SURFACING,
     MODAL_CALIBRATE
 } from 'app/containers/NavSidebar/constants';
@@ -1093,16 +1093,16 @@ const defaultState = {
             isActive: true,
             category: TOOLBAR_CATEGORY,
         },
-        { // Firmware
-            id: 68,
-            title: 'Firmware',
-            keys: 'f5',
-            cmd: 'OPEN_TOOLBAR',
-            payload: { toolbar: MODAL_FIRMWARE },
-            preventDefault: false,
-            isActive: true,
-            category: TOOLBAR_CATEGORY,
-        },
+        // { // Firmware
+        //     id: 68,
+        //     title: 'Firmware',
+        //     keys: 'f5',
+        //     cmd: 'OPEN_TOOLBAR',
+        //     payload: { toolbar: MODAL_FIRMWARE },
+        //     preventDefault: false,
+        //     isActive: true,
+        //     category: TOOLBAR_CATEGORY,
+        // },
         { // Help
             id: 69,
             title: 'Help',

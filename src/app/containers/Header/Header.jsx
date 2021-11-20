@@ -285,7 +285,7 @@ class Header extends PureComponent {
                         </FunctionButton>*/
                         }
                         {
-                            !connected &&
+                            !connected && (
                             <FunctionButton
                                 primary
                                 onClick={() => {
@@ -294,6 +294,7 @@ class Header extends PureComponent {
                             >
                                 Reconnect
                             </FunctionButton>
+                            )
                         }
                     </div>
                 </div>
