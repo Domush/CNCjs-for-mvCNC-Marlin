@@ -1,4 +1,3 @@
-
 import Panel from './Panel';
 import PanelHeading from './PanelHeading';
 import PanelBody from './PanelBody';

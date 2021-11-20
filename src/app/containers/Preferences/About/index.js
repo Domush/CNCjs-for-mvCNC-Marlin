@@ -6,16 +6,16 @@ import HeaderArea from './HeaderArea';
 import MainArea from './MainArea';
 
 const About = ({ modalClose, active }) => {
-    return (
-        <SettingWrapper show={active}>
-            <HeaderArea />
+  return (
+    <SettingWrapper show={active}>
+      <HeaderArea />
 
-            <MainArea />
-        </SettingWrapper>
-    );
+      <MainArea />
+    </SettingWrapper>
+  );
 };
 About.propTypes = {
-    modalClose: PropTypes.func,
+  modalClose: PropTypes.func,
 };
 
 export default About;

@@ -28,9 +28,9 @@ const GaugeFill = styled.div`
   left: 0;
   width: inherit;
   height: 100%;
-  background: ${props => props.color || '#009578'};
+  background: ${(props) => props.color || '#009578'};
   transform-origin: center top;
-  transform: rotate(${props => props.value / 2}turn);
+  transform: rotate(${(props) => props.value / 2}turn);
   transition: transform 0.2s ease-out;
 `;
 
@@ -53,16 +53,14 @@ const GaugeCover = styled.div`
 `;
 
 const GaugeChart = ({ value, color, background }) => {
-    return (
-        <GaugeContainer>
-            <GaugeBody>
-                <GaugeFill color={color} value={value / 100} />
-                <GaugeCover background={background}>
-                    {value && `${value}%`}
-                </GaugeCover>
-            </GaugeBody>
-        </GaugeContainer>
-    );
+  return (
+    <GaugeContainer>
+      <GaugeBody>
+        <GaugeFill color={color} value={value / 100} />
+        <GaugeCover background={background}>{value && `${value}%`}</GaugeCover>
+      </GaugeBody>
+    </GaugeContainer>
+  );
 };
 
 export default GaugeChart;

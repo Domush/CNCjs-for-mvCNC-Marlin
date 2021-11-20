@@ -1,4 +1,3 @@
-
 // Error Codes
 export const ERR_BAD_REQUEST = 400;
 export const ERR_UNAUTHORIZED = 401;

@@ -1,4 +1,3 @@
-
 /* eslint import/no-dynamic-require: 0 */
 import chainedFunction from 'chained-function';
 import moment from 'moment';
@@ -7,10 +6,7 @@ import qs from 'qs';
 import React from 'react';
 import reduxStore from 'app/store/redux';
 import ReactDOM from 'react-dom';
-import {
-    HashRouter as Router,
-    Route
-} from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import XHR from 'i18next-xhr-backend';
@@ -40,179 +36,192 @@ import './styles/vendor.styl';
 import './styles/app.styl';
 
 const renderPage = () => {
-    const container = document.createElement('div');
-    container.style.width = '100%';
-    document.body.appendChild(container);
+  const container = document.createElement('div');
+  container.style.width = '100%';
+  document.body.appendChild(container);
 
-    sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
 
-    ReactDOM.render(
-        <ReduxProvider store={reduxStore}>
-            <GridSystemProvider
-                breakpoints={[576, 768, 992, 1200]}
-                containerWidths={[540, 720, 960, 1140]}
-                columns={12}
-                gutterWidth={0}
-                layout="floats"
-            >
-                <Router>
-                    <div>
-                        <Route path="/" component={App} />
-                    </div>
-                </Router>
-            </GridSystemProvider>
-        </ReduxProvider>,
-        container
-    );
+  ReactDOM.render(
+    <ReduxProvider store={reduxStore}>
+      <GridSystemProvider
+        breakpoints={[576, 768, 992, 1200]}
+        containerWidths={[540, 720, 960, 1140]}
+        columns={12}
+        gutterWidth={0}
+        layout="floats"
+      >
+        <Router>
+          <div>
+            <Route path="/" component={App} />
+          </div>
+        </Router>
+      </GridSystemProvider>
+    </ReduxProvider>,
+    container
+  );
 };
 
 series([
-    () => {
-        const obj = qs.parse(window.location.search.slice(1));
-        const level = {
-            trace: TRACE,
-            debug: DEBUG,
-            info: INFO,
-            warn: WARN,
-            error: ERROR
-        }[obj.log_level || settings.log.level];
-        log.setLevel(level);
-    },
-    () => promisify(next => {
-        i18next
-            .use(XHR)
-            .use(LanguageDetector)
-            .init(settings.i18next, (t) => {
-                next();
-            });
-    })(),
-    () => promisify(next => {
-        const locale = i18next.language;
-        if (locale === 'en') {
-            next();
-            return;
-        }
-
-        require('bundle-loader!moment/locale/' + locale)(() => {
-            log.debug(`moment: locale=${locale}`);
-            moment().locale(locale);
-            next();
+  () => {
+    const obj = qs.parse(window.location.search.slice(1));
+    const level = {
+      trace: TRACE,
+      debug: DEBUG,
+      info: INFO,
+      warn: WARN,
+      error: ERROR,
+    }[obj.log_level || settings.log.level];
+    log.setLevel(level);
+  },
+  () =>
+    promisify((next) => {
+      i18next
+        .use(XHR)
+        .use(LanguageDetector)
+        .init(settings.i18next, (t) => {
+          next();
         });
     })(),
-    () => promisify(next => {
-        const token = store.get('session.token');
-        user.signin({ token: token })
-            .then(({ authenticated, token }) => {
-                if (authenticated) {
-                    log.debug('Create and establish a WebSocket connection');
+  () =>
+    promisify((next) => {
+      const locale = i18next.language;
+      if (locale === 'en') {
+        next();
+        return;
+      }
 
-                    const host = '';
-                    const options = {
-                        query: 'token=' + token
-                    };
-                    controller.connect(host, options, () => {
-                        // @see "src/web/containers/Login/Login.jsx"
-                        next();
-                    });
-                    return;
-                }
-                next();
-            });
-    })()
-]).then(async () => {
+      require('bundle-loader!moment/locale/' + locale)(() => {
+        log.debug(`moment: locale=${locale}`);
+        moment().locale(locale);
+        next();
+      });
+    })(),
+  () =>
+    promisify((next) => {
+      const token = store.get('session.token');
+      user.signin({ token: token }).then(({ authenticated, token }) => {
+        if (authenticated) {
+          log.debug('Create and establish a WebSocket connection');
+
+          const host = '';
+          const options = {
+            query: 'token=' + token,
+          };
+          controller.connect(host, options, () => {
+            // @see "src/web/containers/Login/Login.jsx"
+            next();
+          });
+          return;
+        }
+        next();
+      });
+    })(),
+])
+  .then(async () => {
     log.info(`${settings.productName} ${settings.version}`);
     // Cross-origin communication
-    window.addEventListener('message', (event) => {
+    window.addEventListener(
+      'message',
+      (event) => {
         // TODO: event.origin
 
         const { token = '', action } = { ...event.data };
 
         // Token authentication
         if (token !== store.get('session.token')) {
-            // log.warn(`Received a message with an unauthorized token (${token}).`);
-            // return;
+          // log.warn(`Received a message with an unauthorized token (${token}).`);
+          // return;
         }
 
         const { type, payload } = { ...action };
         if (type === 'connect') {
-            pubsub.publish('message:connect', payload);
+          pubsub.publish('message:connect', payload);
         } else if (type === 'resize') {
-            pubsub.publish('message:resize', payload);
+          pubsub.publish('message:resize', payload);
         } else if (type !== undefined) {
-            log.warn(`No valid action type (${type}) specified in the message.`);
+          log.warn(`No valid action type (${type}) specified in the message.`);
         }
-    }, false);
+      },
+      false
+    );
 
-    { // Prevent browser from loading a drag-and-dropped file
-        // @see http://stackoverflow.com/questions/6756583/prevent-browser-from-loading-a-drag-and-dropped-file
-        window.addEventListener('dragover', (e) => {
-            e.preventDefault();
-        }, false);
+    {
+      // Prevent browser from loading a drag-and-dropped file
+      // @see http://stackoverflow.com/questions/6756583/prevent-browser-from-loading-a-drag-and-dropped-file
+      window.addEventListener(
+        'dragover',
+        (e) => {
+          e.preventDefault();
+        },
+        false
+      );
 
-        window.addEventListener('drop', (e) => {
-            e.preventDefault();
-        }, false);
+      window.addEventListener(
+        'drop',
+        (e) => {
+          e.preventDefault();
+        },
+        false
+      );
     }
 
-    { // Hide loading
-        const loading = document.getElementById('loading');
-        loading && loading.remove();
+    {
+      // Hide loading
+      const loading = document.getElementById('loading');
+      loading && loading.remove();
     }
 
-    { // Change backgrond color after loading complete
-        const body = document.querySelector('body');
-        body.style.backgroundColor = '#000000'; // sidebar background color
+    {
+      // Change backgrond color after loading complete
+      const body = document.querySelector('body');
+      body.style.backgroundColor = '#000000'; // sidebar background color
     }
 
     if (settings.error.corruptedWorkspaceSettings) {
-        const text = store.getConfig();
-        const url = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
-        const filename = `${settings.name}-${settings.version}.json`;
+      const text = store.getConfig();
+      const url = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
+      const filename = `${settings.name}-${settings.version}.json`;
 
-        await portal(({ onClose }) => (
-            <Modal
-                onClose={onClose}
-                disableOverlay={true}
-                showCloseButton={false}
+      await portal(({ onClose }) => (
+        <Modal onClose={onClose} disableOverlay={true} showCloseButton={false}>
+          <Modal.Body>
+            <ModalTemplate type="error">
+              <h5>{i18n._('Corrupted workspace settings')}</h5>
+              <p>
+                {i18n._(
+                  'The workspace settings have become corrupted or invalid. Click Restore Defaults to restore default settings and continue.'
+                )}
+              </p>
+              <div>
+                <Anchor href={url} download={filename}>
+                  <i className="fa fa-download" />
+                  <Space width="4" />
+                  {i18n._('Download workspace settings')}
+                </Anchor>
+              </div>
+            </ModalTemplate>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              btnStyle="danger"
+              onClick={chainedFunction(() => {
+                // Reset to default state
+                store.state = defaultState;
+
+                // Persist data locally
+                store.persist();
+              }, onClose)}
             >
-                <Modal.Body>
-                    <ModalTemplate type="error">
-                        <h5>{i18n._('Corrupted workspace settings')}</h5>
-                        <p>{i18n._('The workspace settings have become corrupted or invalid. Click Restore Defaults to restore default settings and continue.')}</p>
-                        <div>
-                            <Anchor
-                                href={url}
-                                download={filename}
-                            >
-                                <i className="fa fa-download" />
-                                <Space width="4" />
-                                {i18n._('Download workspace settings')}
-                            </Anchor>
-                        </div>
-                    </ModalTemplate>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button
-                        btnStyle="danger"
-                        onClick={chainedFunction(
-                            () => {
-                                // Reset to default state
-                                store.state = defaultState;
-
-                                // Persist data locally
-                                store.persist();
-                            },
-                            onClose
-                        )}
-                    >
-                        {i18n._('Restore Defaults')}
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        ));
+              {i18n._('Restore Defaults')}
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      ));
     }
 
     renderPage();
-}).catch(err => {
+  })
+  .catch((err) => {
     log.error(err);
-});
+  });

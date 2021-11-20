@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,258 +16,269 @@ const triggerKeys = ['Meta', 'Alt', 'Shift', 'Control'];
  * @param {Function} edit Function to edit currently selected shortcut
  */
 export default class EditArea extends Component {
-    static propTypes = {
-        shortcut: PropTypes.object,
-        shortcuts: PropTypes.array,
-        switchPages: PropTypes.func,
-        edit: PropTypes.func,
-        onClose: PropTypes.func,
+  static propTypes = {
+    shortcut: PropTypes.object,
+    shortcuts: PropTypes.array,
+    switchPages: PropTypes.func,
+    edit: PropTypes.func,
+    onClose: PropTypes.func,
+  };
+
+  initialState = {
+    pressed: false,
+    singleKey: '',
+    keyCombo: '',
+    metaTriggered: false,
+    altTriggered: false,
+    shiftTriggered: false,
+    ctrlTriggered: false,
+    state: { available: false, error: false, message: '' },
+  };
+
+  state = this.initialState;
+
+  /**
+   * Function to build shortcut key combination
+   * @param {KeyboardEvent} e The keyboard object containing all keyboard related attributes and methods
+   */
+  buildCombo = (e) => {
+    //Key map for mousetrap package
+    const keyMap = {
+      'Backspace': 'backspace',
+      'Tab': 'tab',
+      'Enter': 'enter',
+      'CapsLock': 'capslock',
+      'Escape': 'escape',
+      ' ': 'space',
+      'PageUp': 'pageup',
+      'PageDown': 'pagedown',
+      'ArrowLeft': 'left',
+      'ArrowRight': 'right',
+      'ArrowUp': 'up',
+      'ArrowDown': 'down',
+      'Delete': 'del',
+      'Insert': 'ins',
+      'End': 'end',
+      'Home': 'home',
+    }[e.key];
+
+    const key = keyMap || e.key.toLowerCase();
+
+    //Ignore trigger keys
+    if (triggerKeys.includes(e.key)) {
+      return [];
     }
 
-    initialState = {
-        pressed: false,
-        singleKey: '',
-        keyCombo: '',
-        metaTriggered: false,
-        altTriggered: false,
-        shiftTriggered: false,
-        ctrlTriggered: false,
-        state: { available: false, error: false, message: '' }
+    this.setState({
+      pressed: true,
+      metaTriggered: false,
+      altTriggered: false,
+      shiftTriggered: false,
+      ctrlTriggered: false,
+    });
+
+    const keys = {
+      metaKey: { label: 'command', triggered: e.metaKey },
+      altKey: { label: 'alt', triggered: e.altKey },
+      ctrlKey: { label: 'ctrl', triggered: e.ctrlKey },
+      shiftKey: { label: 'shift', triggered: e.shiftKey },
+    };
+
+    let keyCombo = '';
+    if (keys.metaKey.triggered) {
+      keyCombo += `${keys.metaKey.label}+`;
     }
 
-    state = this.initialState;
+    if (keys.altKey.triggered) {
+      keyCombo += `${keys.altKey.label}+`;
+    }
 
-    /**
-     * Function to build shortcut key combination
-     * @param {KeyboardEvent} e The keyboard object containing all keyboard related attributes and methods
-     */
-    buildCombo = (e) => {
-        //Key map for mousetrap package
-        const keyMap = {
-            Backspace: 'backspace',
-            Tab: 'tab',
-            Enter: 'enter',
-            CapsLock: 'capslock',
-            Escape: 'escape',
-            ' ': 'space',
-            PageUp: 'pageup',
-            PageDown: 'pagedown',
-            ArrowLeft: 'left',
-            ArrowRight: 'right',
-            ArrowUp: 'up',
-            ArrowDown: 'down',
-            Delete: 'del',
-            Insert: 'ins',
-            End: 'end',
-            Home: 'home',
-        }[e.key];
+    if (keys.ctrlKey.triggered) {
+      keyCombo += `${keys.ctrlKey.label}+`;
+    }
 
-        const key = keyMap || e.key.toLowerCase();
+    // Do not add shift to the combo if one of the numbers on the main area of the keyboard are clicked
+    // This will prevent the keycombo from being set as shift + ! for example, which mousetrap won't understand
+    // (ex. shift + 1 = !)
+    if (keys.shiftKey.triggered && !e.code.includes('Digit')) {
+      keyCombo += `${keys.shiftKey.label}+`;
+    }
 
-        //Ignore trigger keys
-        if (triggerKeys.includes(e.key)) {
-            return [];
-        }
+    keyCombo += key;
 
+    return [key, keyCombo];
+  };
+
+  /**
+   * Function to listen to keydowns and generate new keybinding command combo
+   * @param {KeyboardEvent} e The keyboard object containing all keyboard related attributes and methods
+   */
+  outputKeys = (e) => {
+    e.preventDefault();
+
+    const [singleKey, keyCombo] = this.buildCombo(e);
+
+    if (!keyCombo) {
+      return;
+    }
+
+    const foundShortcut = this.props.shortcuts
+      .filter((shortcut) => shortcut.isActive)
+      .find((shortcut) => shortcut.keys === keyCombo);
+
+    const keyState = {
+      singleKey,
+      keyCombo,
+      metaTriggered: e.metaKey,
+      altTriggered: e.altKey,
+      shiftTriggered: e.shiftKey,
+      ctrlTriggered: e.ctrlKey,
+    };
+
+    if (foundShortcut) {
+      if (foundShortcut.keys !== this.props.shortcut.keys) {
         this.setState({
-            pressed: true,
-            metaTriggered: false,
-            altTriggered: false,
-            shiftTriggered: false,
-            ctrlTriggered: false,
+          ...keyState,
+          state: {
+            available: false,
+            error: true,
+            message: `This shortcut is already in use by action "${foundShortcut.title}"`,
+          },
         });
-
-        const keys = {
-            metaKey: { label: 'command', triggered: e.metaKey },
-            altKey: { label: 'alt', triggered: e.altKey },
-            ctrlKey: { label: 'ctrl', triggered: e.ctrlKey },
-            shiftKey: { label: 'shift', triggered: e.shiftKey },
-        };
-
-        let keyCombo = '';
-        if (keys.metaKey.triggered) {
-            keyCombo += `${keys.metaKey.label}+`;
-        }
-
-        if (keys.altKey.triggered) {
-            keyCombo += `${keys.altKey.label}+`;
-        }
-
-        if (keys.ctrlKey.triggered) {
-            keyCombo += `${keys.ctrlKey.label}+`;
-        }
-
-        // Do not add shift to the combo if one of the numbers on the main area of the keyboard are clicked
-        // This will prevent the keycombo from being set as shift + ! for example, which mousetrap won't understand
-        // (ex. shift + 1 = !)
-        if (keys.shiftKey.triggered && !e.code.includes('Digit')) {
-            keyCombo += `${keys.shiftKey.label}+`;
-        }
-
-        keyCombo += key;
-
-        return [key, keyCombo];
+      } else {
+        //If it found itself, return to original state
+        this.setState({ ...keyState, state: { available: false, error: false, message: '' } });
+      }
+      return;
     }
 
-    /**
-     * Function to listen to keydowns and generate new keybinding command combo
-     * @param {KeyboardEvent} e The keyboard object containing all keyboard related attributes and methods
-     */
-    outputKeys = (e) => {
-        e.preventDefault();
+    this.setState({
+      ...keyState,
+      state: { available: true, error: false, message: 'Shortcut is Available' },
+    });
+  };
 
-        const [singleKey, keyCombo] = this.buildCombo(e);
+  /**
+   * Function to edit shortcut with new key combo, function invokes parent function received in props
+   */
+  handleEdit = () => {
+    const { shortcut, edit } = this.props;
+    const { keyCombo } = this.state;
 
-        if (!keyCombo) {
-            return;
-        }
+    edit({ ...shortcut, keys: keyCombo });
+  };
 
-        const foundShortcut = this.props.shortcuts.filter(shortcut => shortcut.isActive).find(shortcut => shortcut.keys === keyCombo);
+  componentDidMount() {
+    document.addEventListener('keydown', this.outputKeys);
+  }
 
-        const keyState = {
-            singleKey,
-            keyCombo,
-            metaTriggered: e.metaKey,
-            altTriggered: e.altKey,
-            shiftTriggered: e.shiftKey,
-            ctrlTriggered: e.ctrlKey,
-        };
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.outputKeys);
+  }
 
-        if (foundShortcut) {
-            if (foundShortcut.keys !== this.props.shortcut.keys) {
-                this.setState({
-                    ...keyState,
-                    state: { available: false, error: true, message: `This shortcut is already in use by action "${foundShortcut.title}"` }
-                });
-            } else {
-                //If it found itself, return to original state
-                this.setState({ ...keyState, state: { available: false, error: false, message: '' } });
-            }
-            return;
-        }
+  /**
+   * Function to output information window with dynamic message and styling
+   */
+  infoWindowOutput = () => {
+    const { state } = this.state;
 
-        this.setState({
-            ...keyState,
-            state: { available: true, error: false, message: 'Shortcut is Available' },
-        });
+    if (state.available) {
+      return (
+        <div className={styles['info-window-area-success']}>
+          <i className="fas fa-check-circle" /> <p>{state.message}</p>
+        </div>
+      );
     }
 
-    /**
-     * Function to edit shortcut with new key combo, function invokes parent function received in props
-     */
-    handleEdit = () => {
-        const { shortcut, edit } = this.props;
-        const { keyCombo } = this.state;
-
-        edit({ ...shortcut, keys: keyCombo });
+    if (state.error) {
+      return (
+        <div className={styles['info-window-area-error']}>
+          <i className="fas fa-exclamation-circle" /> <p>{state.message}</p>
+        </div>
+      );
     }
 
-    componentDidMount() {
-        document.addEventListener('keydown', this.outputKeys);
+    return (
+      <div className={styles['info-window-area']}>
+        <i className="fas fa-info-circle" /> <p>&nbsp;</p>
+      </div>
+    );
+  };
+
+  displayShortcut = () => {
+    const { shortcut } = this.props;
+
+    const shortcutArray = shortcut.keys.split('+');
+
+    let cleanedShortcut = null;
+
+    //If there is an empty value as the last element in the shorcut array,
+    //that means a plus key is supposed to be there, but it was filtered out
+    //due to keys.split
+    if (shortcutArray[shortcutArray.length - 1] === '') {
+      cleanedShortcut = shortcutArray.filter((item) => item !== '');
+
+      if (shortcutArray[0]) {
+        cleanedShortcut.push('+');
+      }
     }
 
-    componentWillUnmount() {
-        document.removeEventListener('keydown', this.outputKeys);
-    }
+    const output = cleanedShortcut ? formatShortcut(cleanedShortcut) : formatShortcut(shortcutArray);
 
-    /**
-     * Function to output information window with dynamic message and styling
-     */
-    infoWindowOutput = () => {
-        const { state } = this.state;
+    return output;
+  };
 
-        if (state.available) {
-            return (<div className={styles['info-window-area-success']}><i className="fas fa-check-circle" /> <p>{state.message}</p></div>);
-        }
+  render() {
+    const { pressed, singleKey, shiftTriggered, altTriggered, metaTriggered, ctrlTriggered, state } = this.state;
+    const { onClose, shortcut } = this.props;
 
-        if (state.error) {
-            return (<div className={styles['info-window-area-error']}><i className="fas fa-exclamation-circle" /> <p>{state.message}</p></div>);
-        }
+    const infoWindowOutput = this.infoWindowOutput();
 
-        return (<div className={styles['info-window-area']}><i className="fas fa-info-circle" /> <p>&nbsp;</p></div>);
-    }
+    const output = pressed ? (
+      formatShortcut([singleKey])
+    ) : (
+      <span className={styles['glowing-text']}>Press Some Keys...</span>
+    );
 
-    displayShortcut = () => {
-        const { shortcut } = this.props;
+    const shortcutkeys = this.displayShortcut();
 
-        const shortcutArray = shortcut.keys.split('+');
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles['edit-info']}>
+          <h4 className={styles['edit-subtitle']}>Action</h4>
+          <h4 className={styles['edit-subtitle']}>Current Shortcut</h4>
 
-        let cleanedShortcut = null;
+          <h4 style={{ textAlign: 'center' }}>{shortcut.title}</h4>
+          <h4 style={{ textAlign: 'center' }}>{shortcutkeys}</h4>
+        </div>
 
-        //If there is an empty value as the last element in the shorcut array,
-        //that means a plus key is supposed to be there, but it was filtered out
-        //due to keys.split
-        if (shortcutArray[shortcutArray.length - 1] === '') {
-            cleanedShortcut = shortcutArray.filter(item => item !== '');
+        <div className={styles['new-shortcut']}>
+          <div style={{ textAlign: 'center' }}>
+            <h4>New Shorcut:</h4>
+            <h4>{output}</h4>
+          </div>
+        </div>
 
-            if (shortcutArray[0]) {
-                cleanedShortcut.push('+');
-            }
-        }
+        <div className={styles['trigger-keys']}>
+          <label className={ctrlTriggered ? styles.active : styles.disabled}>Ctrl</label>
+          <label className={shiftTriggered ? styles.active : styles.disabled}>Shift</label>
+          <label className={altTriggered ? styles.active : styles.disabled}>Alt</label>
+          <label className={metaTriggered ? styles.active : styles.disabled}>Command</label>
+        </div>
 
-        const output = cleanedShortcut ? formatShortcut(cleanedShortcut) : formatShortcut(shortcutArray);
+        {infoWindowOutput}
 
-        return output;
-    }
-
-    render() {
-        const {
-            pressed,
-            singleKey,
-            shiftTriggered,
-            altTriggered,
-            metaTriggered,
-            ctrlTriggered,
-            state,
-        } = this.state;
-        const { onClose, shortcut } = this.props;
-
-        const infoWindowOutput = this.infoWindowOutput();
-
-        const output = pressed
-            ? formatShortcut([singleKey])
-            : <span className={styles['glowing-text']}>Press Some Keys...</span>;
-
-        const shortcutkeys = this.displayShortcut();
-
-        return (
-            <div className={styles.wrapper}>
-
-                <div className={styles['edit-info']}>
-                    <h4 className={styles['edit-subtitle']}>Action</h4>
-                    <h4 className={styles['edit-subtitle']}>Current Shortcut</h4>
-
-                    <h4 style={{ textAlign: 'center' }}>{shortcut.title}</h4>
-                    <h4 style={{ textAlign: 'center' }}>{shortcutkeys}</h4>
-                </div>
-
-                <div className={styles['new-shortcut']}>
-                    <div style={{ textAlign: 'center' }}>
-                        <h4>New Shorcut:</h4>
-                        <h4>{output}</h4>
-                    </div>
-                </div>
-
-                <div className={styles['trigger-keys']}>
-                    <label className={ctrlTriggered ? styles.active : styles.disabled}>Ctrl</label>
-                    <label className={shiftTriggered ? styles.active : styles.disabled}>Shift</label>
-                    <label className={altTriggered ? styles.active : styles.disabled}>Alt</label>
-                    <label className={metaTriggered ? styles.active : styles.disabled}>Command</label>
-                </div>
-
-                {infoWindowOutput}
-
-                <div className={styles['button-group-wrapper']}>
-                    <ButtonGroup style={{ marginTop: '2rem' }}>
-                        <Button btnSize="lg" btnStyle="default" onClick={onClose}>Cancel</Button>
-                        <Button
-                            btnSize="lg" btnStyle="primary" disabled={!state.available}
-                            onClick={this.handleEdit}
-                        >Save Changes
-                        </Button>
-                    </ButtonGroup>
-                </div>
-            </div>
-        );
-    }
+        <div className={styles['button-group-wrapper']}>
+          <ButtonGroup style={{ marginTop: '2rem' }}>
+            <Button btnSize="lg" btnStyle="default" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button btnSize="lg" btnStyle="primary" disabled={!state.available} onClick={this.handleEdit}>
+              Save Changes
+            </Button>
+          </ButtonGroup>
+        </div>
+      </div>
+    );
+  }
 }

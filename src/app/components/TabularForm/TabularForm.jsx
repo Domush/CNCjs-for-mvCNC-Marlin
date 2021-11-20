@@ -1,22 +1,25 @@
-
 import styled from 'styled-components';
 
 const TabularForm = styled.div`
-    display: table;
+  display: table;
 `;
 
 TabularForm.Row = styled.div`
-    display: table-row;
+  display: table-row;
 `;
 
 TabularForm.Col = styled.div`
-    display: table-cell;
+  display: table-cell;
 
-    ${props => props.condensed && `
+  ${(props) =>
+    props.condensed &&
+    `
         width: 0.1%;
     `}
 
-    ${props => props.nowrap && `
+  ${(props) =>
+    props.nowrap &&
+    `
         white-space: nowrap;
     `}
 `;

@@ -1,4 +1,3 @@
-
 import * as version from './api.version';
 import * as state from './api.state';
 import * as gcode from './api.gcode';
@@ -12,17 +11,4 @@ import * as mdi from './api.mdi';
 import * as users from './api.users';
 import * as files from './api.file';
 
-export {
-    version,
-    state,
-    gcode,
-    controllers,
-    watch,
-    commands,
-    events,
-    machines,
-    macros,
-    mdi,
-    users,
-    files
-};
+export { version, state, gcode, controllers, watch, commands, events, machines, macros, mdi, users, files };

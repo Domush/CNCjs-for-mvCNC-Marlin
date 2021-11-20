@@ -1,4 +1,3 @@
-
 import pubsub from 'pubsub-js';
 
 // Styling choices
@@ -14,10 +13,10 @@ export const TOASTER_LONG = 10000;
 export const TOASTER_UNTIL_CLOSE = -1;
 
 export const Toaster = {
-    pop: (options) => {
-        pubsub.publish('toast:new', options);
-    },
-    clear: () => {
-        pubsub.publish('toast:clear');
-    }
+  pop: (options) => {
+    pubsub.publish('toast:new', options);
+  },
+  clear: () => {
+    pubsub.publish('toast:clear');
+  },
 };

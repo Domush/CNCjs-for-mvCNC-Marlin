@@ -12,17 +12,17 @@ import Surfacing from './Surfacing';
  * @prop {Function} modalClose - Function to close the current modal
  */
 const SurfacingModal = ({ modalClose }) => {
-    return (
-        <Modal title="Surfacing Tool" onClose={modalClose} size="lg">
-            <ReduxProvider store={reduxStore}>
-                <Surfacing onClose={modalClose} />
-            </ReduxProvider>
-        </Modal>
-    );
+  return (
+    <Modal title="Surfacing Tool" onClose={modalClose} size="lg">
+      <ReduxProvider store={reduxStore}>
+        <Surfacing onClose={modalClose} />
+      </ReduxProvider>
+    </Modal>
+  );
 };
 
 SurfacingModal.propTypes = {
-    modalClose: PropTypes.func.isRequired,
+  modalClose: PropTypes.func.isRequired,
 };
 
 export default SurfacingModal;

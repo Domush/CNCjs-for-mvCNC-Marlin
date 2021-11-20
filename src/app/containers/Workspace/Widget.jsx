@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import AxesWidget from 'app/widgets/JogControl';
@@ -12,47 +11,45 @@ import VisualizerWidget from 'app/widgets/Visualizer';
 import SecondaryFunctionality from 'app/widgets/SecondaryFunctionality';
 
 const getWidgetByName = (name) => {
-    return {
-        'axes': AxesWidget,
-        'console': ConsoleWidget,
-        'job_status': JobStatusWidget,
-        'location': LocationWidget,
-        'macro': MacroWidget,
-        'probe': ProbeWidget,
-        'spindle': SpindleWidget,
-        'visualizer': VisualizerWidget,
-        'secondary': SecondaryFunctionality
-    }[name] || null;
+  return (
+    {
+      axes: AxesWidget,
+      console: ConsoleWidget,
+      job_status: JobStatusWidget,
+      location: LocationWidget,
+      macro: MacroWidget,
+      probe: ProbeWidget,
+      spindle: SpindleWidget,
+      visualizer: VisualizerWidget,
+      secondary: SecondaryFunctionality,
+    }[name] || null
+  );
 };
 
 class WidgetWrapper extends PureComponent {
-    widget = null;
+  widget = null;
 
-    render() {
-        const { widgetId } = this.props;
+  render() {
+    const { widgetId } = this.props;
 
-        if (typeof widgetId !== 'string') {
-            return null;
-        }
-
-        // e.g. "webcam" or "webcam:d8e6352f-80a9-475f-a4f5-3e9197a48a23"
-        const name = widgetId.split(':')[0];
-        const Widget = getWidgetByName(name);
-
-        if (!Widget) {
-            return null;
-        }
-
-        return (
-            <Widget
-                {...this.props}
-            />
-        );
+    if (typeof widgetId !== 'string') {
+      return null;
     }
+
+    // e.g. "webcam" or "webcam:d8e6352f-80a9-475f-a4f5-3e9197a48a23"
+    const name = widgetId.split(':')[0];
+    const Widget = getWidgetByName(name);
+
+    if (!Widget) {
+      return null;
+    }
+
+    return <Widget {...this.props} />;
+  }
 }
 
 WidgetWrapper.propTypes = {
-    widgetId: PropTypes.string.isRequired
+  widgetId: PropTypes.string.isRequired,
 };
 
 export default WidgetWrapper;

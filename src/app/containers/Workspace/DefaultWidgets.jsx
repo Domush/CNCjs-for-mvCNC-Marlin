@@ -1,4 +1,3 @@
-
 import classNames from 'classnames';
 import React, { PureComponent } from 'react';
 import store from 'app/store';
@@ -7,55 +6,50 @@ import styles from './widgets.styl';
 import JobStatusWidget from '../../widgets/JobStatus';
 import VisualizerWidget from '../../widgets/Visualizer';
 
-
 class DefaultWidgets extends PureComponent {
-    state = {
-        isReverse: store.get('workspace.reverseWidgets', false)
-    }
+  state = {
+    isReverse: store.get('workspace.reverseWidgets', false),
+  };
 
-    pubsubTokens = []
+  pubsubTokens = [];
 
-    subscribe () {
-        const tokens = [
-            pubsub.subscribe('widgets:reverse', (msg) => {
-                this.setState({
-                    isReverse: store.get('workspace.reverseWidgets', false)
-                });
-            })
-        ];
-        this.pubsubTokens = this.pubsubTokens.concat(tokens);
-    }
-
-    unsubscribe() {
-        this.pubsubTokens.forEach((token) => {
-            pubsub.unsubscribe(token);
+  subscribe() {
+    const tokens = [
+      pubsub.subscribe('widgets:reverse', (msg) => {
+        this.setState({
+          isReverse: store.get('workspace.reverseWidgets', false),
         });
-        this.pubsubTokens = [];
-    }
+      }),
+    ];
+    this.pubsubTokens = this.pubsubTokens.concat(tokens);
+  }
 
-    componentDidMount() {
-        this.subscribe();
-    }
+  unsubscribe() {
+    this.pubsubTokens.forEach((token) => {
+      pubsub.unsubscribe(token);
+    });
+    this.pubsubTokens = [];
+  }
 
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
+  componentDidMount() {
+    this.subscribe();
+  }
 
-    render() {
-        const { isReverse } = this.state;
-        const { className } = this.props;
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
 
-        return (
-            <div className={classNames(className, styles['default-widgets'], { [styles.marginLeft]: isReverse })}>
-                <VisualizerWidget
-                    widgetId="visualizer"
-                />
-                <JobStatusWidget
-                    widgetId="job_status"
-                />
-            </div>
-        );
-    }
+  render() {
+    const { isReverse } = this.state;
+    const { className } = this.props;
+
+    return (
+      <div className={classNames(className, styles['default-widgets'], { [styles.marginLeft]: isReverse })}>
+        <VisualizerWidget widgetId="visualizer" />
+        <JobStatusWidget widgetId="job_status" />
+      </div>
+    );
+  }
 }
 
 export default DefaultWidgets;

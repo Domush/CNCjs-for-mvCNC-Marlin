@@ -2,17 +2,13 @@ import React, { useEffect } from 'react';
 import useStayAwake from 'use-stay-awake';
 
 const ScreenAwake = ({ children }) => {
-    const device = useStayAwake();
+  const device = useStayAwake();
 
-    useEffect(() => {
-        device.preventSleeping();
-    }, []);
+  useEffect(() => {
+    device.preventSleeping();
+  }, []);
 
-    return (
-        <>
-            { children }
-        </>
-    );
+  return <>{children}</>;
 };
 
 export default ScreenAwake;

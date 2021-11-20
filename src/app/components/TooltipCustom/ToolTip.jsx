@@ -3,25 +3,23 @@ import PropTypes from 'prop-types';
 import { Tooltip as MainToolTip } from 'app/components/Tooltip';
 
 const Tooltip = ({ location, content, disabled, children, style }) => {
-    return (
-        <MainToolTip
-            content={content}
-            placement={location === 'default' ? 'bottom' : location}
-            enterDelay={1000}
-            disabled={disabled}
-            tooltipStyle={style}
-        >
-            <div>
-                {children}
-            </div>
-        </MainToolTip>
-    );
+  return (
+    <MainToolTip
+      content={content}
+      placement={location === 'default' ? 'bottom' : location}
+      enterDelay={1000}
+      disabled={disabled}
+      tooltipStyle={style}
+    >
+      <div>{children}</div>
+    </MainToolTip>
+  );
 };
 
 Tooltip.propTypes = {
-    location: PropTypes.string,
-    content: PropTypes.string || PropTypes.node,
-    disabled: PropTypes.bool,
+  location: PropTypes.string,
+  content: PropTypes.string || PropTypes.node,
+  disabled: PropTypes.bool,
 };
 
 export default Tooltip;

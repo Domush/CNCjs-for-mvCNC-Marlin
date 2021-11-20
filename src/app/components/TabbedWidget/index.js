@@ -1,4 +1,3 @@
-
 import TabbedWidget from './TabbedWidget';
 import Tabs from './Tabs';
 import Content from './Content';

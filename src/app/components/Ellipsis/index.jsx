@@ -1,22 +1,18 @@
-
 import styled from 'styled-components';
 
 const Ellipsis = styled.div`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const EllipsisBlock = styled(Ellipsis)`
-    display: block;
+  display: block;
 `;
 
 const EllipsisInlineBlock = styled(Ellipsis)`
-    display: inline-block;
+  display: inline-block;
 `;
 
-export {
-    EllipsisBlock,
-    EllipsisInlineBlock
-};
+export { EllipsisBlock, EllipsisInlineBlock };
 export default Ellipsis;

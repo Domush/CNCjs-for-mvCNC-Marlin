@@ -1,4 +1,3 @@
-
 import TaskRunner from './TaskRunner';
 
 const taskRunner = new TaskRunner();

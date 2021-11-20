@@ -10,14 +10,13 @@ const findImports = require('find-imports');
 const pkg = require('../package.json');
 const pkgApp = require('../src/package.json');
 
-const files = [
-    'src/*.js',
-    'src/server/**/*.{js,jsx}'
-];
+const files = ['src/*.js', 'src/server/**/*.{js,jsx}'];
 const deps = [
-    '@babel/runtime', // 'babel-runtime' is required for electron app
-    'debug' // 'debug' is required for electron app
-].concat(findImports(files, { flatten: true })).sort();
+  '@babel/runtime', // 'babel-runtime' is required for electron app
+  'debug', // 'debug' is required for electron app
+]
+  .concat(findImports(files, { flatten: true }))
+  .sort();
 
 //pkgApp.name = pkg.name; // Exclude the name field
 pkgApp.version = pkg.version;

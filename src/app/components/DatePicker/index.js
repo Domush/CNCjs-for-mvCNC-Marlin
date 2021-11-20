@@ -1,4 +1,3 @@
-
 import '@trendmicro/react-datepicker/dist/react-datepicker.css';
 import DatePicker from '@trendmicro/react-datepicker';
 

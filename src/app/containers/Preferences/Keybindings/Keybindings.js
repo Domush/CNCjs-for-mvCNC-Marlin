@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import pubsub from 'pubsub-js';
@@ -20,159 +19,179 @@ import styles from './index.styl';
  * @prop {Boolean} active Check if this page is currently active or not
  */
 export default class Keybindings extends Component {
-    static propTypes = {
-        active: PropTypes.bool,
+  static propTypes = {
+    active: PropTypes.bool,
+  };
+
+  showToast = _.throttle(
+    (msg = 'Shortcut Updated') => {
+      Toaster.pop({
+        msg,
+        type: TOASTER_SUCCESS,
+        duration: 3000,
+      });
+    },
+    5000,
+    { trailing: false }
+  );
+
+  state = {
+    keybindingsList: store.get('commandKeys', []),
+    currentShortcut: {},
+    showEditModal: false,
+  };
+
+  handleEdit = (currentShortcut) => {
+    this.setState({ showEditModal: true, currentShortcut });
+  };
+
+  handleDelete = (shortcut) => {
+    const { keybindingsList } = this.state;
+
+    shortcut.keys = '';
+
+    const updatedKeybindingsList = keybindingsList.map((keybinding) =>
+      keybinding.id === shortcut.id ? shortcut : keybinding
+    );
+
+    this.updateKeybindings(updatedKeybindingsList, false);
+
+    this.showToast('Shortcut Cleared');
+  };
+
+  /**
+   * Function to edit the stores commandKeys array
+   * @param {Object} shortcut The shortcut that was modifed
+   */
+  editKeybinding = (shortcut, showToast = true) => {
+    const { keybindingsList } = this.state;
+
+    //Replace old keybinding item with new one
+    const editedKeybindingsList = keybindingsList.map((keybinding) =>
+      keybinding.id === shortcut.id ? shortcut : keybinding
+    );
+
+    this.updateKeybindings(editedKeybindingsList, showToast);
+  };
+
+  toggleKeybinding = (shortcut, showToast) => {
+    const { keybindingsList } = this.state;
+
+    const shortcutInUse = keybindingsList
+      .filter((keybinding) => keybinding.id !== shortcut.id)
+      .find((keybinding) => keybinding.keys === shortcut.keys);
+
+    if (shortcutInUse && shortcut.isActive) {
+      shortcut.keys = '';
     }
 
-    showToast = _.throttle((msg = 'Shortcut Updated') => {
-        Toaster.pop({
-            msg,
-            type: TOASTER_SUCCESS,
-            duration: 3000
-        });
-    }, 5000, { trailing: false });
+    const updatedKeybindingsList = keybindingsList.map((keybinding) =>
+      keybinding.id === shortcut.id ? shortcut : keybinding
+    );
 
-    state = {
-        keybindingsList: store.get('commandKeys', []),
-        currentShortcut: {},
-        showEditModal: false,
+    this.updateKeybindings(updatedKeybindingsList, showToast);
+  };
+
+  updateKeybindings = (keybindings, showToast) => {
+    store.set('commandKeys', keybindings);
+    pubsub.publish('keybindingsUpdated');
+
+    this.setState({ showEditModal: false, keybindingsList: keybindings });
+
+    if (showToast) {
+      this.showToast();
     }
+  };
 
-    handleEdit = (currentShortcut) => {
-        this.setState({ showEditModal: true, currentShortcut });
-    }
+  // Trigger pubsub for use in Location widget where keybindings are injected
+  // When modifing keybindings, we remove the key listener in location widget to prevent
+  // it from being fired during the edit
+  componentDidMount() {
+    pubsub.publish('removeKeybindingsListener');
+  }
 
-    handleDelete = (shortcut) => {
-        const { keybindingsList } = this.state;
+  // When we are not editing the keybindings anymore, make sure to re-inject the keybindings
+  // within the location widget again
+  componentWillUnmount() {
+    pubsub.publish('addKeybindingsListener');
+  }
 
-        shortcut.keys = '';
+  closeModal = () => {
+    this.setState({ showEditModal: false });
+  };
 
-        const updatedKeybindingsList = keybindingsList.map(keybinding => (keybinding.id === shortcut.id ? shortcut : keybinding));
+  enableAllKeybindings = () => {
+    const enabledKeybindingsArr = this.state.keybindingsList.map((keybinding) => ({ ...keybinding, isActive: true }));
 
-        this.updateKeybindings(updatedKeybindingsList, false);
+    store.set('commandKeys', enabledKeybindingsArr);
+    pubsub.publish('keybindingsUpdated');
 
-        this.showToast('Shortcut Cleared');
-    }
+    this.setState({ showEditModal: false, keybindingsList: enabledKeybindingsArr });
 
-    /**
-     * Function to edit the stores commandKeys array
-     * @param {Object} shortcut The shortcut that was modifed
-     */
-    editKeybinding = (shortcut, showToast = true) => {
-        const { keybindingsList } = this.state;
+    this.showToast('Keybindings Enabled');
+  };
 
-        //Replace old keybinding item with new one
-        const editedKeybindingsList = keybindingsList.map(keybinding => (keybinding.id === shortcut.id ? shortcut : keybinding));
+  disableAllKeybindings = () => {
+    const disabledKeybindingsArr = this.state.keybindingsList.map((keybinding) => ({ ...keybinding, isActive: false }));
 
-        this.updateKeybindings(editedKeybindingsList, showToast);
-    }
+    store.set('commandKeys', disabledKeybindingsArr);
+    pubsub.publish('keybindingsUpdated');
 
-    toggleKeybinding = (shortcut, showToast) => {
-        const { keybindingsList } = this.state;
+    this.setState({ showEditModal: false, keybindingsList: disabledKeybindingsArr });
 
-        const shortcutInUse = keybindingsList.filter(keybinding => keybinding.id !== shortcut.id).find(keybinding => keybinding.keys === shortcut.keys);
+    this.showToast('Keybindings Disabled');
+  };
 
-        if (shortcutInUse && shortcut.isActive) {
-            shortcut.keys = '';
-        }
+  render() {
+    const {
+      handleEdit,
+      handleDelete,
+      editKeybinding,
+      closeModal,
+      enableAllKeybindings,
+      disableAllKeybindings,
+      toggleKeybinding,
+    } = this;
+    const { currentShortcut, keybindingsList, showEditModal } = this.state;
 
-        const updatedKeybindingsList = keybindingsList.map(keybinding => (keybinding.id === shortcut.id ? shortcut : keybinding));
+    const allShortcutsEnabled = keybindingsList.every((shortcut) => shortcut.isActive);
+    const allShortcutsDisabled = keybindingsList.every((shortcut) => !shortcut.isActive);
 
-        this.updateKeybindings(updatedKeybindingsList, showToast);
-    }
+    return (
+      <div>
+        <div className={styles['table-wrapper']}>
+          <Table
+            data={keybindingsList}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onShortcutToggle={toggleKeybinding}
+          />
+        </div>
 
-    updateKeybindings = (keybindings, showToast) => {
-        store.set('commandKeys', keybindings);
-        pubsub.publish('keybindingsUpdated');
+        <div style={{ display: 'grid', columnGap: '1rem', gridTemplateColumns: '1fr 1fr' }}>
+          <FunctionButton primary onClick={enableAllKeybindings} disabled={allShortcutsEnabled}>
+            <i className="fas fa-toggle-on" />
+            Enable All Shortcuts
+          </FunctionButton>
+          <FunctionButton primary onClick={disableAllKeybindings} disabled={allShortcutsDisabled}>
+            <i className="fas fa-toggle-off" />
+            Disable All Shortcuts
+          </FunctionButton>
+        </div>
 
-        this.setState({ showEditModal: false, keybindingsList: keybindings });
+        {showEditModal && (
+          <Modal onClose={closeModal} size="md" style={{ padding: '1rem 1rem 2rem', backgroundColor: '#d1d5db' }}>
+            <h3 style={{ textAlign: 'center', marginBottom: '1rem' }}>Edit Shortcut</h3>
 
-        if (showToast) {
-            this.showToast();
-        }
-    }
-
-    // Trigger pubsub for use in Location widget where keybindings are injected
-    // When modifing keybindings, we remove the key listener in location widget to prevent
-    // it from being fired during the edit
-    componentDidMount() {
-        pubsub.publish('removeKeybindingsListener');
-    }
-
-    // When we are not editing the keybindings anymore, make sure to re-inject the keybindings
-    // within the location widget again
-    componentWillUnmount() {
-        pubsub.publish('addKeybindingsListener');
-    }
-
-    closeModal = () => {
-        this.setState({ showEditModal: false });
-    }
-
-    enableAllKeybindings = () => {
-        const enabledKeybindingsArr = this.state.keybindingsList.map(keybinding => ({ ...keybinding, isActive: true }));
-
-        store.set('commandKeys', enabledKeybindingsArr);
-        pubsub.publish('keybindingsUpdated');
-
-        this.setState({ showEditModal: false, keybindingsList: enabledKeybindingsArr });
-
-        this.showToast('Keybindings Enabled');
-    }
-
-    disableAllKeybindings = () => {
-        const disabledKeybindingsArr = this.state.keybindingsList.map(keybinding => ({ ...keybinding, isActive: false }));
-
-        store.set('commandKeys', disabledKeybindingsArr);
-        pubsub.publish('keybindingsUpdated');
-
-        this.setState({ showEditModal: false, keybindingsList: disabledKeybindingsArr });
-
-        this.showToast('Keybindings Disabled');
-    }
-
-    render() {
-        const { handleEdit, handleDelete, editKeybinding, closeModal, enableAllKeybindings, disableAllKeybindings, toggleKeybinding } = this;
-        const { currentShortcut, keybindingsList, showEditModal } = this.state;
-
-        const allShortcutsEnabled = keybindingsList.every(shortcut => shortcut.isActive);
-        const allShortcutsDisabled = keybindingsList.every(shortcut => !shortcut.isActive);
-
-        return (
-            <div>
-                <div className={styles['table-wrapper']}>
-                    <Table
-                        data={keybindingsList}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                        onShortcutToggle={toggleKeybinding}
-                    />
-                </div>
-
-                <div style={{ display: 'grid', columnGap: '1rem', gridTemplateColumns: '1fr 1fr' }}>
-                    <FunctionButton primary onClick={enableAllKeybindings} disabled={allShortcutsEnabled}>
-                        <i className="fas fa-toggle-on" />
-                        Enable All Shortcuts
-                    </FunctionButton>
-                    <FunctionButton primary onClick={disableAllKeybindings} disabled={allShortcutsDisabled}>
-                        <i className="fas fa-toggle-off" />
-                        Disable All Shortcuts
-                    </FunctionButton>
-                </div>
-
-                { showEditModal && (
-                    <Modal onClose={closeModal} size="md" style={{ padding: '1rem 1rem 2rem', backgroundColor: '#d1d5db' }}>
-                        <h3 style={{ textAlign: 'center', marginBottom: '1rem' }}>Edit Shortcut</h3>
-
-                        <EditArea
-                            shortcut={currentShortcut}
-                            shortcuts={keybindingsList}
-                            edit={editKeybinding}
-                            onClose={closeModal}
-                        />
-                    </Modal>
-                ) }
-            </div>
-        );
-    }
+            <EditArea
+              shortcut={currentShortcut}
+              shortcuts={keybindingsList}
+              edit={editKeybinding}
+              onClose={closeModal}
+            />
+          </Modal>
+        )}
+      </div>
+    );
+  }
 }
