@@ -42,11 +42,7 @@ const normalizeBBox = (bbox) => {
 };
 
 const reducer = createReducer(initialState, {
-  [UNLOAD_FILE_INFO]: (context, reducerState) => {
-    return {
-      ...initialState,
-    };
-  },
+  [UNLOAD_FILE_INFO]: (context, reducerState) => initialState,
   [UPDATE_FILE_INFO]: (payload, reducerState) => {
     const bbox = payload.bbox ? { bbox: normalizeBBox(payload.bbox) } : {};
     return {
@@ -56,24 +52,18 @@ const reducer = createReducer(initialState, {
       ...bbox,
     };
   },
-  [UPDATE_FILE_CONTENT]: ({ content, name, size }, reducerState) => {
-    return {
-      fileLoaded: true,
-      content,
-      name,
-      size,
-    };
-  },
-  [UPDATE_FILE_PROCESSING]: ({ value }, reducerState) => {
-    return {
-      fileProcessing: value,
-    };
-  },
-  [UPDATE_FILE_RENDER_STATE]: ({ state }, reducerState) => {
-    return {
-      renderState: state,
-    };
-  },
+  [UPDATE_FILE_CONTENT]: ({ content, name, size }, reducerState) => ({
+    fileLoaded: true,
+    content,
+    name,
+    size,
+  }),
+  [UPDATE_FILE_PROCESSING]: ({ value }, reducerState) => ({
+    fileProcessing: value,
+  }),
+  [UPDATE_FILE_RENDER_STATE]: ({ state }, reducerState) => ({
+    renderState: state,
+  }),
 });
 
 export default reducer;

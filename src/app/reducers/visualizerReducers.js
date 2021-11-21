@@ -7,12 +7,10 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-  [SET_CURRENT_VISUALIZER]: (payload, state) => {
-    return {
-      ...state,
-      activeVisualizer: payload,
-    };
-  },
+  [SET_CURRENT_VISUALIZER]: (payload, state) => ({
+    ...state,
+    activeVisualizer: payload,
+  }),
 });
 
 export default reducer;

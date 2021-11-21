@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const babelConfig = require('./babel.config');
+const babelConfig = require('./babel.config.cjs');
 const pkg = require('./package.json');
 
 const myEslintOptions = {

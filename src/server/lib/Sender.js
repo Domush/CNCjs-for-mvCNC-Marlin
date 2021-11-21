@@ -383,13 +383,11 @@ class Sender extends events.EventEmitter {
       this.state.remainingTime = timePerCode * this.state.total - this.state.elapsedTime;
     }
 
-    if (this.state.received >= this.state.total) {
-      if (this.state.finishTime === 0) {
-        // avoid issue 'end' multiple times
-        this.state.finishTime = now;
-        this.emit('end', this.state.finishTime);
-        this.emit('change');
-      }
+    if (this.state.received >= this.state.total && this.state.finishTime === 0) {
+      // avoid issue 'end' multiple times
+      this.state.finishTime = now;
+      this.emit('end', this.state.finishTime);
+      this.emit('change');
     }
 
     return true;

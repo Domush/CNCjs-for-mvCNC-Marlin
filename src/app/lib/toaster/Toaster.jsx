@@ -17,8 +17,8 @@ class Toaster extends PureComponent {
   }
 
   createNewToast({ duration = TOASTER_DEFAULT, ...options }) {
-    const state = { ...this.state };
-    const activeToasts = [...state.activeToasts];
+    const state = this.state;
+    const activeToasts = state.activeToasts.slice();
     const toastId = uuid();
     const closeHandler = () => {
       pubsub.publish('toast:remove', toastId);
@@ -42,8 +42,8 @@ class Toaster extends PureComponent {
   }
 
   removeToast(id) {
-    const state = { ...this.state };
-    const activeToasts = [...state.activeToasts];
+    const state = this.state;
+    const activeToasts = state.activeToasts.slice();
     let filteredToasts = activeToasts.filter((toast) => toast.id !== id);
     this.setState({
       activeToasts: filteredToasts,

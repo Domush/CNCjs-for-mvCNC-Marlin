@@ -16,9 +16,7 @@ import NavLogo from '../../components/NavLogo';
 import NavSidebar from '../NavSidebar';
 
 class Header extends PureComponent {
-  static propTypes = {
-    ...withRouter.propTypes,
-  };
+  static propTypes = withRouter.propTypes;
 
   state = this.getInitialState();
 
@@ -74,9 +72,7 @@ class Header extends PureComponent {
         const { taskId } = res.body;
 
         this.setState({
-          commands: this.state.commands.map((c) => {
-            return c.id === cmd.id ? { ...c, taskId: taskId, err: null } : c;
-          }),
+          commands: this.state.commands.map((c) => (c.id === cmd.id ? { ...c, taskId: taskId, err: null } : c)),
         });
       } catch (res) {
         // Ignore error
@@ -111,7 +107,7 @@ class Header extends PureComponent {
       });
     },
     'task:finish': (taskId, code) => {
-      const err = code !== 0 ? new Error(`errno=${code}`) : null;
+      const err = code !== 0 ? Error(`errno=${code}`) : null;
       let cmd = null;
 
       this.setState({

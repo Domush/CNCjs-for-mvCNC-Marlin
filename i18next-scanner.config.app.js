@@ -1,8 +1,6 @@
-/* eslint no-console: 0 */
-/* eslint strict: 0 */
 const fs = require('fs');
 const chalk = require('chalk');
-const languages = require('./build.config').languages;
+const languages = require('./build.config.cjs').languages;
 
 module.exports = {
   src: [

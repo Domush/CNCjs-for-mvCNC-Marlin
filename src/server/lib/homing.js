@@ -64,10 +64,8 @@ export const determineMachineZeroFlagSet = (res, settings) => {
   const yPos = parseInt(mpos.y, 10);
   const zPos = parseInt(mpos.z, 10);
 
-  if (homingLocation !== BACK_RIGHT) {
-    if (xPos === 0 && yPos === 0 && zPos === 0) {
-      return true;
-    }
+  if (homingLocation !== BACK_RIGHT && xPos === 0 && yPos === 0 && zPos === 0) {
+    return true;
   }
 
   return false;

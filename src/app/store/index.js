@@ -7,11 +7,14 @@ import set from 'lodash/set';
 import merge from 'lodash/merge';
 import uniq from 'lodash/uniq';
 import semver from 'semver';
+import { createCommons } from 'simport';
 import settings from '../config/settings';
 import ImmutableStore from '../lib/immutable-store';
 import log from '../lib/log';
 import defaultState from './defaultState';
 import { JOGGING_CATEGORY, LOCATION_CATEGORY, METRIC_UNITS } from '../constants';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
 
 const store = new ImmutableStore(defaultState);
 
@@ -48,7 +51,7 @@ const getConfig = () => {
 };
 
 const persist = (data) => {
-  const { version, state } = { ...data };
+  const { version, state } = data;
 
   data = {
     version: version || settings.version,

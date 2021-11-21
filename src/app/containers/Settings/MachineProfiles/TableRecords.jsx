@@ -31,9 +31,7 @@ class TableRecords extends PureComponent {
         bordered={false}
         justified={false}
         data={state.api.err || state.api.fetching ? [] : state.records}
-        rowKey={(record) => {
-          return record.id;
-        }}
+        rowKey={(record) => record.id}
         emptyText={() => {
           if (state.api.err) {
             return <span className="text-danger">{i18n._('An unexpected error has occurred.')}</span>;
@@ -102,43 +100,41 @@ class TableRecords extends PureComponent {
           {
             title: i18n._('Limits'),
             key: 'limits',
-            render: (value, row, index) => {
-              return (
-                <FlexContainer fluid gutterWidth={0}>
-                  <Row>
-                    <Col width="auto">
-                      <div>
-                        <Axis value="X" sub="min" />
-                        {` = ${_get(row, 'limits.xmin')}`}
-                      </div>
-                      <div>
-                        <Axis value="Y" sub="min" />
-                        {` = ${_get(row, 'limits.ymin')}`}
-                      </div>
-                      <div>
-                        <Axis value="Z" sub="min" />
-                        {` = ${_get(row, 'limits.zmin')}`}
-                      </div>
-                    </Col>
-                    <Col width="auto" style={{ width: 16 }} />
-                    <Col width="auto">
-                      <div>
-                        <Axis value="X" sub="max" />
-                        {` = ${_get(row, 'limits.xmax')}`}
-                      </div>
-                      <div>
-                        <Axis value="Y" sub="max" />
-                        {` = ${_get(row, 'limits.ymax')}`}
-                      </div>
-                      <div>
-                        <Axis value="Z" sub="max" />
-                        {` = ${_get(row, 'limits.zmax')}`}
-                      </div>
-                    </Col>
-                  </Row>
-                </FlexContainer>
-              );
-            },
+            render: (value, row, index) => (
+              <FlexContainer fluid gutterWidth={0}>
+                <Row>
+                  <Col width="auto">
+                    <div>
+                      <Axis value="X" sub="min" />
+                      {` = ${_get(row, 'limits.xmin')}`}
+                    </div>
+                    <div>
+                      <Axis value="Y" sub="min" />
+                      {` = ${_get(row, 'limits.ymin')}`}
+                    </div>
+                    <div>
+                      <Axis value="Z" sub="min" />
+                      {` = ${_get(row, 'limits.zmin')}`}
+                    </div>
+                  </Col>
+                  <Col width="auto" style={{ width: 16 }} />
+                  <Col width="auto">
+                    <div>
+                      <Axis value="X" sub="max" />
+                      {` = ${_get(row, 'limits.xmax')}`}
+                    </div>
+                    <div>
+                      <Axis value="Y" sub="max" />
+                      {` = ${_get(row, 'limits.ymax')}`}
+                    </div>
+                    <div>
+                      <Axis value="Z" sub="max" />
+                      {` = ${_get(row, 'limits.zmax')}`}
+                    </div>
+                  </Col>
+                </Row>
+              </FlexContainer>
+            ),
           },
           /*
                     {
@@ -176,54 +172,52 @@ class TableRecords extends PureComponent {
             title: i18n._('Action'),
             className: 'text-nowrap',
             key: 'action',
-            render: (value, row, index) => {
-              return (
-                <div>
-                  <button
-                    type="button"
-                    className="btn btn-xs btn-default"
-                    title={i18n._('Update')}
-                    onClick={(event) => {
-                      actions.openModal(MODAL_UPDATE_RECORD, row);
-                    }}
-                  >
-                    <i className="fa fa-fw fa-edit" />
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-xs btn-default"
-                    title={i18n._('Delete')}
-                    onClick={(event) => {
-                      portal(({ onClose }) => (
-                        <Modal disableOverlay onClose={onClose}>
-                          <Modal.Body>
-                            <ModalTemplate type="warning">
-                              <FormGroup>
-                                <strong>{i18n._('Delete machine profile')}</strong>
-                              </FormGroup>
-                              <div>{row.name}</div>
-                            </ModalTemplate>
-                          </Modal.Body>
-                          <Modal.Footer>
-                            <Button onClick={onClose}>{i18n._('Cancel')}</Button>
-                            <Button
-                              btnStyle="primary"
-                              onClick={chainedFunction(() => {
-                                actions.deleteRecord(row.id);
-                              }, onClose)}
-                            >
-                              {i18n._('OK')}
-                            </Button>
-                          </Modal.Footer>
-                        </Modal>
-                      ));
-                    }}
-                  >
-                    <i className="fa fa-fw fa-trash" />
-                  </button>
-                </div>
-              );
-            },
+            render: (value, row, index) => (
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-xs btn-default"
+                  title={i18n._('Update')}
+                  onClick={(event) => {
+                    actions.openModal(MODAL_UPDATE_RECORD, row);
+                  }}
+                >
+                  <i className="fa fa-fw fa-edit" />
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-xs btn-default"
+                  title={i18n._('Delete')}
+                  onClick={(event) => {
+                    portal(({ onClose }) => (
+                      <Modal disableOverlay onClose={onClose}>
+                        <Modal.Body>
+                          <ModalTemplate type="warning">
+                            <FormGroup>
+                              <strong>{i18n._('Delete machine profile')}</strong>
+                            </FormGroup>
+                            <div>{row.name}</div>
+                          </ModalTemplate>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button onClick={onClose}>{i18n._('Cancel')}</Button>
+                          <Button
+                            btnStyle="primary"
+                            onClick={chainedFunction(() => {
+                              actions.deleteRecord(row.id);
+                            }, onClose)}
+                          >
+                            {i18n._('OK')}
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+                    ));
+                  }}
+                >
+                  <i className="fa fa-fw fa-trash" />
+                </button>
+              </div>
+            ),
           },
         ]}
       />

@@ -28,14 +28,14 @@ export const getLatestVersion = (req, res) => {
         return;
       }
 
-      const { body: data = {} } = { ..._res };
+      const { body: data = {} } = _res;
       data.time = data.time || {};
       data['dist-tags'] = data['dist-tags'] || {};
       data.versions = data.versions || {};
 
       const time = data.time[latest];
       const latest = data['dist-tags'].latest;
-      const { name, version, description, homepage } = { ...data.versions[latest] };
+      const { name, version, description, homepage } = data.versions[latest];
 
       res.send({ time, name, version, description, homepage });
     });

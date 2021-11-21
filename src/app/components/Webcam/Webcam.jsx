@@ -2,6 +2,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+const isString = (a) => typeof a === 'string';
+
 class Webcam extends Component {
   static propTypes = {
     // Video props
@@ -127,7 +129,7 @@ class Webcam extends Component {
       audio: !!audio,
       video: !!video,
     };
-    if (typeof video === 'string' && video.length > 0) {
+    if (isString(video) && video.length > 0) {
       constraints.video = {
         optional: [{ sourceId: video }],
       };
@@ -148,13 +150,13 @@ class Webcam extends Component {
       .then((devices) => {
         devices.forEach((device) => {
           // audioinput
-          if (device.kind === 'audioinput' && constraints.audio === true) {
+          if (device.kind === 'audioinput' && constraints.audio) {
             constraints.audio = {
               optional: [{ sourceId: device.deviceId }],
             };
           }
           // videoinput
-          if (device.kind === 'videoinput' && constraints.video === true) {
+          if (device.kind === 'videoinput' && constraints.video) {
             constraints.video = {
               optional: [{ sourceId: device.deviceId }],
             };

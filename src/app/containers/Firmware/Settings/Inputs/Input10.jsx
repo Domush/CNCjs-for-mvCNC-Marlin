@@ -49,7 +49,7 @@ class InputTen extends PureComponent {
   };
 
   toggleMPos = (value) => {
-    const settings = [...this.state.settings];
+    const settings = this.state.settings.slice();
     settings[0] = value;
     this.setState({
       settings: settings,
@@ -58,7 +58,7 @@ class InputTen extends PureComponent {
   };
 
   toggleBuffer = (value) => {
-    const settings = [...this.state.settings];
+    const settings = this.state.settings.slice();
     settings[1] = value;
     this.setState({
       settings: settings,
@@ -70,21 +70,21 @@ class InputTen extends PureComponent {
     let value = event.target.checked;
     let name = event.target.name;
     let currentValue = this.state.defaultSettings;
-    if (currentValue[0] === true) {
+    if (currentValue[0]) {
       currentValue[0] = 1;
-    } else if (currentValue[0] === false) {
+    } else if (!currentValue[0]) {
       currentValue[0] = 0;
     }
-    if (currentValue[1] === true) {
+    if (currentValue[1]) {
       currentValue[1] = 1;
-    } else if (currentValue[1] === false) {
+    } else if (!currentValue[1]) {
       currentValue[1] = 0;
     }
 
-    if (value === true) {
+    if (value) {
       value = 1;
     }
-    if (value === false) {
+    if (!value) {
       value = 0;
     }
 

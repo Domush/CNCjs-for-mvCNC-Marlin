@@ -30,8 +30,8 @@
 const errserver = (options) => {
   options = options || {};
 
-  let view = options.view || '500',
-    error = options.error || '';
+  let view = options.view || '500';
+  let error = options.error || '';
 
   return (err, req, res, next) => {
     // we may use properties of the error object
@@ -42,4 +42,4 @@ const errserver = (options) => {
   };
 };
 
-module.exports = errserver;
+export default errserver;

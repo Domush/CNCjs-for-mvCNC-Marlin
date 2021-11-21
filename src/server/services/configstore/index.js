@@ -110,7 +110,7 @@ class ConfigStore extends events.EventEmitter {
   }
 
   set(key, value, options) {
-    const { silent = false } = { ...options };
+    const { silent = false } = options;
 
     if (key === undefined) {
       return;

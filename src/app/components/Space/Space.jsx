@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Space = ({ tag: Component, width, height, ...props }) => {
-  if (typeof width === 'string' && width.match(/^\d+$/)) {
+  if (isString(width) && width.match(/^\d+$/)) {
     width += 'px';
   }
   if (typeof height === 'string' && height.match(/^\d+$/)) {
@@ -24,6 +24,8 @@ const Space = ({ tag: Component, width, height, ...props }) => {
 
   return <Component {...props} />;
 };
+
+const isString = (a) => typeof a === 'string';
 
 Space.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),

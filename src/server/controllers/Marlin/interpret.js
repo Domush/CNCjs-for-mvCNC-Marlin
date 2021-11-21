@@ -39,7 +39,7 @@ const partitionWordsByGroup = (words = []) => {
 const interpret = (function () {
   let cmd = '';
 
-  return function (line, callback) {
+  return (line, callback) => {
     const data = parseLine(line);
     const groups = partitionWordsByGroup(ensureArray(data.words));
 

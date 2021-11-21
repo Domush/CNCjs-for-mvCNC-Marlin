@@ -1,7 +1,7 @@
 /* eslint prefer-arrow-callback: 0 */
 const promisify = (fn, options) =>
   function (...args) {
-    const { errorFirst = true, thisArg } = { ...options };
+    const { errorFirst = true, thisArg } = options;
 
     return new Promise((resolve, reject) => {
       args.push(function (...results) {

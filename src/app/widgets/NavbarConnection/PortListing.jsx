@@ -2,19 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Index.styl';
 
-const PortListing = ({ port, inuse, baudrate, controllerType, onClick }) => {
-  return (
-    <button className={styles.PortListing} onClick={onClick} type="button">
-      <i className={`fa fab ${inuse ? 'fa-lock' : 'fa-lock-open'}`} />
-      <div className={styles.NavbarPortListingInfo}>
-        <div className={styles.NavbarPortListingPortLabel}>{port}</div>
-        <div className={styles.NavbarPortListingPortManufacturer}>
-          use {controllerType} at {baudrate} baud
-        </div>
+const PortListing = ({ port, inuse, baudrate, controllerType, onClick }) => (
+  <button className={styles.PortListing} onClick={onClick} type="button">
+    <i className={`fa fab ${inuse ? 'fa-lock' : 'fa-lock-open'}`} />
+    <div className={styles.NavbarPortListingInfo}>
+      <div className={styles.NavbarPortListingPortLabel}>{port}</div>
+      <div className={styles.NavbarPortListingPortManufacturer}>
+        use {controllerType} at {baudrate} baud
       </div>
-    </button>
-  );
-};
+    </div>
+  </button>
+);
 
 PortListing.propTypes = {
   port: PropTypes.string,

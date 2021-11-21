@@ -15,6 +15,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { Provider as GridSystemProvider } from 'app/components/GridSystem';
 import rootSaga from 'app/sagas';
 import sagaMiddleware from 'app/store/redux/saga';
+import { createCommons } from 'simport';
 import settings from './config/settings';
 import portal from './lib/portal';
 import controller from './lib/controller';
@@ -32,8 +33,8 @@ import { Button } from './components/Buttons';
 import ModalTemplate from './components/ModalTemplate';
 import Modal from './components/Modal';
 import Space from './components/Space';
-import './styles/vendor.styl';
-import './styles/app.styl';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
 
 const renderPage = () => {
   const container = document.createElement('div');
@@ -126,7 +127,7 @@ series([
       (event) => {
         // TODO: event.origin
 
-        const { token = '', action } = { ...event.data };
+        const { token = '', action } = event.data;
 
         // Token authentication
         if (token !== store.get('session.token')) {
@@ -134,7 +135,7 @@ series([
           // return;
         }
 
-        const { type, payload } = { ...action };
+        const { type, payload } = action;
         if (type === 'connect') {
           pubsub.publish('message:connect', payload);
         } else if (type === 'resize') {

@@ -34,9 +34,7 @@ export const step1 = [
     id: 0,
     checked: false,
     hasBeenChanged: false,
-    label: () => {
-      return <span>Mark Point 1</span>;
-    },
+    label: () => <span>Mark Point 1</span>,
     shapeActions: [
       {
         shapeType: 'circlePoints',
@@ -101,9 +99,7 @@ export const step1 = [
     id: 2,
     checked: false,
     hasBeenChanged: false,
-    label: () => {
-      return <span>Mark Point 2</span>;
-    },
+    label: () => <span>Mark Point 2</span>,
     shapeActions: [
       {
         shapeType: 'circlePoints',
@@ -167,9 +163,7 @@ export const step1 = [
     id: 4,
     checked: false,
     hasBeenChanged: false,
-    label: () => {
-      return <span>Mark Point 3</span>;
-    },
+    label: () => <span>Mark Point 3</span>,
     shapeActions: [
       {
         shapeType: 'circlePoints',
@@ -190,31 +184,27 @@ export const step2 = [
     id: 0,
     checked: false,
     hasBeenChanged: false,
-    label: () => {
-      return (
-        <span>
-          Measure and Record the Distance Between Points <strong>1</strong> and <strong>2</strong>
-        </span>
-      );
-    },
+    label: () => (
+      <span>
+        Measure and Record the Distance Between Points<strong>1</strong>and<strong>2</strong>
+      </span>
+    ),
     shapeActions: [
       {
         shapeType: 'arrows',
         shapeID: 0,
         isActive: true,
         show: true,
-        label: ({ triangle, onTriangleChange }) => {
-          return (
-            <Input
-              className={styles.actionInput}
-              style={inputStyle}
-              units="mm"
-              value={triangle.a}
-              onChange={(e) => onTriangleChange({ id: 'a', value: e.target.value })}
-              additionalProps={{ type: 'number' }}
-            />
-          );
-        },
+        label: ({ triangle, onTriangleChange }) => (
+          <Input
+            className={styles.actionInput}
+            style={inputStyle}
+            units="mm"
+            value={triangle.a}
+            onChange={(e) => onTriangleChange({ id: 'a', value: e.target.value })}
+            additionalProps={{ type: 'number' }}
+          />
+        ),
       },
       {
         shapeType: 'circlePoints',
@@ -237,13 +227,11 @@ export const step2 = [
     id: 1,
     checked: false,
     hasBeenChanged: false,
-    label: () => {
-      return (
-        <span>
-          Measure and Record the Distance Between Points <strong>2</strong> and <strong>3</strong>
-        </span>
-      );
-    },
+    label: () => (
+      <span>
+        Measure and Record the Distance Between Points<strong>2</strong>and<strong>3</strong>
+      </span>
+    ),
     shapeActions: [
       {
         shapeType: 'arrows',
@@ -276,13 +264,11 @@ export const step2 = [
     id: 2,
     checked: false,
     hasBeenChanged: false,
-    label: () => {
-      return (
-        <span>
-          Measure and Record the Distance Between Points <strong>3</strong> and <strong>1</strong>
-        </span>
-      );
-    },
+    label: () => (
+      <span>
+        Measure and Record the Distance Between Points<strong>3</strong>and<strong>1</strong>
+      </span>
+    ),
     shapeActions: [
       {
         shapeType: 'arrows',

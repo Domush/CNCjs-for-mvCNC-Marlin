@@ -97,8 +97,8 @@ const ProfileShortcutModal = ({ profile, shortcut, onClose, onUpdateProfiles }) 
     });
   };
 
-  const RenderButtonsPressed = () => {
-    return gamepadShortcut ? (
+  const RenderButtonsPressed = () =>
+    gamepadShortcut ? (
       <>
         {gamepadShortcut.map((shortcut, i) =>
           i === 0 ? (
@@ -114,7 +114,6 @@ const ProfileShortcutModal = ({ profile, shortcut, onClose, onUpdateProfiles }) 
     ) : (
       <>-</>
     );
-  };
 
   return (
     <Modal onClose={onClose} size="small" title="Joystick Profile Action">

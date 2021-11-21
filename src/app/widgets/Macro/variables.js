@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   { type: 'header', text: 'Wait until the planner queue is empty' },
   '%wait\n',
   { type: 'header', text: 'User-defined global variables' },

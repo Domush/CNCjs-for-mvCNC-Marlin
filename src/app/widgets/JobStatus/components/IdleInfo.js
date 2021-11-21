@@ -22,7 +22,9 @@ const IdleInfo = ({ state, ...props }) => {
   } = state;
   const { fileLoaded, spindleSet, toolSet, movementSet, estimatedTime } = props;
 
-  let convertedFeedMin, convertedFeedMax, feedUnits;
+  let convertedFeedMin;
+  let convertedFeedMax;
+  let feedUnits;
   feedUnits = units === METRIC_UNITS ? 'mm/min' : 'in/min';
 
   let feedrateMin = Math.min(...movementSet);
@@ -63,7 +65,7 @@ const IdleInfo = ({ state, ...props }) => {
       elapsedSecond[elapsedSecond.length - 2] !== undefined ? elapsedSecond[elapsedSecond.length - 2] : ''
     }${String(elapsedSecond[elapsedSecond.length - 1])}`;
     const formattedSeconds =
-      Number(strElapsedSecond) < 59 ? Number(strElapsedSecond) : `${Number(strElapsedSecond) - 60}`;
+      Number(strElapsedSecond) < 59 ? Number(strElapsedSecond) : String(Number(strElapsedSecond) - 60);
 
     return `${elapsedMinute}m ${Math.abs(formattedSeconds)}s`;
   };
@@ -107,12 +109,12 @@ const IdleInfo = ({ state, ...props }) => {
     <div className={styles['idle-info']}>
       <div className={styles.idleInfoRow}>
         <FileStat label="Time">
-          {`${formattedEstimateTime}`}
+          {String(formattedEstimateTime)}
           <br />
-          {`${feedString}`}
+          {String(feedString)}
         </FileStat>
         <FileStat label="Spindle">
-          {`${spindleText}`}
+          {String(spindleText)}
           <br />
           {toolSet.length > 0 ? `${toolSet.length} (${formattedToolsUsed()})` : 'No Tools'}
         </FileStat>
@@ -139,7 +141,7 @@ const IdleInfo = ({ state, ...props }) => {
         </FileStat>
         {lastFileRan ? (
           <FileStat label="Previous Run">
-            <span className={styles.textWrap}>{`${lastFileRan}`}</span>
+            <span className={styles.textWrap}>{String(lastFileRan)}</span>
             {`Run Length: ${elapsedTimeToDisplay}`}
           </FileStat>
         ) : (
@@ -157,7 +159,7 @@ const IdleInfo = ({ state, ...props }) => {
         <FileStat label="Maximum">-</FileStat>
         {lastFileRan ? (
           <FileStat label="Previous Run">
-            <span className={styles.textWrap}>{`${lastFileRan}`}</span>
+            <span className={styles.textWrap}>{String(lastFileRan)}</span>
             {`Run Length: ${elapsedTimeToDisplay}`}
           </FileStat>
         ) : (
@@ -175,9 +177,9 @@ IdleInfo.propTypes = {
 export default connect((store) => {
   const file = get(store, 'file', {});
 
-  const movementSet = [...file.movementSet].map((value) => Number(value.slice(1)));
-  const toolSet = [...file.toolSet];
-  const spindleSet = [...file.spindleSet].map((value) => Number(value.slice(1)));
+  const movementSet = file.movementSet.slice().map((value) => Number(value.slice(1)));
+  const toolSet = file.toolSet.slice();
+  const spindleSet = file.spindleSet.slice().map((value) => Number(value.slice(1)));
 
   return {
     ...file,

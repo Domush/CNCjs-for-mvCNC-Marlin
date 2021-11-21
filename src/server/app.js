@@ -12,7 +12,6 @@ import errorhandler from 'errorhandler';
 import express from 'express';
 import expressJwt from 'express-jwt';
 import session from 'express-session';
-import 'hogan.js'; // required by consolidate
 import i18next from 'i18next';
 import i18nextBackend from 'i18next-fs-backend';
 import jwt from 'jsonwebtoken';
@@ -25,6 +24,7 @@ import _get from 'lodash/get';
 import _noop from 'lodash/noop';
 import rimraf from 'rimraf';
 import { LanguageDetector as i18nextLanguageDetector, handle as i18nextHandle } from 'i18next-http-middleware';
+import { createCommons } from 'simport';
 import urljoin from './lib/urljoin';
 import logger from './lib/logger';
 import settings from './config/settings';
@@ -37,7 +37,13 @@ import config from './services/configstore';
 import { authorizeIPAddress, validateUser } from './access-control';
 import { ERR_FORBIDDEN } from './constants';
 
+// if (process.env.NODE_ENV === 'development') {
+import _webpackDevServer from './webpack-dev-server';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 const log = logger('app');
+// }
 
 const renderPage =
   (view = 'index', cb = _noop) =>
@@ -46,7 +52,7 @@ const renderPage =
     // http://stackoverflow.com/questions/6156639/x-ua-compatible-is-set-to-ie-edge-but-it-still-doesnt-stop-compatibility-mode
     res.set({ 'X-UA-Compatible': 'IE=edge' });
 
-    const locals = { ...cb(req, res) };
+    const locals = cb(req, res);
     res.render(view, locals);
   };
 
@@ -56,7 +62,7 @@ const appMain = () => {
   {
     // Settings
     if (process.env.NODE_ENV === 'development') {
-      const webpackDevServer = require('./webpack-dev-server').default;
+      const webpackDevServer = _webpackDevServer.default;
       webpackDevServer(app);
 
       // Error handler - https://github.com/expressjs/errorhandler
@@ -137,7 +143,7 @@ const appMain = () => {
         store: new FileStore({
           path: path,
           logFn: (...args) => {
-            log.debug.apply(log, args);
+            log.debug(...args);
           },
         }),
       })
@@ -169,9 +175,7 @@ const appMain = () => {
   if (settings.verbosity > 0) {
     // https://github.com/expressjs/morgan#use-custom-token-formats
     // Add an ID to all requests and displays it using the :id token
-    morgan.token('id', (req, res) => {
-      return req.session.id;
-    });
+    morgan.token('id', (req, res) => req.session.id);
     app.use(morgan(settings.middleware.morgan.format));
   }
   app.use(compress(settings.middleware.compression));
@@ -220,11 +224,7 @@ const appMain = () => {
         // Also see "src/app/api/index.js"
         urljoin(settings.route, 'api/signin'),
       ];
-      bypass =
-        bypass ||
-        whitelist.some((path) => {
-          return req.path.indexOf(path) === 0;
-        });
+      bypass = bypass || whitelist.some((path) => req.path.indexOf(path) === 0);
 
       if (!bypass) {
         // Check whether the provided credential is correct

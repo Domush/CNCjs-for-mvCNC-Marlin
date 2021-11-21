@@ -61,19 +61,19 @@ const TrackballControls = function (object, domElement) {
 
   var lastPosition = new THREE.Vector3();
 
-  var _state = STATE.NONE,
-    _prevState = STATE.NONE,
-    _eye = new THREE.Vector3(),
-    _movePrev = new THREE.Vector2(),
-    _moveCurr = new THREE.Vector2(),
-    _lastAxis = new THREE.Vector3(),
-    _lastAngle = 0,
-    _zoomStart = new THREE.Vector2(),
-    _zoomEnd = new THREE.Vector2(),
-    _touchZoomDistanceStart = 0,
-    _touchZoomDistanceEnd = 0,
-    _panStart = new THREE.Vector2(),
-    _panEnd = new THREE.Vector2();
+  var _state = STATE.NONE;
+  var _prevState = STATE.NONE;
+  var _eye = new THREE.Vector3();
+  var _movePrev = new THREE.Vector2();
+  var _moveCurr = new THREE.Vector2();
+  var _lastAxis = new THREE.Vector3();
+  var _lastAngle = 0;
+  var _zoomStart = new THREE.Vector2();
+  var _zoomEnd = new THREE.Vector2();
+  var _touchZoomDistanceStart = 0;
+  var _touchZoomDistanceEnd = 0;
+  var _panStart = new THREE.Vector2();
+  var _panEnd = new THREE.Vector2();
 
   // for reset
 
@@ -151,13 +151,13 @@ const TrackballControls = function (object, domElement) {
   })();
 
   this.rotateCamera = (function () {
-    var axis = new THREE.Vector3(),
-      quaternion = new THREE.Quaternion(),
-      eyeDirection = new THREE.Vector3(),
-      objectUpDirection = new THREE.Vector3(),
-      objectSidewaysDirection = new THREE.Vector3(),
-      moveDirection = new THREE.Vector3(),
-      angle;
+    var axis = new THREE.Vector3();
+    var quaternion = new THREE.Quaternion();
+    var eyeDirection = new THREE.Vector3();
+    var objectUpDirection = new THREE.Vector3();
+    var objectSidewaysDirection = new THREE.Vector3();
+    var moveDirection = new THREE.Vector3();
+    var angle;
 
     return function rotateCamera() {
       moveDirection.set(_moveCurr.x - _movePrev.x, _moveCurr.y - _movePrev.y, 0);
@@ -280,9 +280,9 @@ const TrackballControls = function (object, domElement) {
   };
 
   this.panCamera = (function () {
-    var mouseChange = new THREE.Vector2(),
-      objectUp = new THREE.Vector3(),
-      pan = new THREE.Vector3();
+    var mouseChange = new THREE.Vector2();
+    var objectUp = new THREE.Vector3();
+    var pan = new THREE.Vector3();
 
     return function panCamera() {
       mouseChange.copy(_panEnd).sub(_panStart);
@@ -367,7 +367,7 @@ const TrackballControls = function (object, domElement) {
   // listeners
 
   function keydown(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     window.removeEventListener('keydown', keydown);
 
@@ -385,7 +385,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function keyup(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     _state = _prevState;
 
@@ -393,7 +393,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function mousedown(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -421,7 +421,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function mousemove(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -437,7 +437,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function mouseup(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -450,7 +450,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function mousewheel(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -477,7 +477,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function touchstart(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     event.preventDefault();
 
@@ -506,7 +506,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function touchmove(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -531,7 +531,7 @@ const TrackballControls = function (object, domElement) {
   }
 
   function touchend(event) {
-    if (_this.enabled === false) return;
+    if (!_this.enabled) return;
 
     switch (event.touches.length) {
       case 0:

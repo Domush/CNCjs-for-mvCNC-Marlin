@@ -125,7 +125,7 @@ const keypadTooltip = () => {
 };
 
 export default (props) => {
-  const { show, children } = { ...props };
+  const { show, children } = props;
 
   if (!show) {
     return children;

@@ -42,7 +42,7 @@ class MarlinLineParserResultFirmware {
 
     {
       // UUID
-      const r = line.match(/UUID:([a-zA-Z0-9\-]+)/);
+      const r = line.match(/UUID:([\dA-Za-z\-]+)/);
       if (r) {
         payload.uuid = r[1];
       }

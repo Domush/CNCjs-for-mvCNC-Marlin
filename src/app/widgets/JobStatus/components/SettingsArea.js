@@ -15,7 +15,7 @@ import FeedControlButton from './FeedControlButton';
  *
  */
 const SettingsArea = ({ state, controllerState, spindle, feedrate }) => {
-  const { units } = state;
+  const { units, spindleOverrideLabel } = state;
   if (units !== METRIC_UNITS) {
     spindle = mapPositionToUnits(spindle, units);
     feedrate = mapPositionToUnits(feedrate, units);
@@ -44,8 +44,6 @@ const SettingsArea = ({ state, controllerState, spindle, feedrate }) => {
   const ov = _.get(controllerState, 'status.ov', []);
   const ovF = ov[0];
   const ovS = ov[2];
-
-  const { spindleOverrideLabel } = state;
 
   return (
     <div className={styles['settings-area']}>

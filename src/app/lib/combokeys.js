@@ -62,7 +62,7 @@ class Combokeys extends events.EventEmitter {
 
         const callback = (event) => {
           log.debug(`combokeys: keys=${keys} cmd=${cmd} payload=${JSON.stringify(payload)}`);
-          if (!!o.preventDefault) {
+          if (o.preventDefault) {
             preventDefault(event);
           }
           this.emit(cmd, event, payload);
@@ -72,14 +72,14 @@ class Combokeys extends events.EventEmitter {
         if (cmd === 'JOG') {
           const callback = (event) => {
             log.debug(`combokeys: keys=${keys} cmd=${STOP_CMD} payload=${JSON.stringify(payload)}`);
-            if (!!o.preventDefault) {
+            if (o.preventDefault) {
               preventDefault(event);
             }
             this.emit(STOP_CMD, event, payload);
           };
 
           const modiferKeyCB = (e) => {
-            if (!!o.preventDefault) {
+            if (o.preventDefault) {
               preventDefault(e);
             }
 
@@ -123,7 +123,7 @@ class Combokeys extends events.EventEmitter {
     const res = await api.macros.fetch();
     const macros = res.body.records;
 
-    const newCommandKeysList = [...setCommandKeys];
+    const newCommandKeysList = setCommandKeys.slice();
 
     macros.forEach((macro) => {
       const existingBind = setMacrosBinds.find((bind) => bind.id === macro.id);

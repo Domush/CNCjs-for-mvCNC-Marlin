@@ -3,25 +3,23 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './input.styl';
 
-const Input = ({ value, label, units, onChange, additionalProps, className, style, disabled }) => {
-  return (
-    <div className={classNames(styles.input, 'form-group', className)} style={style}>
-      {label && <label htmlFor="">{`${label}`}</label>}
-      <div className="input-group">
-        <input
-          {...additionalProps}
-          value={value}
-          onChange={onChange}
-          className={classNames('form-control', styles.text)}
-          disabled={disabled}
-          type="number"
-          title=""
-        />
-        {units && <span className="input-group-addon">{units}</span>}
-      </div>
+const Input = ({ value, label, units, onChange, additionalProps, className, style, disabled }) => (
+  <div className={classNames(styles.input, 'form-group', className)} style={style}>
+    {label && <label htmlFor="">{String(label)}</label>}
+    <div className="input-group">
+      <input
+        {...additionalProps}
+        value={value}
+        onChange={onChange}
+        className={classNames('form-control', styles.text)}
+        disabled={disabled}
+        type="number"
+        title=""
+      />
+      {units && <span className="input-group-addon">{units}</span>}
     </div>
-  );
-};
+  </div>
+);
 
 Input.propTypes = {
   label: PropTypes.string,

@@ -46,20 +46,18 @@ const Button = styled.button`
   }
 `;
 
-const ControlButton = ({ label, icon: Icon, onClick, disabled, isMovement = false, isHidden = false }) => {
-  return (
-    <Button
-      type="button"
-      onClick={onClick} //STYLE HERE FOR LOCATION BUTTONS IN BUILD VERSION
-      style={{ fontSize: '14px', marginBottom: '0px', marginRight: '10px', marginTop: '10px' }}
-      disabled={disabled}
-      isMovement={isMovement}
-      isHidden={isHidden}
-    >
-      {Icon && <Icon isMovement={isMovement} />} {label}
-    </Button>
-  );
-};
+const ControlButton = ({ label, icon: Icon, onClick, disabled, isMovement = false, isHidden = false }) => (
+  <Button
+    type="button"
+    onClick={onClick} //STYLE HERE FOR LOCATION BUTTONS IN BUILD VERSION
+    style={{ fontSize: '14px', marginBottom: '0px', marginRight: '10px', marginTop: '10px' }}
+    disabled={disabled}
+    isMovement={isMovement}
+    isHidden={isHidden}
+  >
+    {Icon && <Icon isMovement={isMovement} />} {label}
+  </Button>
+);
 
 ControlButton.propTypes = {
   label: PropTypes.string,

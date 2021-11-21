@@ -65,15 +65,13 @@ const getSanitizedRecords = () => {
 };
 
 export const signin = (req, res) => {
-  const { token = '', name = '', password = '' } = { ...req.body };
+  const { token = '', name = '', password = '' } = req.body;
   const users = getSanitizedRecords();
-  const enabledUsers = users.filter((user) => {
-    return user.enabled;
-  });
+  const enabledUsers = users.filter((user) => user.enabled);
 
   if (enabledUsers.length === 0) {
     const user = { id: '', name: '' };
-    const payload = { ...user };
+    const payload = user;
     const token = generateAccessToken(payload, settings.secret); // generate access token
     res.send({
       enabled: false, // session is disabled
@@ -152,14 +150,14 @@ export const fetch = (req, res) => {
         totalRecords: Number(totalRecords),
       },
       records: pagedRecords.map((record) => {
-        const { id, mtime, enabled, name } = { ...record };
+        const { id, mtime, enabled, name } = record;
         return { id, mtime, enabled, name };
       }),
     });
   } else {
     res.send({
       records: records.map((record) => {
-        const { id, mtime, enabled, name } = { ...record };
+        const { id, mtime, enabled, name } = record;
         return { id, mtime, enabled, name };
       }),
     });
@@ -167,7 +165,7 @@ export const fetch = (req, res) => {
 };
 
 export const create = (req, res) => {
-  const { enabled = true, name = '', password = '' } = { ...req.body };
+  const { enabled = true, name = '', password = '' } = req.body;
 
   if (!name) {
     res.status(ERR_BAD_REQUEST).send({
@@ -226,7 +224,7 @@ export const read = (req, res) => {
     return;
   }
 
-  const { mtime, enabled, name } = { ...record };
+  const { mtime, enabled, name } = record;
   res.send({ id, mtime, enabled, name });
 };
 
@@ -242,7 +240,7 @@ export const update = (req, res) => {
     return;
   }
 
-  const { enabled = record.enabled, name = record.name, oldPassword = '', newPassword = '' } = { ...req.body };
+  const { enabled = record.enabled, name = record.name, oldPassword = '', newPassword = '' } = req.body;
   const willChangePassword = oldPassword && newPassword;
 
   // Skip validation for "enabled" and "name"
@@ -298,9 +296,7 @@ export const __delete = (req, res) => {
   }
 
   try {
-    const filteredRecords = records.filter((record) => {
-      return record.id !== id;
-    });
+    const filteredRecords = records.filter((record) => record.id !== id);
     config.set(CONFIG_KEY, filteredRecords);
 
     res.send({ id: record.id });

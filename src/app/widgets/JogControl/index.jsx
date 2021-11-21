@@ -605,7 +605,7 @@ class AxesWidget extends PureComponent {
     }
 
     this.setState({ prevJog: { ...axisList, F: feedrate } });
-    this.joggingHelper.onKeyDown({ ...axisList }, feedrate);
+    this.joggingHelper.onKeyDown(axisList, feedrate);
   };
 
   handleShortcutStop = (payload) => {
@@ -1017,8 +1017,7 @@ class AxesWidget extends PureComponent {
 
   render() {
     const { widgetId, machinePosition, workPosition, canJog } = this.props;
-    const { minimized, isFullscreen } = this.state;
-    const { units } = this.state;
+    const { minimized, isFullscreen, units } = this.state;
     const isForkedWidget = widgetId.match(/\w+:[\w\-]+/);
     const config = this.config;
     const activeState = get(this.props.state, 'status.activeState', GRBL_ACTIVE_STATE_IDLE);
@@ -1039,9 +1038,7 @@ class AxesWidget extends PureComponent {
       }),
       canJog,
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     return (
       <Widget fullscreen={isFullscreen}>
@@ -1050,7 +1047,7 @@ class AxesWidget extends PureComponent {
             {isForkedWidget && <i className="fa fa-code-fork" style={{ marginRight: 5 }} />}
             {i18n._('Jog Control')}
           </Widget.Title>
-          <Widget.Controls></Widget.Controls>
+          <Widget.Controls />
         </Widget.Header>
         <Widget.Content className={cx(styles['widget-content'], { [styles.hidden]: minimized })}>
           <Axes config={config} state={state} actions={actions} />

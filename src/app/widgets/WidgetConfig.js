@@ -19,7 +19,7 @@ class WidgetConfig {
 
   get(key, defaultValue) {
     if (!this.widgetId) {
-      throw new Error('The widget id cannot be an empty string');
+      throw Error('The widget id cannot be an empty string');
     }
     key = this.translateKey(key);
     return store.get(key, defaultValue);
@@ -27,7 +27,7 @@ class WidgetConfig {
 
   set(key, value) {
     if (!this.widgetId) {
-      throw new Error('The widget id cannot be an empty string');
+      throw Error('The widget id cannot be an empty string');
     }
     key = this.translateKey(key);
     return store.set(key, value);
@@ -35,7 +35,7 @@ class WidgetConfig {
 
   unset(key) {
     if (!this.widgetId) {
-      throw new Error('The widget id cannot be an empty string');
+      throw Error('The widget id cannot be an empty string');
     }
     key = this.translateKey(key);
     return store.unset(key);
@@ -43,7 +43,7 @@ class WidgetConfig {
 
   replace(key, value) {
     if (!this.widgetId) {
-      throw new Error('The widget id cannot be an empty string');
+      throw Error('The widget id cannot be an empty string');
     }
     key = this.translateKey(key);
     return store.replace(key, value);

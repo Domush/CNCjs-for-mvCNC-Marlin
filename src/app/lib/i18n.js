@@ -6,7 +6,7 @@ const t = (...args) => {
   const options = args[1];
 
   let text = i18next.t(key, options);
-  if (typeof text === 'string' && text.length === 0) {
+  if (isString(text) && text.length === 0) {
     text = i18next.t(key, { ...options, lng: 'en' });
   }
 
@@ -15,12 +15,12 @@ const t = (...args) => {
 
 const _ = (...args) => {
   if (args.length === 0 || typeof args[0] === 'undefined') {
-    return i18next.t.apply(i18next, args);
+    return i18next.t(...args);
   }
 
   const [value = '', options = {}] = args;
   const key = ((value, options) => {
-    const { context, count } = { ...options };
+    const { context, count } = options;
     const containsContext = context !== undefined && context !== null;
     const containsPlural = typeof count === 'number';
     if (containsContext) {
@@ -41,6 +41,8 @@ const _ = (...args) => {
 
   return text;
 };
+
+const isString = (a) => typeof a === 'string';
 
 export default {
   t,

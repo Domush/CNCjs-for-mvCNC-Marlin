@@ -1,9 +1,10 @@
+const isBool = (a) => typeof a === 'boolean';
 export const ensureBoolean = (value, defaultValue = false) => {
   if (value === undefined || value === null) {
     return Boolean(defaultValue);
   }
 
-  return typeof value === 'boolean' ? value : Boolean(value);
+  return isBool(value) ? value : Boolean(value);
 };
 
 export const ensureString = (value, defaultValue = '') => {

@@ -56,7 +56,7 @@ export default (namespace = '') => {
   namespace = String(namespace);
 
   return levels.reduce((acc, level) => {
-    acc[level] = function (...args) {
+    acc[level] = (...args) => {
       if (settings.verbosity >= VERBOSITY_MAX && level !== 'silly') {
         args = args.concat(getStackTrace()[2]);
       }

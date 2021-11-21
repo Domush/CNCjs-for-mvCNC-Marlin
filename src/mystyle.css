@@ -34,7 +34,7 @@ body {
   color: white;
   text-transform: none;
   animation: fadeIn ease 0.2s;
-  -webkit-animation: fadeIn ease 0.2s;
+  -webkit-animation: fadein ease 0.2s;
   width: 100%;
 }
 

@@ -56,21 +56,19 @@ class TerminalWrapper extends PureComponent {
   inputRef = React.createRef();
 
   eventHandler = {
-    onKey: (() => {
-      return async (event) => {
-        const term = this.term;
-        const line = term.getSelection();
+    onKey: (() => async (event) => {
+      const term = this.term;
+      const line = term.getSelection();
 
-        if (!line) {
-          return;
-        }
+      if (!line) {
+        return;
+      }
 
-        // Ctrl-C copy - ctrl + c on windows/linux, meta-c on mac
-        if ((event.ctrlKey || event.metaKey) && event.code === 'KeyC') {
-          await navigator.clipboard.writeText(line);
-          return;
-        }
-      };
+      // Ctrl-C copy - ctrl + c on windows/linux, meta-c on mac
+      if ((event.ctrlKey || event.metaKey) && event.code === 'KeyC') {
+        await navigator.clipboard.writeText(line);
+        return;
+      }
     })(),
   };
 
@@ -214,7 +212,7 @@ class TerminalWrapper extends PureComponent {
 
     const { terminalInputHistory = [] } = this.state;
 
-    const newTerminalInputHistory = [...terminalInputHistory];
+    const newTerminalInputHistory = terminalInputHistory.slice();
 
     if (terminalInputHistory.length === MAX_TERMINAL_INPUT_ARRAY_SIZE) {
       newTerminalInputHistory.shift();
@@ -275,7 +273,7 @@ class TerminalWrapper extends PureComponent {
                   const { value } = e.target;
                   //If there is only one character left and the user has pressed the backspace,
                   //this will mean the value is empty now
-                  if (!value || [...value].length === 1) {
+                  if (!value || value.slice().length === 1) {
                     this.resetTerminalInputIndex();
                   }
                   break;

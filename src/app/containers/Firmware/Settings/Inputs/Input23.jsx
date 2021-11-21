@@ -60,7 +60,7 @@ class InputTwentyThree extends PureComponent {
   };
 
   handleSwitch = (value, name) => {
-    let currentValue = [...this.state.defaultSettings];
+    let currentValue = this.state.defaultSettings.slice();
     if (name === '23-0') {
       currentValue[0] = value;
     }

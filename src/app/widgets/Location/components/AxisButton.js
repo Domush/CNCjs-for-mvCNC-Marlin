@@ -65,21 +65,12 @@ const Container = styled.div`
   }
 `;
 
-const AxisButton = ({ label, axis, onClick, disabled }) => {
-  return (
-    <Container
-      role="button"
-      onClick={onClick}
-      onKeyDown={null}
-      tabIndex={0}
-      className={disabled ? 'disabled' : 'active'}
-    >
-      <p>{label}</p>
-
-      <h3>{axis.toUpperCase()}</h3>
-    </Container>
-  );
-};
+const AxisButton = ({ label, axis, onClick, disabled }) => (
+  <Container role="button" onClick={onClick} onKeyDown={null} tabIndex={0} className={disabled ? 'disabled' : 'active'}>
+    <p>{label}</p>
+    <h3>{axis.toUpperCase()}</h3>
+  </Container>
+);
 
 AxisButton.propTypes = {
   label: PropTypes.string,

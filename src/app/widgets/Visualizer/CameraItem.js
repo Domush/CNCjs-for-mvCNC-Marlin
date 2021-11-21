@@ -14,19 +14,17 @@ import styles from './camera-control-area.styl';
  * @param {Object} tooltip Settings for the tooltip component
  * @param {Boolean} active Boolean value shoing whether this item is currently selected or not
  */
-const CameraItem = ({ image, changeCamera, tooltip, active }) => {
-  return (
-    <Tooltip placement={tooltip.placement} content={i18n._(tooltip.text)} hideOnClick>
-      <input
-        type="image"
-        src={image}
-        alt=""
-        onClick={changeCamera}
-        className={cx(styles['camera-img'], active ? styles['camera-control-active'] : '')}
-      />
-    </Tooltip>
-  );
-};
+const CameraItem = ({ image, changeCamera, tooltip, active }) => (
+  <Tooltip placement={tooltip.placement} content={i18n._(tooltip.text)} hideOnClick>
+    <input
+      type="image"
+      src={image}
+      alt=""
+      onClick={changeCamera}
+      className={cx(styles['camera-img'], active ? styles['camera-control-active'] : '')}
+    />
+  </Tooltip>
+);
 
 CameraItem.propTypes = {
   image: PropTypes.string.isRequired,

@@ -11,6 +11,7 @@ const CirclePoint = ({ position, label, isActive }) => (
     <span className={styles.circleLabel}>{label}</span>
   </div>
 );
+const isString = (a) => typeof a === 'string';
 CirclePoint.propTypes = { position: PropTypes.string, label: PropTypes.string, isActive: PropTypes.bool };
 
 const Arrow = ({ position, hasTop, hasBottom, label: Label, isActive, triangle, onTriangleChange }) => {
@@ -24,7 +25,7 @@ const Arrow = ({ position, hasTop, hasBottom, label: Label, isActive, triangle, 
     <>
       {Label && (
         <div className={classnames(styles[labelPosition])}>
-          {typeof Label === 'string' ? Label : <Label triangle={triangle} onTriangleChange={onTriangleChange} />}
+          {isString(Label) ? Label : <Label triangle={triangle} onTriangleChange={onTriangleChange} />}
         </div>
       )}
       <div className={classnames(styles.arrow, isActive ? styles.arrowActive : '', styles[`arrow-${position}`])}>
@@ -43,32 +44,29 @@ Arrow.propTypes = {
   isActive: PropTypes.bool,
 };
 
-const TriangleDiagram = ({ circlePoints, arrows, triangle, onTriangleChange }) => {
-  return (
-    <Triangle>
-      {circlePoints
-        .filter((point) => point.show)
-        .map((point) => (
-          <CirclePoint key={point.id} position={point.position} label={point.label} isActive={point.isActive} />
-        ))}
-
-      {arrows
-        .filter((arrow) => arrow.show)
-        .map((arrow) => (
-          <Arrow
-            key={arrow.id}
-            label={arrow.label}
-            position={arrow.position}
-            hasTop={arrow.hasTop}
-            hasBottom={arrow.hasBottom}
-            isActive={arrow.isActive}
-            triangle={triangle}
-            onTriangleChange={onTriangleChange}
-          />
-        ))}
-    </Triangle>
-  );
-};
+const TriangleDiagram = ({ circlePoints, arrows, triangle, onTriangleChange }) => (
+  <Triangle>
+    {circlePoints
+      .filter((point) => point.show)
+      .map((point) => (
+        <CirclePoint key={point.id} position={point.position} label={point.label} isActive={point.isActive} />
+      ))}
+    {arrows
+      .filter((arrow) => arrow.show)
+      .map((arrow) => (
+        <Arrow
+          key={arrow.id}
+          label={arrow.label}
+          position={arrow.position}
+          hasTop={arrow.hasTop}
+          hasBottom={arrow.hasBottom}
+          isActive={arrow.isActive}
+          triangle={triangle}
+          onTriangleChange={onTriangleChange}
+        />
+      ))}
+  </Triangle>
+);
 TriangleDiagram.propTypes = { circlePoints: PropTypes.array, arrows: PropTypes.array };
 TriangleDiagram.defaultProps = { circlePoints: [], arrows: [] };
 

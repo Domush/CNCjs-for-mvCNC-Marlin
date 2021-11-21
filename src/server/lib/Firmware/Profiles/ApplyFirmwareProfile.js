@@ -41,10 +41,10 @@ const ApplyFirmwareProfile = (nameOfMachine, typeOfMachine, recievedPortNumber) 
   let values = Object.values(obj);
   if (values.length === 34) {
     for (let i = 0; i < values.length; i++) {
-      if (values[i] === true) {
+      if (values[i]) {
         values[i] = '1';
       }
-      if (values[i] === false) {
+      if (!values[i]) {
         values[i] = '0';
       }
     }

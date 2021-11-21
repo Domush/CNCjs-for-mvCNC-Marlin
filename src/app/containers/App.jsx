@@ -6,9 +6,7 @@ import Workspace from './Workspace';
 import styles from './App.styl';
 
 class App extends PureComponent {
-  static propTypes = {
-    ...withRouter.propTypes,
-  };
+  static propTypes = withRouter.propTypes;
 
   componentDidMount() {
     // Force visualizer to resize once app is loaded

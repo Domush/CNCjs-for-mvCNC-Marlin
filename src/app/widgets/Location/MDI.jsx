@@ -48,7 +48,7 @@ class MDI extends PureComponent {
   }
 
   render() {
-    return <Container fluid style={{ padding: 0, margin: '-5px -4px 0 -4px' }}></Container>;
+    return <Container fluid style={{ padding: 0, margin: '-5px -4px 0 -4px' }} />;
   }
 }
 

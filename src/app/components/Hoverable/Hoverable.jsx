@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const isFn = (a) => typeof a === 'function';
+
 class Hoverable extends Component {
   state = {
     hovered: false,
@@ -16,7 +18,7 @@ class Hoverable extends Component {
   render() {
     return (
       <div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-        {typeof this.props.children === 'function' ? this.props.children(this.state.hovered) : this.porps.children}
+        {isFn(this.props.children) ? this.props.children(this.state.hovered) : this.porps.children}
       </div>
     );
   }

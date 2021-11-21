@@ -47,6 +47,8 @@ const CAMERA_DISTANCE = 400; // Move the camera out a bit from the origin (0, 0,
 const TRACKBALL_CONTROLS_MIN_DISTANCE = 1;
 const TRACKBALL_CONTROLS_MAX_DISTANCE = 2000;
 
+const isFn = (a) => typeof a === 'function';
+
 class Visualizer extends Component {
   static propTypes = {
     show: PropTypes.bool,
@@ -105,7 +107,7 @@ class Visualizer extends Component {
       return;
     }
 
-    this.machineProfile = { ...machineProfile };
+    this.machineProfile = machineProfile;
 
     if (this.limits) {
       this.group.remove(this.limits);
@@ -113,8 +115,7 @@ class Visualizer extends Component {
     }
 
     const state = this.props.state;
-    const limits = _get(this.machineProfile, 'limits');
-    const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = { ...limits };
+    const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = _get(this.machineProfile, 'limits');
     this.limits = this.createLimits(xmin, xmax, ymin, ymax, zmin, zmax);
     this.limits.name = 'Limits';
     this.limits.visible = state.objects.limits.visible;
@@ -193,7 +194,7 @@ class Visualizer extends Component {
     //this.resizeRenderer();
 
     // Enable or disable 3D view
-    if (prevProps.show !== this.props.show && this.props.show === true) {
+    if (prevProps.show !== this.props.show && this.props.show) {
       this.viewport.update();
 
       // Set forceUpdate to true when enabling or disabling 3D view
@@ -418,8 +419,7 @@ class Visualizer extends Component {
   }
 
   showAnimation = () => {
-    const state = { ...this.props.state };
-    const { liteMode, objects, minimizeRenders } = state;
+    const { liteMode, objects, minimizeRenders } = this.props.state;
     // We don't animate if minimizeRenders is turned on
     if (minimizeRenders) {
       return false;
@@ -931,9 +931,7 @@ class Visualizer extends Component {
     }
 
     {
-      // Limits
-      const limits = _get(this.machineProfile, 'limits');
-      const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = { ...limits };
+      const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = _get(this.machineProfile, 'limits');
       this.limits = this.createLimits(xmin, xmax, ymin, ymax, zmin, zmax);
       this.limits.name = 'Limits';
       this.limits.visible = objects.limits.visible;
@@ -946,7 +944,7 @@ class Visualizer extends Component {
   // @param [options] The options object.
   // @param [options.forceUpdate] Force rendering
   updateScene(options) {
-    const { forceUpdate = false } = { ...options };
+    const { forceUpdate = false } = options;
     const needUpdateScene = this.props.show || forceUpdate;
 
     if (this.renderer && needUpdateScene) {
@@ -1107,8 +1105,7 @@ class Visualizer extends Component {
       return;
     }
 
-    const limits = _get(this.machineProfile, 'limits');
-    const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = { ...limits };
+    const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = _get(this.machineProfile, 'limits');
     const pivotPoint = this.pivotPoint.get();
     const { x: mpox, y: mpoy, z: mpoz } = this.machinePosition;
     const { x: wpox, y: wpoy, z: wpoz } = this.workPosition;
@@ -1203,7 +1200,7 @@ class Visualizer extends Component {
       },
     });
 
-    typeof callback === 'function' && callback({ bbox: bbox });
+    isFn(callback) && callback({ bbox: bbox });
   }
 
   load(name, vizualization, callback) {
@@ -1253,10 +1250,11 @@ class Visualizer extends Component {
     // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
     // A number representing a given button:
     // 0: main button pressed, usually the left button or the un-initialized state
-    const MAIN_BUTTON = 0,
-      ROTATE = 0;
-    const SECOND_BUTTON = 2,
-      PAN = 2;
+    const MAIN_BUTTON = 0;
+
+    const ROTATE = 0;
+    const SECOND_BUTTON = 2;
+    const PAN = 2;
 
     if (mode === CAMERA_MODE_ROTATE) {
       this.controls && this.controls.setMouseButtonState(MAIN_BUTTON, ROTATE);

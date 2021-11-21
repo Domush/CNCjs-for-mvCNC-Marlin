@@ -10,13 +10,9 @@ const gcode = (cmd, params) => {
   return s.length > 0 ? cmd + ' ' + s : cmd;
 };
 
-const generateAutoProbe = (axes, wcs) => {
-  return [];
-};
+const generateAutoProbe = (axes, wcs) => [];
 
-const generateTipProbe = (axes, wcs) => {
-  return [];
-};
+const generateTipProbe = (axes, wcs) => [];
 
 const generateSingleAxisProbe = (params, axis, tool) => {
   const code = [];
@@ -105,7 +101,11 @@ const getProbeTravelDistance = (axis, units) => {
 };
 
 const getTouchplateParameters = (wcs) => {
-  let zThickness, xyThickness, feedrate, fastFeedrate, retractDistance;
+  let zThickness;
+  let xyThickness;
+  let feedrate;
+  let fastFeedrate;
+  let retractDistance;
   const touchplate = get(store, 'workspace.probeProfile', {});
   const probeFeedrate = get(store, 'widgets.probe.probeFeedrate');
   const probeFastFeedrate = get(store, 'widgets.probe.probeFastFeedrate');

@@ -1,6 +1,9 @@
 import os from 'os';
 import path from 'path';
+import { createCommons } from 'simport';
 import urljoin from '../lib/urljoin';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
 
 const publicPath = global.PUBLIC_PATH || ''; // see gulp/task/app.js
 const maxAge = 365 * 24 * 60 * 60 * 1000; // one year

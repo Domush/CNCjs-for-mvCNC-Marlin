@@ -165,20 +165,16 @@ class SecondaryFunctionality extends PureComponent {
   render() {
     const { isFullscreen, tabs, selectedTab } = this.state;
     const { onFork, onRemove, sortable } = this.props;
-    const actions = { ...this.actions };
+    const actions = this.actions;
 
     return (
       <TabbedWidget fullscreen={isFullscreen}>
-        <TabbedWidget.Tabs
-          tabs={tabs}
-          activeTabIndex={selectedTab}
-          onClick={actions.handleTabSelect}
-        ></TabbedWidget.Tabs>
+        <TabbedWidget.Tabs tabs={tabs} activeTabIndex={selectedTab} onClick={actions.handleTabSelect} />
         <TabbedWidget.Content>
           {tabs.map((tab, index) => {
             const active = index === selectedTab;
             return (
-              <TabbedWidget.ChildComponent key={`${tab.widgetId}`} active={active}>
+              <TabbedWidget.ChildComponent key={String(tab.widgetId)} active={active}>
                 <tab.component
                   onFork={onFork}
                   onRemove={onRemove}

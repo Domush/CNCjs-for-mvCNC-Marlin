@@ -358,9 +358,7 @@ class MacroWidget extends PureComponent {
       ...this.state,
       canClick: this.canClick(),
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     return (
       <Widget fullscreen={isFullscreen}>

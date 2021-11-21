@@ -34,8 +34,7 @@ class ShuttleXpress extends PureComponent {
     this.setState({ hertz });
   };
 
-  onChangeOvershootSlider = (value) => {
-    const overshoot = value;
+  onChangeOvershootSlider = (overshoot) => {
     this.setState({ overshoot });
   };
 

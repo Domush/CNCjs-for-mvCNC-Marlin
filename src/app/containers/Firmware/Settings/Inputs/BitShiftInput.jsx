@@ -24,7 +24,7 @@ class BitShiftInput extends PureComponent {
   }
 
   handleSwitch(value, index) {
-    const settings = [...this.state.settings];
+    const settings = this.state.settings.slice();
     const { handleShiftedValues, title, disableSettingsButton } = this.props;
     settings[index] = value;
     this.setState({

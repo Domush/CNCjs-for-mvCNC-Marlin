@@ -25,9 +25,7 @@ class TableRecords extends PureComponent {
         maxHeight={300}
         useFixedHeader={true}
         data={state.api.err || state.api.fetching ? [] : state.records}
-        rowKey={(record) => {
-          return record.id;
-        }}
+        rowKey={(record) => record.id}
         emptyText={() => {
           if (state.api.err) {
             return <span className="text-danger">{i18n._('An unexpected error has occurred.')}</span>;

@@ -2,7 +2,7 @@ class GrblLineParserResultVersion {
   static parse(line) {
     // * Grbl v1.1
     //   [VER:]
-    const r = line.match(/^\[(?:VER:)(.+)\]$/);
+    const r = line.match(/^\[VER:(.+)\]$/);
     if (!r) {
       return null;
     }

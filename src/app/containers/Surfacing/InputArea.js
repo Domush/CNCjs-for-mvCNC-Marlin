@@ -66,7 +66,7 @@ const InputArea = ({ values, onChange, onSelect, units }) => {
               step: 1,
               min: 0.01,
               max: 1000,
-              style: { ...inputStyles },
+              style: inputStyles,
             }}
             value={bitDiameter}
             onChange={onChange}
@@ -77,7 +77,7 @@ const InputArea = ({ values, onChange, onSelect, units }) => {
           <Input
             label="Spindle RPM"
             units={units}
-            additionalProps={{ type: 'number', id: 'spindleRPM', min: 1, max: 200000, style: { ...inputStyles } }}
+            additionalProps={{ type: 'number', id: 'spindleRPM', min: 1, max: 200000, style: inputStyles }}
             value={spindleRPM}
             onChange={onChange}
           />
@@ -89,7 +89,7 @@ const InputArea = ({ values, onChange, onSelect, units }) => {
           <Input
             label="Stepover"
             units="%"
-            additionalProps={{ type: 'number', id: 'stepover', min: 1, max: 100, style: { ...inputStyles } }}
+            additionalProps={{ type: 'number', id: 'stepover', min: 1, max: 100, style: inputStyles }}
             value={stepover}
             onChange={(e) => onChange({ ...e, shouldConvert: false })}
           />
@@ -99,7 +99,7 @@ const InputArea = ({ values, onChange, onSelect, units }) => {
           <Input
             label="Feedrate"
             units={`${units}/min`}
-            additionalProps={{ type: 'number', id: 'feedrate', min: 1, max: 1000000, style: { ...inputStyles } }}
+            additionalProps={{ type: 'number', id: 'feedrate', min: 1, max: 1000000, style: inputStyles }}
             value={feedrate}
             onChange={onChange}
           />
@@ -109,7 +109,7 @@ const InputArea = ({ values, onChange, onSelect, units }) => {
           <Input
             label="Layer Depth"
             units={units}
-            additionalProps={{ type: 'number', id: 'skimDepth', min: 0.001, max: 500, style: { ...inputStyles } }}
+            additionalProps={{ type: 'number', id: 'skimDepth', min: 0.001, max: 500, style: inputStyles }}
             value={skimDepth}
             onChange={onChange}
           />
@@ -119,7 +119,7 @@ const InputArea = ({ values, onChange, onSelect, units }) => {
           <Input
             label="Max Depth"
             units={units}
-            additionalProps={{ type: 'number', id: 'maxDepth', min: 0.001, max: 500, style: { ...inputStyles } }}
+            additionalProps={{ type: 'number', id: 'maxDepth', min: 0.001, max: 500, style: inputStyles }}
             value={maxDepth}
             onChange={onChange}
           />

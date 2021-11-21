@@ -44,9 +44,8 @@ class NumberInput extends PureComponent {
 
   incrementValue(e) {
     e.preventDefault();
-    const { changeHandler } = this.props;
+    const { changeHandler, value } = this.props;
     const { max, decimals } = this.state;
-    const { value } = this.props;
     let newValue = Number(value) + Number(this.getStep(true));
     if (newValue > max) {
       newValue = max;
@@ -60,9 +59,8 @@ class NumberInput extends PureComponent {
 
   decrementValue(e) {
     e.preventDefault();
-    const { changeHandler } = this.props;
+    const { changeHandler, value } = this.props;
     const { min, decimals } = this.state;
-    const { value } = this.props;
     let newValue = value - this.getStep();
     if (newValue < min) {
       newValue = min;
@@ -80,10 +78,10 @@ class NumberInput extends PureComponent {
     const { changeHandler } = this.props;
     let value = e.target.value;
 
-    const regex = /[^0-9.]/g;
+    const regex = /[^\d.]/g;
 
     let dotOccurance = 0;
-    [...value].forEach((char) => char === '.' && dotOccurance++);
+    value.slice().forEach((char) => char === '.' && dotOccurance++);
     // Ignore non digit and non . values
     // eslint-disable-next-line no-restricted-globals
     if (regex.test(value) || dotOccurance > 1) {

@@ -32,7 +32,7 @@ authrequest.use(noCache);
 //
 const signin = (options) =>
   new Promise((resolve, reject) => {
-    const { token, name, password } = { ...options };
+    const { token, name, password } = options;
 
     authrequest
       .post('/api/signin')
@@ -65,7 +65,7 @@ const getLatestVersion = () =>
 //
 const getState = (options) =>
   new Promise((resolve, reject) => {
-    const { key } = { ...options };
+    const { key } = options;
 
     authrequest
       .get('/api/state')
@@ -81,7 +81,7 @@ const getState = (options) =>
 
 const setState = (options) =>
   new Promise((resolve, reject) => {
-    const data = { ...options };
+    const data = options;
 
     authrequest
       .post('/api/state')
@@ -97,7 +97,7 @@ const setState = (options) =>
 
 const unsetState = (options) =>
   new Promise((resolve, reject) => {
-    const { key } = { ...options };
+    const { key } = options;
 
     authrequest
       .delete('/api/state')
@@ -116,7 +116,7 @@ const unsetState = (options) =>
 //
 const loadGCode = (options) =>
   new Promise((resolve, reject) => {
-    const { port = '', name = '', gcode = '', context = {} } = { ...options };
+    const { port = '', name = '', gcode = '', context = {} } = options;
 
     authrequest
       .post('/api/gcode')
@@ -132,7 +132,7 @@ const loadGCode = (options) =>
 
 const fetchGCode = (options) =>
   new Promise((resolve, reject) => {
-    const { port = '' } = { ...options };
+    const { port = '' } = options;
 
     authrequest
       .get('/api/gcode')
@@ -147,7 +147,7 @@ const fetchGCode = (options) =>
   });
 
 const downloadGCode = (options) => {
-  const { port = '' } = { ...options };
+  const { port = '' } = options;
 
   const $form = document.createElement('form');
   $form.setAttribute('id', 'export');
@@ -194,7 +194,7 @@ const watch = {};
 
 watch.getFiles = (options) =>
   new Promise((resolve, reject) => {
-    const { path } = { ...options };
+    const { path } = options;
 
     authrequest
       .post('/api/watch/files')
@@ -210,7 +210,7 @@ watch.getFiles = (options) =>
 
 watch.readFile = (options) =>
   new Promise((resolve, reject) => {
-    const { file } = { ...options };
+    const { file } = options;
 
     authrequest
       .post('/api/watch/file')

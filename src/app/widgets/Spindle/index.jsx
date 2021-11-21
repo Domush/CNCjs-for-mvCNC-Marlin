@@ -260,15 +260,13 @@ class SpindleWidget extends PureComponent {
       spindleMax,
       canClick: this.canClick(),
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     const active = this.getSpindleActiveState();
 
     return (
       <Widget fullscreen={isFullscreen}>
-        <Widget.Header embedded={embedded}></Widget.Header>
+        <Widget.Header embedded={embedded} />
         <Widget.Content
           className={classNames(styles['widget-content'], styles.heightOverride, { [styles.hidden]: minimized })}
         >

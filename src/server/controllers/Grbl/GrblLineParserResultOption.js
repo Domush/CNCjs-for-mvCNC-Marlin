@@ -2,7 +2,7 @@ class GrblLineParserResultOption {
   static parse(line) {
     // * Grbl v1.1
     //   [OPT:]
-    const r = line.match(/^\[(?:OPT:)(.+)\]$/);
+    const r = line.match(/^\[OPT:(.+)\]$/);
     if (!r) {
       return null;
     }

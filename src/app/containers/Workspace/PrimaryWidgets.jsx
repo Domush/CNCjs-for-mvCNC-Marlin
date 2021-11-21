@@ -20,6 +20,8 @@ import store from 'app/store';
 import Widget from './Widget';
 import styles from './widgets.styl';
 
+const isFn = (a) => typeof a === 'function';
+
 class PrimaryWidgets extends Component {
   static propTypes = {
     onForkWidget: PropTypes.func.isRequired,
@@ -146,7 +148,7 @@ class PrimaryWidgets extends Component {
     for (let i = 0; i < len; ++i) {
       const widget = this.widgetMap[this.state.widgets[i]];
       const expand = get(widget, 'expand');
-      if (typeof expand === 'function') {
+      if (isFn(expand)) {
         expand();
       }
     }

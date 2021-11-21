@@ -98,7 +98,7 @@ class General extends PureComponent {
 
   removeMetricJogDistance = (index) => (event) => {
     this.setState((state) => {
-      const metricJogDistances = [...state.metricJogDistances];
+      const metricJogDistances = state.metricJogDistances.slice();
       // Remove the array element at the index
       metricJogDistances.splice(index, 1);
 
@@ -129,7 +129,7 @@ class General extends PureComponent {
 
   removeImperialJogDistance = (index) => (event) => {
     this.setState((state) => {
-      const imperialJogDistances = [...state.imperialJogDistances];
+      const imperialJogDistances = state.imperialJogDistances.slice();
       // Remove the array element at the index
       imperialJogDistances.splice(index, 1);
 

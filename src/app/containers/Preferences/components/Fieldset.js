@@ -4,14 +4,12 @@ import classnames from 'classnames';
 
 import styles from '../index.styl';
 
-const Fieldset = ({ children, legend, className }) => {
-  return (
-    <fieldset className={classnames(styles.fieldset, className)}>
-      <legend className={styles.fieldsetLegend}>{legend}</legend>
-      {children}
-    </fieldset>
-  );
-};
+const Fieldset = ({ children, legend, className }) => (
+  <fieldset className={classnames(styles.fieldset, className)}>
+    <legend className={styles.fieldsetLegend}>{legend}</legend>
+    {children}
+  </fieldset>
+);
 
 Fieldset.propTypes = {
   legend: PropTypes.string,

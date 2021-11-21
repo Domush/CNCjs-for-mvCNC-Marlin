@@ -7,13 +7,18 @@ import styles from '../index.styl';
 class JogControl extends PureComponent {
   // Time to consider a jog movement to be a continuous movement
   timeout = 250;
+
   // Timeout function that triggers single jog or continuous jog
   timeoutFunction = null;
+
   // Throttled version of passed stop jog action
   throttledStopJog = null;
+
   // Toggle to indicate if we are continuous jogging
   isContinuousJogging = false;
+
   didClick = false;
+
   startTime = 0;
 
   constructor(props) {
@@ -93,7 +98,7 @@ class JogControl extends PureComponent {
   }
 
   render() {
-    const props = { ...this.props };
+    const props = this.props;
 
     return (
       <button

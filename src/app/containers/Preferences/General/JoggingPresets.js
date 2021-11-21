@@ -65,16 +65,12 @@ export default class JoggingPresets extends Component {
     const value = Number(e.target.value);
     const { currentPreset, units } = this.state;
 
-    if (units === 'mm') {
-      if (value >= 1000.1) {
-        return;
-      }
+    if (units === 'mm' && value >= 1000.1) {
+      return;
     }
 
-    if (units === 'in') {
-      if (value >= 40.1) {
-        return;
-      }
+    if (units === 'in' && value >= 40.1) {
+      return;
     }
 
     if (value <= 0) {
@@ -125,16 +121,12 @@ export default class JoggingPresets extends Component {
     const value = Number(e.target.value);
     const { currentPreset, units } = this.state;
 
-    if (units === 'mm') {
-      if (value > 1000) {
-        return;
-      }
+    if (units === 'mm' && value > 1000) {
+      return;
     }
 
-    if (units === 'in') {
-      if (value > 4) {
-        return;
-      }
+    if (units === 'in' && value > 4) {
+      return;
     }
 
     if (value <= 0) {
@@ -185,16 +177,12 @@ export default class JoggingPresets extends Component {
     const value = Number(e.target.value);
     const { currentPreset, units } = this.state;
 
-    if (units === 'mm') {
-      if (value >= 50000.1) {
-        return;
-      }
+    if (units === 'mm' && value >= 50000.1) {
+      return;
     }
 
-    if (units === 'in') {
-      if (value >= 2000.1) {
-        return;
-      }
+    if (units === 'in' && value >= 2000.1) {
+      return;
     }
 
     if (value <= 0) {

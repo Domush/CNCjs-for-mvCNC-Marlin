@@ -11,7 +11,7 @@ class CuttingPointer {
       phiLength = Math.PI * 2,
       thetaStart = 0,
       thetaLength = Math.PI,
-    } = { ...options };
+    } = options;
     const radius = Number(diameter / 2) || 1;
 
     const geometry = new THREE.SphereGeometry(

@@ -20,8 +20,8 @@ class Macro extends PureComponent {
   };
 
   canRunMacro = () => {
-    const { canClick } = this.props.state;
-    const { workflow } = this.props;
+    const { canClick } = state;
+    const { workflow, state } = this.props;
 
     return canClick && includes([WORKFLOW_STATE_IDLE, WORKFLOW_STATE_PAUSED], workflow.state);
   };
@@ -141,33 +141,22 @@ class Macro extends PureComponent {
     });
 
     const Container = ({ columns, children }) => {
-      const arr = new Array(columns).fill(columns);
+      const arr = Array(columns).fill(columns);
       const gridTemplateColumns = arr.reduce((acc) => acc + ' 1fr', '');
 
       return <div style={{ display: 'grid', gridTemplateColumns, overflowY: 'auto' }}>{children}</div>;
     };
 
-    const DroppableColumn = ({ droppableId, macros }) => {
-      return (
-        <Droppable droppableId={droppableId}>
-          {(provided, snapshot) => (
-            <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-              {macros.map((macro, index) => (
-                <Draggable key={macro.id} draggableId={macro.id} index={index}>
-                  {(provided) => (
-                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                      {macro.description ? (
-                        <TooltipCustom content={macro.description} location="default">
-                          <MacroItem
-                            key={macro.id}
-                            macro={macro}
-                            onRun={this.handleRunMacro}
-                            onEdit={this.handleEditMacro}
-                            onDelete={() => this.onDeleteClick({ name: macro.name, id: macro.id })}
-                            disabled={disabled}
-                          />
-                        </TooltipCustom>
-                      ) : (
+    const DroppableColumn = ({ droppableId, macros }) => (
+      <Droppable droppableId={droppableId}>
+        {(provided, snapshot) => (
+          <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+            {macros.map((macro, index) => (
+              <Draggable key={macro.id} draggableId={macro.id} index={index}>
+                {(provided) => (
+                  <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                    {macro.description ? (
+                      <TooltipCustom content={macro.description} location="default">
                         <MacroItem
                           key={macro.id}
                           macro={macro}
@@ -176,17 +165,26 @@ class Macro extends PureComponent {
                           onDelete={() => this.onDeleteClick({ name: macro.name, id: macro.id })}
                           disabled={disabled}
                         />
-                      )}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      );
-    };
+                      </TooltipCustom>
+                    ) : (
+                      <MacroItem
+                        key={macro.id}
+                        macro={macro}
+                        onRun={this.handleRunMacro}
+                        onEdit={this.handleEditMacro}
+                        onDelete={() => this.onDeleteClick({ name: macro.name, id: macro.id })}
+                        disabled={disabled}
+                      />
+                    )}
+                  </div>
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    );
 
     return macros.length === 0 ? (
       <div className={styles['macro-container']}>

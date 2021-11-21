@@ -52,7 +52,7 @@ const Result = ({ triangle, jogValues, onBack, onClose }) => {
         const FM = calculateFM({ b, beta: BETA });
 
         if (isNaN(ALPHA) || isNaN(BETA) || isNaN(FM)) {
-          throw new Error();
+          throw Error();
         }
 
         setFm(FM);

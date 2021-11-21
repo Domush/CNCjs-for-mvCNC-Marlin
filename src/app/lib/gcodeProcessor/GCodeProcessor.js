@@ -2,7 +2,9 @@ import objtools from 'objtools';
 import Interpreter from 'gcode-interpreter';
 import GCodeBlock from 'app/lib/gcodeProcessor/GCodeBlock';
 
-export const INVALID_GCODE_REGEX = /([^NGMXYZIJKFRS%\-?\.?\d+\.?\s])|((G28)|(G29)|(\$H))/gi;
+const isNumber = (a) => typeof a === 'number';
+
+export const INVALID_GCODE_REGEX = /([^\d\s%+\.?FGI-KMNRSX-Z\-])|((G28)|(G29)|(\$H))/gi;
 
 /**
  *
@@ -38,7 +40,7 @@ export class GCodeProcessor {
   // Gets or sets an axis value in a coordinate array.
   // If value is null, it returns the current value.  If value is numeric, it sets it.
   coord(coords, axis, value = null) {
-    let axisNum = typeof axis === 'number' ? axis : this.vmState.axisLabels.indexOf(axis.toLowerCase());
+    let axisNum = isNumber(axis) ? axis : this.vmState.axisLabels.indexOf(axis.toLowerCase());
 
     if (axisNum === -1) {
       // throw new Error('Invalid axis ' + axis);
@@ -118,18 +120,13 @@ export class GCodeProcessor {
       if (!options.include && !options.exclude) {
         return true;
       }
-      if (
-        options.include &&
-        options.exclude &&
-        options.include.indexOf(prop) !== -1 &&
-        options.exclude.indexOf(prop) === -1
-      ) {
+      if (options.include && options.exclude && options.include.includes(prop) && !options.exclude.includes(prop)) {
         return true;
       }
-      if (!options.include && options.exclude && options.exclude.indexOf(prop) === -1) {
+      if (!options.include && options.exclude && !options.exclude.includes(prop)) {
         return true;
       }
-      if (options.include && !options.exclude && options.include.indexOf(prop) !== -1) {
+      if (options.include && !options.exclude && options.include.includes(prop)) {
         return true;
       }
       return false;
@@ -610,7 +607,7 @@ export class GCodeProcessor {
         if (to[axisNum] === null || to[axisNum] === undefined) {
           to[axisNum] = this.vmState.pos[axisNum];
         }
-        travelSq += Math.pow((to[axisNum] || 0) - (this.vmState.pos[axisNum] || 0), 2);
+        travelSq += (to[axisNum] || 0 - this.vmState.pos[axisNum] || 0) ** 2;
       }
       travel = Math.sqrt(travelSq);
     }

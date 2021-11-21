@@ -65,14 +65,14 @@ export const fetch = (req, res) => {
         totalRecords: Number(totalRecords),
       },
       records: pagedRecords.map((record) => {
-        const { id, mtime, name, content, description, column, rowIndex } = { ...record };
+        const { id, mtime, name, content, description, column, rowIndex } = record;
         return { id, mtime, name, content, description, column, rowIndex };
       }),
     });
   } else {
     res.send({
       records: records.map((record) => {
-        const { id, mtime, name, content, description, column, rowIndex } = { ...record };
+        const { id, mtime, name, content, description, column, rowIndex } = record;
         return { id, mtime, name, content, description, column, rowIndex };
       }),
     });
@@ -80,7 +80,7 @@ export const fetch = (req, res) => {
 };
 
 export const create = (req, res) => {
-  const { name, content, description = '' } = { ...req.body };
+  const { name, content, description = '' } = req.body;
 
   if (!name) {
     res.status(ERR_BAD_REQUEST).send({
@@ -98,7 +98,8 @@ export const create = (req, res) => {
 
   try {
     const records = getSanitizedRecords();
-    let column, rowIndex;
+    let column;
+    let rowIndex;
 
     const column1Length = records
       .filter((macro) => macro.column === 'column1')
@@ -149,7 +150,7 @@ export const read = (req, res) => {
     return;
   }
 
-  const { mtime, name, content, description, column, rowIndex } = { ...record };
+  const { mtime, name, content, description, column, rowIndex } = record;
   res.send({ id, mtime, name, content, description, column, rowIndex });
 };
 
@@ -171,7 +172,7 @@ export const update = (req, res) => {
     description = record.description,
     column = record.column,
     rowIndex = record.rowIndex,
-  } = { ...req.body };
+  } = req.body;
 
   /*
     if (!name) {
@@ -220,9 +221,7 @@ export const __delete = (req, res) => {
   }
 
   try {
-    const filteredRecords = records.filter((record) => {
-      return record.id !== id;
-    });
+    const filteredRecords = records.filter((record) => record.id !== id);
     config.set(CONFIG_KEY, filteredRecords);
 
     res.send({ err: null });

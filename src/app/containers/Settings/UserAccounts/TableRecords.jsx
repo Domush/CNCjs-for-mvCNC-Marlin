@@ -30,9 +30,7 @@ class TableRecords extends PureComponent {
         bordered={false}
         justified={false}
         data={state.api.err || state.api.fetching ? [] : state.records}
-        rowKey={(record) => {
-          return record.id;
-        }}
+        rowKey={(record) => record.id}
         emptyText={() => {
           if (state.api.err) {
             return <span className="text-danger">{i18n._('An unexpected error has occurred.')}</span>;
@@ -134,59 +132,57 @@ class TableRecords extends PureComponent {
             title: i18n._('Action'),
             className: 'text-nowrap',
             key: 'action',
-            render: (value, row, index) => {
-              return (
-                <div>
-                  <button
-                    type="button"
-                    className="btn btn-xs btn-default"
-                    title={i18n._('Edit Account')}
-                    onClick={(event) => {
-                      actions.openModal(MODAL_UPDATE_RECORD, row);
-                    }}
-                  >
-                    <i className="fa fa-fw fa-edit" />
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-xs btn-default"
-                    title={i18n._('Delete Account')}
-                    onClick={(event) => {
-                      portal(({ onClose }) => (
-                        <Modal disableOverlay={false} size="xs" onClose={onClose}>
-                          <Modal.Header>
-                            <Modal.Title>
-                              {i18n._('Settings')}
-                              <Space width="8" />
-                              &rsaquo;
-                              <Space width="8" />
-                              {i18n._('My Account')}
-                            </Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>
-                            <FormGroup>{i18n._('Are you sure you want to delete the account?')}</FormGroup>
-                            <FormGroup>{row.name}</FormGroup>
-                          </Modal.Body>
-                          <Modal.Footer>
-                            <Button onClick={onClose}>{i18n._('Cancel')}</Button>
-                            <Button
-                              btnStyle="primary"
-                              onClick={chainedFunction(() => {
-                                actions.deleteRecord(row.id);
-                              }, onClose)}
-                            >
-                              {i18n._('OK')}
-                            </Button>
-                          </Modal.Footer>
-                        </Modal>
-                      ));
-                    }}
-                  >
-                    <i className="fa fa-fw fa-trash" />
-                  </button>
-                </div>
-              );
-            },
+            render: (value, row, index) => (
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-xs btn-default"
+                  title={i18n._('Edit Account')}
+                  onClick={(event) => {
+                    actions.openModal(MODAL_UPDATE_RECORD, row);
+                  }}
+                >
+                  <i className="fa fa-fw fa-edit" />
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-xs btn-default"
+                  title={i18n._('Delete Account')}
+                  onClick={(event) => {
+                    portal(({ onClose }) => (
+                      <Modal disableOverlay={false} size="xs" onClose={onClose}>
+                        <Modal.Header>
+                          <Modal.Title>
+                            {i18n._('Settings')}
+                            <Space width="8" />
+                            &rsaquo;
+                            <Space width="8" />
+                            {i18n._('My Account')}
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <FormGroup>{i18n._('Are you sure you want to delete the account?')}</FormGroup>
+                          <FormGroup>{row.name}</FormGroup>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button onClick={onClose}>{i18n._('Cancel')}</Button>
+                          <Button
+                            btnStyle="primary"
+                            onClick={chainedFunction(() => {
+                              actions.deleteRecord(row.id);
+                            }, onClose)}
+                          >
+                            {i18n._('OK')}
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+                    ));
+                  }}
+                >
+                  <i className="fa fa-fw fa-trash" />
+                </button>
+              </div>
+            ),
           },
         ]}
       />

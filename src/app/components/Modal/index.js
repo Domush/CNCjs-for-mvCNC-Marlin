@@ -4,13 +4,9 @@ import chainedFunction from 'chained-function';
 import React, { PureComponent } from 'react';
 
 class ModalWrapper extends PureComponent {
-  static propTypes = {
-    ...Modal.propTypes,
-  };
+  static propTypes = Modal.propTypes;
 
-  static defaultProps = {
-    ...Modal.defaultProps,
-  };
+  static defaultProps = Modal.defaultProps;
 
   // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {

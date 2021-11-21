@@ -1,5 +1,5 @@
-const path = require('path');
-// import path from 'path';
+// const path = require('path');
+import path from 'path';
 
 module.exports = {
   extends: ['trendmicro', 'plugin:prettier/recommended'],
@@ -77,6 +77,7 @@ module.exports = {
     'no-reserved-keys': 'off',
     'no-space-before-semi': 'off',
     'no-trailing-spaces': 'off',
+    'no-unused-vars': 'off',
     'no-whitespace-before-property': 'off',
     'no-wrap-func': 'off',
     'nonblock-statement-body-position': 'off',

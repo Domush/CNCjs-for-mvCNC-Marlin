@@ -32,7 +32,7 @@ const ProgressArea = ({ state }) => {
       elapsedSecond[elapsedSecond.length - 2] !== undefined ? elapsedSecond[elapsedSecond.length - 2] : ''
     }${String(elapsedSecond[elapsedSecond.length - 1])}`;
     const formattedSeconds =
-      Number(strElapsedSecond) < 59 ? Number(strElapsedSecond) : `${Number(strElapsedSecond) - 60}`;
+      Number(strElapsedSecond) < 59 ? Number(strElapsedSecond) : String(Number(strElapsedSecond) - 60);
 
     return `${elapsedMinute}m ${Math.abs(formattedSeconds)}s`;
   };

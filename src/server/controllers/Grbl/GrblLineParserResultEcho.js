@@ -2,7 +2,7 @@ class GrblLineParserResultEcho {
   static parse(line) {
     // * Grbl v1.1
     //   [echo:]
-    const r = line.match(/^\[(?:echo:)(.+)\]$/);
+    const r = line.match(/^\[echo:(.+)\]$/);
     if (!r) {
       return null;
     }

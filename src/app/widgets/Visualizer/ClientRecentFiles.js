@@ -9,21 +9,17 @@ export const recentFileExists = (filePath, recentFiles) => {
   return !!file;
 };
 
-export const createRecentFile = ({ name, dir }) => {
-  return {
-    fileName: name,
-    filePath: `${dir}\\${name}`,
-    timeUploaded: Date.now(),
-  };
-};
+export const createRecentFile = ({ name, dir }) => ({
+  fileName: name,
+  filePath: `${dir}\\${name}`,
+  timeUploaded: Date.now(),
+});
 
-export const createRecentFileFromRawPath = (filePath, fileName) => {
-  return {
-    fileName: fileName,
-    filePath: filePath,
-    timeUploaded: Date.now(),
-  };
-};
+export const createRecentFileFromRawPath = (filePath, fileName) => ({
+  fileName: fileName,
+  filePath: filePath,
+  timeUploaded: Date.now(),
+});
 
 export const updateRecentFileDate = (filepath, recentFiles) => {
   recentFiles.forEach((recentFile) => {
@@ -72,9 +68,7 @@ export const trimRecentFilesToLimit = (recentFiles, limit = RECENT_FILE_LIMIT) =
   return recentFiles;
 };
 
-export const recentFileSortHandler = (a, b) => {
-  return b.timeUploaded - a.timeUploaded;
-};
+export const recentFileSortHandler = (a, b) => b.timeUploaded - a.timeUploaded;
 
 export const sortRecentFiles = (recentFiles = []) => {
   return recentFiles.sort(recentFileSortHandler);

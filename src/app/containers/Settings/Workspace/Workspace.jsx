@@ -46,7 +46,7 @@ class Workspace extends PureComponent {
       }
 
       // TODO: Sanitization
-      const { version, state } = { ...data };
+      const { version, state } = data;
       if (typeof version !== 'string' && typeof state !== 'object') {
         portal(({ onClose }) => (
           <Modal disableOverlay size="xs" onClose={onClose}>

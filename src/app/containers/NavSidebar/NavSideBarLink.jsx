@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './index.styl';
 
-const NavSidebarLink = ({ label, url = '#', icon, onClick, className, disabled = false }) => {
-  return (
-    <button onClick={onClick} className={cx(styles.linkButton, className)} disabled={disabled}>
-      <i className={`${icon}`} /> {label}
-    </button>
-  );
-};
+const NavSidebarLink = ({ label, url = '#', icon, onClick, className, disabled = false }) => (
+  <button onClick={onClick} className={cx(styles.linkButton, className)} disabled={disabled}>
+    <i className={String(icon)} /> {label}
+  </button>
+);
 
 NavSidebarLink.propTypes = {
   label: PropTypes.string.isRequired,

@@ -91,10 +91,10 @@ class ConsoleWidget extends PureComponent {
       this.actions.clearAll();
 
       const initialState = this.getInitialState();
-      this.setState({ ...initialState });
+      this.setState(initialState);
     },
     'serialport:write': (data, context) => {
-      const { source, __sender__ } = { ...context };
+      const { source, __sender__ } = context;
 
       if (__sender__ === this.senderId) {
         // Do not write to the terminal console if the sender is the widget itself
@@ -107,9 +107,7 @@ class ConsoleWidget extends PureComponent {
 
       data = String(data).trim();
       // Handle non-ascii characters more gracefully
-      data = data.replace(/[^\x20-\x7E]/g, (m) => {
-        return '\\x' + m.charCodeAt(0).toString(16);
-      });
+      data = data.replace(/[^\x20-\x7E]/g, (m) => '\\x' + m.charCodeAt(0).toString(16));
 
       if (source) {
         this.terminal.writeln(color.blackBright(source) + color.white(this.terminal.prompt + data));
@@ -179,12 +177,8 @@ class ConsoleWidget extends PureComponent {
     const { widgetId, embedded, active } = this.props;
     const { minimized, isFullscreen } = this.state;
     const isForkedWidget = widgetId.match(/\w+:[\w\-]+/);
-    const state = {
-      ...this.state,
-    };
-    const actions = {
-      ...this.actions,
-    };
+    const state = this.state;
+    const actions = this.actions;
 
     return (
       <Widget fullscreen={isFullscreen}>
@@ -193,7 +187,7 @@ class ConsoleWidget extends PureComponent {
             {isForkedWidget && <i className="fa fa-code-fork" style={{ marginRight: 5 }} />}
             {i18n._('Console')}
           </Widget.Title>
-          <Widget.Controls></Widget.Controls>
+          <Widget.Controls />
         </Widget.Header>
         <Widget.Content
           className={cx(

@@ -11,7 +11,7 @@ import styles from './index.styl';
 
 const UpdateStatusContainer = (props) => {
   const { checking, current, latest, lastUpdate } = props;
-  const newUpdateAvailable = checking === false && semver.lt(current, latest);
+  const newUpdateAvailable = !checking && semver.lt(current, latest);
 
   if (checking) {
     return (

@@ -5,15 +5,12 @@ import SettingWrapper from '../components/SettingWrapper';
 import HeaderArea from './HeaderArea';
 import MainArea from './MainArea';
 
-const About = ({ modalClose, active }) => {
-  return (
-    <SettingWrapper show={active}>
-      <HeaderArea />
-
-      <MainArea />
-    </SettingWrapper>
-  );
-};
+const About = ({ modalClose, active }) => (
+  <SettingWrapper show={active}>
+    <HeaderArea />
+    <MainArea />
+  </SettingWrapper>
+);
 About.propTypes = {
   modalClose: PropTypes.func,
 };

@@ -2,6 +2,10 @@
 import { app, BrowserWindow, shell } from 'electron';
 import path from 'path';
 
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 class WindowManager {
   windows = [];
 
@@ -110,9 +114,7 @@ class WindowManager {
   }
 
   createSplashScreen(options) {
-    const splashScreen = new BrowserWindow({
-      ...options,
-    });
+    const splashScreen = new BrowserWindow(options);
 
     return splashScreen;
   }

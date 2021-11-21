@@ -99,7 +99,7 @@ class CNCEngine {
     }
 
     if (Object.keys(this.controllerClass).length === 0) {
-      throw new Error(`No valid CNC controller specified (${controller})`);
+      throw Error(`No valid CNC controller specified (${controller})`);
     }
 
     const loadedControllers = Object.keys(this.controllerClass);
@@ -204,13 +204,11 @@ class CNCEngine {
               return controller && controller.isOpen();
             });
 
-            ports = ports.map((port) => {
-              return {
-                port: port.path,
-                manufacturer: port.manufacturer,
-                inuse: portsInUse.indexOf(port.path) >= 0,
-              };
-            });
+            ports = ports.map((port) => ({
+              port: port.path,
+              manufacturer: port.manufacturer,
+              inuse: portsInUse.indexOf(port.path) >= 0,
+            }));
 
             socket.emit('serialport:list', ports);
           })
@@ -229,13 +227,13 @@ class CNCEngine {
 
         let controller = store.get(`controllers["${port}"]`);
         if (!controller) {
-          let { controllerType = MARLIN, baudrate, rtscts } = { ...options };
+          let { controllerType = MARLIN, baudrate, rtscts } = options;
 
           const Controller = this.controllerClass[controllerType];
           if (!Controller) {
             const err = `Not supported controller: ${controllerType}`;
             log.error(err);
-            callback(new Error(err));
+            callback(Error(err));
             return;
           }
 
@@ -296,7 +294,7 @@ class CNCEngine {
         if (!controller) {
           const err = `Serial port "${port}" not accessible`;
           log.error(err);
-          callback(new Error(err));
+          callback(Error(err));
           return;
         }
 
@@ -326,7 +324,7 @@ class CNCEngine {
           return;
         }
 
-        controller.command.apply(controller, [cmd].concat(args));
+        controller.command(...[cmd].concat(args));
       });
 
       socket.on('write', (port, data, context = {}) => {

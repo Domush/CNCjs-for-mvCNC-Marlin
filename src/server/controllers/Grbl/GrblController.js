@@ -138,11 +138,11 @@ class GrblController {
 
   constructor(engine, options) {
     if (!engine) {
-      throw new Error('engine must be specified');
+      throw Error('engine must be specified');
     }
     this.engine = engine;
 
-    const { port, baudrate, rtscts } = { ...options };
+    const { port, baudrate, rtscts } = options;
     this.options = {
       ...this.options,
       port: port,
@@ -446,7 +446,7 @@ class GrblController {
       this.emit('workflow:state', this.workflow.state);
 
       if (args.length > 0) {
-        const reason = { ...args[0] };
+        const reason = args[0];
         this.sender.hold(reason); // Hold reason
       } else {
         this.sender.hold();
@@ -563,7 +563,7 @@ class GrblController {
         this.emit('serialport:read', `error:${code} (${error.message})`);
 
         if (error) {
-          if (preferences.showLineWarnings === false) {
+          if (!preferences.showLineWarnings) {
             this.emit('gcode_error', error, code, line);
             this.workflow.pause({ err: `error:${code} (${error.message})` });
           }
@@ -1003,7 +1003,7 @@ class GrblController {
     // Assertion check
     if (!this.connection) {
       const err = `Serial port "${port}" is not available`;
-      callback(new Error(err));
+      callback(Error(err));
       return;
     }
 
@@ -1161,7 +1161,7 @@ class GrblController {
         const dwell = '%wait ; Wait for the planner to empty';
         const ok = this.sender.load(name, gcode + '\n' + dwell, context);
         if (!ok) {
-          callback(new Error(`Invalid G-code: name=${name}`));
+          callback(Error(`Invalid G-code: name=${name}`));
           return;
         }
 
@@ -1222,9 +1222,8 @@ class GrblController {
           });
 
           const modal = toolpath.getModal();
-          const position = toolpath.getPosition();
 
-          const { x: xVal, y: yVal, z: zVal } = position;
+          const { x: xVal, y: yVal, z: zVal } = toolpath.getPosition();
 
           const modalGCode = [];
 
@@ -1266,7 +1265,7 @@ class GrblController {
         this.workflow.stop();
 
         const [options] = args;
-        const { force = false } = { ...options };
+        const { force = false } = options;
         if (force) {
           let activeState;
 

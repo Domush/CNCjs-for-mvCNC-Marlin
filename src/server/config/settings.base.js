@@ -1,9 +1,12 @@
 import path from 'path';
+import { createCommons } from 'simport';
 import pkg from '../../package.json';
-import { languages } from '../../../build.config';
+import { languages } from '../../../build.config.cjs';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
 
 const RC_FILE = '.cncjs4m_rc';
-const SESSION_PATH = '.cncjs4m-sessions';
+const SESSION_PATH = 'cncjs4m-session';
 
 // Secret
 const secret = pkg.version;

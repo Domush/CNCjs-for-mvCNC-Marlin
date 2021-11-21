@@ -5,13 +5,13 @@ import logger from './lib/logger';
 
 const log = logger('webpack-dev-server');
 
-const webpackDevServer = (app) => {
+const webpackDevServer = async (app) => {
   if (process.env.NODE_ENV !== 'development') {
     log.error('The process.env.NODE_ENV should be "development" while running a webpack server');
     return;
   }
 
-  const webpackConfig = require('../../webpack.config.app.development');
+  const webpackConfig = await import('../../webpack.config.app.development');
   const compiler = webpack(webpackConfig);
 
   // https://github.com/webpack/webpack-dev-middleware

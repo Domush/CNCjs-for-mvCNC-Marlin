@@ -32,13 +32,13 @@ export const authorizeIPAddress = (ipaddr) =>
     if (pass) {
       resolve();
     } else {
-      reject(new Error(`Unauthorized IP address: ipaddr=${ipaddr}`));
+      reject(Error(`Unauthorized IP address: ipaddr=${ipaddr}`));
     }
   });
 
 export const validateUser = (user) =>
   new Promise((resolve, reject) => {
-    const { id = null, name = null } = { ...user };
+    const { id = null, name = null } = user;
 
     const users = ensureArray(config.get('users'))
       .filter((user) => _.isPlainObject(user))
@@ -52,6 +52,6 @@ export const validateUser = (user) =>
     if (enabledUsers.length === 0 || _.find(enabledUsers, { id: id, name: name })) {
       resolve();
     } else {
-      reject(new Error(`Unauthorized user: user.id=${id}, user.name=${name}`));
+      reject(Error(`Unauthorized user: user.id=${id}, user.name=${name}`));
     }
   });

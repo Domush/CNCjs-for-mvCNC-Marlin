@@ -1,3 +1,4 @@
+import { types } from 'putout';
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import get from 'lodash/get';
@@ -39,6 +40,8 @@ import styles from './workflow-control.styl';
 import RecentFileButton from './RecentFileButton';
 import { addRecentFile, createRecentFile, createRecentFileFromRawPath } from './ClientRecentFiles';
 import { UPDATE_FILE_INFO } from '../../actions/fileInfoActions';
+
+const { File } = types;
 
 class WorkflowControl extends PureComponent {
   static propTypes = {
@@ -202,7 +205,7 @@ class WorkflowControl extends PureComponent {
   };
 
   startRun = () => {
-    const { activeState } = this.props;
+    const { activeState, actions } = this.props;
 
     Toaster.clear();
 
@@ -214,7 +217,6 @@ class WorkflowControl extends PureComponent {
     }
     this.setState({ fileLoaded: true });
     this.setState({ runHasStarted: true });
-    const { actions } = this.props;
     actions.onRunClick();
   };
 
@@ -328,11 +330,11 @@ class WorkflowControl extends PureComponent {
   }
 
   render() {
-    const { cameraPosition } = this.props.state;
+    const { cameraPosition } = state;
     const { camera } = this.props.actions;
     const { handleOnStop } = this;
-    const { runHasStarted } = this.state;
-    const { fileLoaded, actions, workflowState, isConnected, senderInHold, activeState, lineTotal } = this.props;
+    const { runHasStarted, startFromLine } = this.state;
+    const { fileLoaded, actions, workflowState, isConnected, senderInHold, activeState, lineTotal, state } = this.props;
     const canClick = !!isConnected;
     const isReady = canClick && fileLoaded;
     const canRun = this.canRun();
@@ -345,7 +347,7 @@ class WorkflowControl extends PureComponent {
     const activeHold = activeState === GRBL_ACTIVE_STATE_HOLD;
     const workflowPaused = runHasStarted && (workflowState === WORKFLOW_STATE_PAUSED || senderInHold || activeHold);
 
-    const { showModal, value } = this.state.startFromLine;
+    const { showModal, value } = startFromLine;
 
     return (
       <div className={styles.workflowControl}>
@@ -367,7 +369,7 @@ class WorkflowControl extends PureComponent {
             <>
               <button
                 type="button"
-                className={`${styles['workflow-button-upload']}`}
+                className={String(styles['workflow-button-upload'])}
                 title={i18n._('Load File')}
                 onClick={this.handleClickUpload}
                 // style={{ writingMode: 'vertical-lr' }}
@@ -377,7 +379,7 @@ class WorkflowControl extends PureComponent {
               <RecentFileButton />
               <div
                 role="button"
-                className={fileLoaded ? `${styles.closeFileButton}` : `${styles['workflow-button-disabled']}`}
+                className={fileLoaded ? String(styles.closeFileButton) : String(styles['workflow-button-disabled'])}
                 onClick={this.handleCloseFile}
               >
                 <i className="fas fa-times" />
@@ -390,7 +392,7 @@ class WorkflowControl extends PureComponent {
           <div className={styles.splitContainer}>
             <button
               type="button"
-              className={!canRun ? `${styles['workflow-button-disabled']}` : `${styles['workflow-button-test']}`}
+              className={!canRun ? String(styles['workflow-button-disabled']) : String(styles['workflow-button-test'])}
               title={i18n._('Outline')}
               onClick={this.runOutline}
               disabled={!canRun}
@@ -400,7 +402,7 @@ class WorkflowControl extends PureComponent {
             </button>
             <button
               type="button"
-              className={!canRun ? `${styles['workflow-button-disabled']}` : `${styles['workflow-button-test']}`}
+              className={!canRun ? String(styles['workflow-button-disabled']) : String(styles['workflow-button-test'])}
               title={i18n._('Test Run')}
               onClick={this.handleTestFile}
               disabled={!canRun}

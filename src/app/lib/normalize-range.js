@@ -9,9 +9,8 @@ export const limit = (value, min, max) => {
 // Returns true if value is within the range, false otherwise.
 // It defaults to inclusive on both ends of the range, but that can be changed by
 // setting minExclusive and/or maxExclusive to a truthy value.
-export const test = (value, min, max, minExclusive, maxExclusive) => {
-  return !(value < min || value > max || (maxExclusive && value === max) || (minExclusive && value === min));
-};
+export const test = (value, min, max, minExclusive, maxExclusive) =>
+  !(value < min || value > max || (maxExclusive && value === max) || (minExclusive && value === min));
 
 export default {
   limit,

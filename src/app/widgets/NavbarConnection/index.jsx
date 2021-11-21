@@ -262,7 +262,7 @@ class NavbarConnectionWidget extends PureComponent {
   }
 
   openPort(port, options) {
-    const { baudrate } = { ...options };
+    const { baudrate } = options;
 
     this.setState((state) => ({
       connecting: true,
@@ -337,9 +337,7 @@ class NavbarConnectionWidget extends PureComponent {
       unrecognizedPorts,
       controllerType: MARLIN,
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     return <NavbarConnection actions={actions} state={state} />;
   }

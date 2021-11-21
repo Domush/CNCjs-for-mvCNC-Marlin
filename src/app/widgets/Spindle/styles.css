@@ -5,13 +5,17 @@
   border-radius: 0.25rem;
   font-size: 14px;
   color: #3e85c7;
+
   --tw-shadow: 0 11px 10px 1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   transition: 200ms ease-in-out;
   font-size: clamp(12px, 1vw, 22px);
   height: 2.25rem;
   padding: 0;
+
   --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   -webkit-box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent),
     var(--tw-shadow);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
@@ -110,7 +114,7 @@ input.form-control[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none !important;
   opacity: 1 !important;
   background: transparent !important;
-  border-width: 0px;
+  border-width: 0;
   margin: 0;
   border-left: 1px solid #d8d8d8;
   height: 34px;

@@ -10,13 +10,11 @@ import { Toaster, TOASTER_INFO } from '../../lib/toaster/ToasterLib';
  * Toggle Component used to trigger the dropdown
  * @prop {Object} props Various props passed by the parent Dropdown component
  */
-const Toggle = (props) => {
-  return (
-    <div {...props} className={styles['macro-item-options']}>
-      <i className="fas fa-ellipsis-h" />
-    </div>
-  );
-};
+const Toggle = (props) => (
+  <div {...props} className={styles['macro-item-options']}>
+    <i className="fas fa-ellipsis-h" />
+  </div>
+);
 
 /**
  * Macro Item Component
@@ -136,7 +134,7 @@ export default class MacroItem extends Component {
                   }}
                 >
                   <i className="fa fa-play" style={{ fontSize: '1rem', color: '#059669', outline: 'none' }} />
-                  Run {`${macro.name}`}{' '}
+                  Run {String(macro.name)}{' '}
                 </div>
               )}
             </>

@@ -18,8 +18,8 @@
 const errnotfound = (options) => {
   options = options || {};
 
-  let view = options.view || '404',
-    error = options.error || '';
+  let view = options.view || '404';
+  let error = options.error || '';
 
   return (req, res, next) => {
     res.status(404);
@@ -41,4 +41,4 @@ const errnotfound = (options) => {
   };
 };
 
-module.exports = errnotfound;
+export default errnotfound;

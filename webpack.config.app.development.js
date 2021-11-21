@@ -10,8 +10,8 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WriteFileWebpackPlugin = require('write-file-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const babelConfig = require('./babel.config');
-const buildConfig = require('./build.config');
+const babelConfig = require('./babel.config.cjs');
+const buildConfig = require('./build.config.cjs');
 const pkg = require('./package.json');
 
 const myEslintOptions = {

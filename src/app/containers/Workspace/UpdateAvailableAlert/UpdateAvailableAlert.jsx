@@ -51,7 +51,7 @@ class UpdateAvailableAlert extends PureComponent {
   render() {
     const { shown, buttonActive } = this.state;
     const { restartHandler } = this.props;
-    const actions = { ...this.actions };
+    const actions = this.actions;
     return (
       <div className={cx(styles.updateWrapper, { [styles.hideModal]: !shown })}>
         <div className={styles.updateIcon}>

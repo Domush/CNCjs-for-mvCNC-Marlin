@@ -1,6 +1,6 @@
-const objtools = require('objtools');
+import objtools from 'objtools';
 
-const modalGroupsG = [
+export const modalGroupsG = [
   [],
   ['G0', 'G1', 'G2', 'G3', 'G33', 'G38', 'G73', 'G76', 'G80', 'G81', 'G82', 'G84', 'G85', 'G86', 'G87', 'G88', 'G89'],
   ['G17', 'G18', 'G19', 'G17.1', 'G17.2', 'G17.3'],
@@ -16,13 +16,14 @@ const modalGroupsG = [
   ['G96', 'G97'],
   ['G7', 'G8'],
 ];
-let modalGroupsGByCode = {};
+export let modalGroupsGByCode = {};
+const isString = (a) => typeof a === 'string';
 for (let gidx = 0; gidx < modalGroupsG.length; gidx++) {
   for (let code of modalGroupsG[gidx]) {
     modalGroupsGByCode[code] = gidx;
   }
 }
-const modalGroupsM = [
+export const modalGroupsM = [
   [],
   [],
   [],
@@ -34,13 +35,13 @@ const modalGroupsM = [
   ['M7', 'M8', 'M9'],
   ['M48', 'M49'],
 ];
-let modalGroupsMByCode = {};
+export let modalGroupsMByCode = {};
 for (let gidx = 0; gidx < modalGroupsM.length; gidx++) {
   for (let code of modalGroupsM[gidx]) {
     modalGroupsMByCode[code] = gidx;
   }
 }
-const nonModals = ['G4', 'G10', 'G28', 'G30', 'G53', 'G92', 'G92.1', 'G92.2', 'G92.3'];
+export const nonModals = ['G4', 'G10', 'G28', 'G30', 'G53', 'G92', 'G92.1', 'G92.2', 'G92.3'];
 
 const coordOrder = ['P', 'X', 'Y', 'Z', 'A', 'B', 'C', 'F'];
 
@@ -98,7 +99,7 @@ class GcodeLine {
     letter = letter.toUpperCase();
 
     // If mgroup is a full code, convert it to a group number
-    if (mgroup && typeof mgroup === 'string') {
+    if (mgroup && isString(mgroup)) {
       let omgroup = mgroup;
       if (letter === 'G') {
         mgroup = modalGroupsGByCode[mgroup];
@@ -219,7 +220,7 @@ class GcodeLine {
         } else {
           pos = 0;
         }
-      } else if (coordOrder.indexOf(letter) !== -1) {
+      } else if (coordOrder.includes(letter)) {
         let coordIdx = coordOrder.indexOf(letter);
         for (let i = coordIdx - 1; i >= 0; i--) {
           if (posMap[coordOrder[i]] !== undefined) {
@@ -353,14 +354,14 @@ class GcodeLine {
     // Parse words
     this.words = [];
     line = line.trim();
-    let wordRegex = /([A-Za-z])\s*(-?[0-9]*\.[0-9]*|-?[0-9]+)\s*/y;
+    let wordRegex = /([A-Za-z])\s*(-?\d*\.\d*|-?\d+)\s*/y;
     let lastIndex = 0;
     while (lastIndex < line.length) {
       matches = wordRegex.exec(line);
       if (matches) {
         this.words.push([
           matches[1].toUpperCase(),
-          matches[2].indexOf('.') === -1 ? parseInt(matches[2], 10) : parseFloat(matches[2]),
+          !matches[2].includes('.') ? parseInt(matches[2], 10) : parseFloat(matches[2]),
         ]);
         lastIndex = wordRegex.lastIndex;
       } else {
@@ -418,9 +419,4 @@ class GcodeLine {
   }
 }
 
-module.exports = GcodeLine;
-module.exports.modalGroupsG = modalGroupsG;
-module.exports.modalGroupsGByCode = modalGroupsGByCode;
-module.exports.modalGroupsM = modalGroupsM;
-module.exports.modalGroupsMByCode = modalGroupsMByCode;
-module.exports.nonModals = nonModals;
+export default GcodeLine;

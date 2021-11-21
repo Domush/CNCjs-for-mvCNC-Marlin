@@ -135,7 +135,7 @@ const createServer = (options, callback) => {
         type: 'server',
         route: mount.route,
         server: (options) => {
-          const { route = '/' } = { ...options };
+          const { route = '/' } = options;
           const routeWithoutTrailingSlash = trimEnd(route, '/');
           const target = mount.target;
           const targetPathname = url.parse(target).pathname;

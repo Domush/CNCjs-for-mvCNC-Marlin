@@ -11,11 +11,9 @@
  * @api public
  */
 
-const errlog = () => {
-  return (err, req, res, next) => {
-    console.error(err.stack);
-    next(err);
-  };
+const errlog = () => (err, req, res, next) => {
+  console.error(err.stack);
+  next(err);
 };
 
-module.exports = errlog;
+export default errlog;

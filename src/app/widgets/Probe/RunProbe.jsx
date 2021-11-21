@@ -45,9 +45,7 @@ class RunProbe extends PureComponent {
   }
 
   resetProbeState() {
-    this.setState({
-      ...this.getInitialState(),
-    });
+    this.setState(this.getInitialState());
   }
 
   startConnectivityTest(probeStatus, connectivityTest) {
@@ -109,8 +107,7 @@ class RunProbe extends PureComponent {
   }
 
   render() {
-    const { actions } = this.props;
-    const { state } = this.props;
+    const { actions, state } = this.props;
     const { canClick } = state;
     const probeCommands = actions.generateProbeCommands();
     const probeCommand = state.availableProbeCommands[state.selectedProbeCommand];

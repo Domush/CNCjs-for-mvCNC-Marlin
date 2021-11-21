@@ -9,7 +9,7 @@ export default (options) => {
   //     target: '~+/widget'
   //   }
   // ]
-  const { address, port, mountPoints = [] } = { ...options };
+  const { address, port, mountPoints = [] } = options;
   let menuItems = [];
 
   if (mountPoints.length > 0) {

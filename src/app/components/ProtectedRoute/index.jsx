@@ -33,8 +33,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-ProtectedRoute.propTypes = {
-  ...withRouter.propTypes,
-};
+ProtectedRoute.propTypes = withRouter.propTypes;
 
 export default ProtectedRoute;

@@ -5,9 +5,7 @@ import i18n from 'app/lib/i18n';
 import styles from './index.styl';
 
 class Sidebar extends PureComponent {
-  static propTypes = {
-    ...withRouter.propTypes,
-  };
+  static propTypes = withRouter.propTypes;
 
   render() {
     const { pathname = '' } = this.props.location;

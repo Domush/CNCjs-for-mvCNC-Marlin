@@ -42,8 +42,8 @@ const getSanitizedRecords = () => {
 };
 
 const ensureMachineProfile = (payload) => {
-  const { id, name, limits } = { ...payload };
-  const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = { ...limits };
+  const { id, name, limits } = payload;
+  const { xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0 } = limits;
 
   return {
     id,
@@ -58,6 +58,8 @@ const ensureMachineProfile = (payload) => {
     },
   };
 };
+
+const isFn = (a) => typeof a === 'function';
 
 export const fetch = (req, res) => {
   const records = getSanitizedRecords();
@@ -85,7 +87,7 @@ export const fetch = (req, res) => {
 };
 
 export const create = (req, res) => {
-  const record = { ...req.body };
+  const record = req.body;
 
   if (!record.name) {
     res.status(ERR_BAD_REQUEST).send({
@@ -151,7 +153,7 @@ export const update = (req, res) => {
       const defaultValue = _get(record, key);
       const value = _get(nextRecord, key, defaultValue);
 
-      _set(record, key, typeof ensureType === 'function' ? ensureType(value) : value);
+      _set(record, key, isFn(ensureType) ? ensureType(value) : value);
     });
 
     config.set(CONFIG_KEY, records);
@@ -177,9 +179,7 @@ export const __delete = (req, res) => {
   }
 
   try {
-    const filteredRecords = records.filter((record) => {
-      return record.id !== id;
-    });
+    const filteredRecords = records.filter((record) => record.id !== id);
     config.set(CONFIG_KEY, filteredRecords);
 
     res.send({ id: record.id });

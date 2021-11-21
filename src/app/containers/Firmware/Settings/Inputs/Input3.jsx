@@ -89,26 +89,26 @@ class InputThree extends PureComponent {
     let value = event.target.checked;
     let name = event.target.name;
     let currentValue = this.state.defaultSettings;
-    if (currentValue[0] === true) {
+    if (currentValue[0]) {
       currentValue[0] = 1;
-    } else if (currentValue[0] === false) {
+    } else if (!currentValue[0]) {
       currentValue[0] = 0;
     }
-    if (currentValue[1] === true) {
+    if (currentValue[1]) {
       currentValue[1] = 1;
-    } else if (currentValue[1] === false) {
+    } else if (!currentValue[1]) {
       currentValue[1] = 0;
     }
-    if (currentValue[2] === true) {
+    if (currentValue[2]) {
       currentValue[2] = 1;
-    } else if (currentValue[2] === false) {
+    } else if (!currentValue[2]) {
       currentValue[2] = 0;
     }
 
-    if (value === true) {
+    if (value) {
       value = 1;
     }
-    if (value === false) {
+    if (!value) {
       value = 0;
     }
 

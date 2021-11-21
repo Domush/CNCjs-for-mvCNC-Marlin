@@ -40,9 +40,7 @@ export const yAxisStep = [
     checked: false,
     hasBeenChanged: false,
     image: y1,
-    label: () => {
-      return <span>Mark first location</span>;
-    },
+    label: () => <span>Mark first location</span>,
     shapeActions: [
       {
         shapeType: 'circlePoints',
@@ -162,9 +160,7 @@ export const xAxisStep = [
     checked: false,
     hasBeenChanged: false,
     image: x1,
-    label: () => {
-      return <span>Mark first location</span>;
-    },
+    label: () => <span>Mark first location</span>,
     shapeActions: [
       {
         shapeType: 'circlePoints',
@@ -283,9 +279,7 @@ export const zAxisStep = [
     checked: false,
     hasBeenChanged: false,
     image: z1,
-    label: () => {
-      return <span>Mark first location</span>;
-    },
+    label: () => <span>Mark first location</span>,
     shapeActions: [
       {
         shapeType: 'circlePoints',

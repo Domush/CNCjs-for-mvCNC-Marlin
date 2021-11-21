@@ -1,13 +1,17 @@
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 /* eslint-disable */
 
 // ES5
-require('es5-shim/es5-shim');
-require('es5-shim/es5-sham');
+import('es5-shim/es5-shim');
+import('es5-shim/es5-sham');
 
 // Babel polyfill
-require('babel-polyfill');
+import('babel-polyfill');
 
 // console (IE9)
-require('./console');
+import('./console');
 
-require('imports-loader?self=>window!js-polyfills/web'); // deps: Symbol
+import('imports-loader?self=>window!js-polyfills/web'); // deps: Symbol

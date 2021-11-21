@@ -52,15 +52,13 @@ const GaugeCover = styled.div`
   box-sizing: border-box;
 `;
 
-const GaugeChart = ({ value, color, background }) => {
-  return (
-    <GaugeContainer>
-      <GaugeBody>
-        <GaugeFill color={color} value={value / 100} />
-        <GaugeCover background={background}>{value && `${value}%`}</GaugeCover>
-      </GaugeBody>
-    </GaugeContainer>
-  );
-};
+const GaugeChart = ({ value, color, background }) => (
+  <GaugeContainer>
+    <GaugeBody>
+      <GaugeFill color={color} value={value / 100} />
+      <GaugeCover background={background}>{value && `${value}%`}</GaugeCover>
+    </GaugeBody>
+  </GaugeContainer>
+);
 
 export default GaugeChart;

@@ -41,7 +41,7 @@ class CameraDisplay extends PureComponent {
             title={i18n._('Top')}
             type="button"
             tabIndex={0}
-            className={activeButton === 'Top' ? `${styles.faceTopActive}` : `${styles.faceTop}`}
+            className={activeButton === 'Top' ? String(styles.faceTopActive) : String(styles.faceTop)}
             onClick={(event) => {
               camera.toTopView();
               this.handleClick(event);
@@ -51,7 +51,7 @@ class CameraDisplay extends PureComponent {
             title={i18n._('Right')}
             type="button"
             tabIndex={0}
-            className={activeButton === 'Right' ? `${styles.faceRightActive}` : `${styles.faceRight}`}
+            className={activeButton === 'Right' ? String(styles.faceRightActive) : String(styles.faceRight)}
             onClick={(event) => {
               camera.toRightSideView();
               this.handleClick(event);
@@ -61,7 +61,7 @@ class CameraDisplay extends PureComponent {
             title={i18n._('Front')}
             type="button"
             tabIndex={0}
-            className={activeButton === 'Front' ? `${styles.faceFrontActive}` : `${styles.faceFront}`}
+            className={activeButton === 'Front' ? String(styles.faceFrontActive) : String(styles.faceFront)}
             onClick={(event) => {
               camera.toFrontView();
               this.handleClick(event);
@@ -71,7 +71,7 @@ class CameraDisplay extends PureComponent {
             title={i18n._('3D')}
             type="button"
             tabIndex={0}
-            className={activeButton === '3D' ? `${styles.faceIsoActive}` : `${styles.faceIso}`}
+            className={activeButton === '3D' ? String(styles.faceIsoActive) : String(styles.faceIso)}
             onClick={(event) => {
               camera.to3DView();
               this.handleClick(event);
@@ -83,7 +83,7 @@ class CameraDisplay extends PureComponent {
             title={i18n._('Left')}
             type="button"
             tabIndex={0}
-            className={activeButton === 'Left' ? `${styles.cornerC2Active}` : `${styles.cornerC2}`}
+            className={activeButton === 'Left' ? String(styles.cornerC2Active) : String(styles.cornerC2)}
             onClick={(event) => {
               camera.toLeftSideView();
               this.handleClick(event);

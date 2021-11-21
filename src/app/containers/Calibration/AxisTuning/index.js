@@ -23,13 +23,11 @@ const AxisTuning = ({ onClose }) => {
   const [requestedDistance, setRequestedDistance] = useState(0);
   const [actualDistance, setActualDistance] = useState(0);
 
-  const getOptions = () => {
-    return {
-      currentAxis,
-      requestedDistance,
-      actualDistance,
-    };
-  };
+  const getOptions = () => ({
+    currentAxis,
+    requestedDistance,
+    actualDistance,
+  });
 
   useEffect(() => {
     const isFinished = actions.every((action) => action.checked);
@@ -150,7 +148,7 @@ const AxisTuning = ({ onClose }) => {
           backgroundColor: 'white',
         }}
       >
-        {<ImageDiagram actions={actions} currentAction={currentAction} />}
+        <ImageDiagram actions={actions} currentAction={currentAction} />
         {!introComplete && (
           <p style={{ width: '100%', fontWeight: 'bold' }}>
             Whichever axis you’ll be tuning, please place it in an initial location so that it’ll have space to move to

@@ -45,7 +45,7 @@ export const unset = (req, res) => {
 
 export const set = (req, res) => {
   const query = req.query || {};
-  const data = { ...req.body };
+  const data = req.body;
 
   if (query.key) {
     config.set(`state.${query.key}`, data);

@@ -3,14 +3,15 @@
 import path from 'path';
 import isElectron from 'is-electron';
 import program from 'commander';
+import { createCommons } from 'simport';
 import pkg from './package.json';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
 
 // Defaults to 'production'
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
-const increaseVerbosityLevel = (val, total) => {
-  return total + 1;
-};
+const increaseVerbosityLevel = (val, total) => total + 1;
 
 const parseMountPoint = (val, acc) => {
   val = val || '';
@@ -21,7 +22,7 @@ const parseMountPoint = (val, acc) => {
   };
 
   if (val.indexOf(':') >= 0) {
-    const r = val.match(/(?:([^:]*)(?::(.*)))/);
+    const r = val.match(/(?:([^:]*):(.*))/);
     mount.route = r[1];
     mount.target = r[2];
   }

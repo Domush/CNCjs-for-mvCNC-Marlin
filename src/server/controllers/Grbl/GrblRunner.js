@@ -66,8 +66,7 @@ class GrblRunner extends events.EventEmitter {
 
     this.emit('raw', { raw: data });
 
-    const result = this.parser.parse(data) || {};
-    const { type, payload } = result;
+    const { type, payload } = this.parser.parse(data) || {};
     const { raw } = payload;
 
     if (type === GrblLineParserResultStatus) {

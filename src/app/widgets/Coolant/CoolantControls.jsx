@@ -16,24 +16,22 @@ const sendM9 = () => {
   controller.command('gcode', 'M9');
 };
 
-const CoolantControls = ({ canClick }) => {
-  return (
-    <div className={styles.flexRow}>
-      <FunctionButton onClick={sendM7} disabled={!canClick}>
-        <i className="fa fa-shower" />
-        Mist (M7)
-      </FunctionButton>
-      <FunctionButton onClick={sendM8} disabled={!canClick}>
-        <i className="fa fa-water" />
-        Flood (M8)
-      </FunctionButton>
-      <FunctionButton onClick={sendM9} disabled={!canClick}>
-        <i className="fa fa-ban" />
-        Off (M9)
-      </FunctionButton>
-    </div>
-  );
-};
+const CoolantControls = ({ canClick }) => (
+  <div className={styles.flexRow}>
+    <FunctionButton onClick={sendM7} disabled={!canClick}>
+      <i className="fa fa-shower" />
+      Mist (M7)
+    </FunctionButton>
+    <FunctionButton onClick={sendM8} disabled={!canClick}>
+      <i className="fa fa-water" />
+      Flood (M8)
+    </FunctionButton>
+    <FunctionButton onClick={sendM9} disabled={!canClick}>
+      <i className="fa fa-ban" />
+      Off (M9)
+    </FunctionButton>
+  </div>
+);
 
 export default connect((store) => {
   const isConnected = get(store, 'connection.isConnected');

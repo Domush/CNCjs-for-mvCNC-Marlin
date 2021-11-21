@@ -17,7 +17,7 @@ class EventTrigger {
     events
       .filter((event) => event && event.event === eventKey)
       .forEach((options) => {
-        const { enabled = false, event, trigger, commands } = { ...options };
+        const { enabled = false, event, trigger, commands } = options;
 
         if (!enabled) {
           return;

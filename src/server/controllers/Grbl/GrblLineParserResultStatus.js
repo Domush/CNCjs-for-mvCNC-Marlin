@@ -23,7 +23,7 @@ class GrblLineParserResultStatus {
 
     const payload = {};
     //const pattern = /[a-zA-Z]+(:[0-9\.\-]+(,[0-9\.\-]+){0,5})?/g;
-    const pattern = /[a-zA-Z]+(:[a-zA-Z0-9\.\-]+(,[0-9\.\-[a]+){0,5})?/g;
+    const pattern = /[A-Za-z]+(:[\d\.A-Za-z\-]+(,[\d\.[a\-]+){0,5})?/g;
     const params = r[1].match(pattern);
     const result = {};
 

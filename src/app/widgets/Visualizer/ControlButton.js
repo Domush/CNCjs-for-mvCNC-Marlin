@@ -34,13 +34,11 @@ const Button = styled.button`
   }
 `;
 
-const ControlButton = ({ label, icon: Icon, onClick, disabled }) => {
-  return (
-    <Button type="button" onClick={onClick} style={{ fontSize: '14px' }} disabled={disabled}>
-      {label} {Icon && Icon}
-    </Button>
-  );
-};
+const ControlButton = ({ label, icon: Icon, onClick, disabled }) => (
+  <Button type="button" onClick={onClick} style={{ fontSize: '14px' }} disabled={disabled}>
+    {label} {Icon}
+  </Button>
+);
 
 ControlButton.propTypes = {
   label: PropTypes.string,

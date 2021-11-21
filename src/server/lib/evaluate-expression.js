@@ -226,11 +226,9 @@ const evaluateExpression = (src, vars) => {
       vars = oldVars;
 
       const keys = Object.keys(vars);
-      const vals = keys.map((key) => {
-        return vars[key];
-      });
+      const vals = keys.map((key) => vars[key]);
 
-      return Function(keys.join(', '), 'return ' + generate(node)).apply(null, vals); // eslint-disable-line no-new-func
+      return Function(keys.join(', '), 'return ' + generate(node))(...vals); // eslint-disable-line no-new-func
     }
 
     if (node.type === 'TemplateLiteral') {
@@ -249,7 +247,7 @@ const evaluateExpression = (src, vars) => {
       const quasi = node.quasi;
       const strings = quasi.quasis.map(walk);
       const values = quasi.expressions.map(walk);
-      return tag.apply(null, [strings].concat(values));
+      return tag(...[strings].concat(values));
     }
 
     if (node.type === 'TemplateElement') {
@@ -264,7 +262,7 @@ const evaluateExpression = (src, vars) => {
   try {
     let ast;
 
-    if (typeof src === 'string') {
+    if (isString(src)) {
       ast = parse(src).body[0].expression;
     } else {
       ast = src;
@@ -278,5 +276,7 @@ const evaluateExpression = (src, vars) => {
 
   return result === UNRESOLVED ? undefined : result;
 };
+
+const isString = (a) => typeof a === 'string';
 
 export default evaluateExpression;

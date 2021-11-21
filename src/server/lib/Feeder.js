@@ -46,9 +46,10 @@ class Feeder extends events.EventEmitter {
     data = [].concat(data);
     if (data.length > 0) {
       this.state.queue = this.state.queue.concat(
-        data.map((command) => {
-          return { command: command, context: context };
-        })
+        data.map((command) => ({
+          command: command,
+          context: context,
+        }))
       );
       this.emit('change');
     }

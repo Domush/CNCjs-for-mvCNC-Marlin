@@ -292,7 +292,7 @@ class SecondaryToolbar extends PureComponent {
                 }}
               >
                 <Dropdown.Toggle componentClass={IconButton}>
-                  {!!selectedMachineProfile && (
+                  {selectedMachineProfile && (
                     <div
                       style={{
                         display: 'inline-block',

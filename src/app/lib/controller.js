@@ -105,13 +105,15 @@ class Controller {
 
   // Connection options
   host = null;
+
   next = null;
+
   options = null;
 
   // @param {object} io The socket.io-client module.
   constructor(io) {
     if (!io) {
-      throw new Error(`Expected the socket.io-client module, but got: ${io}`);
+      throw Error(`Expected the socket.io-client module, but got: ${io}`);
     }
 
     this.io = io;
@@ -157,7 +159,7 @@ class Controller {
 
       this.socket.on(eventName, (...args) => {
         if (eventName === 'serialport:open') {
-          const { controllerType, port } = { ...args[0] };
+          const { controllerType, port } = args[0];
           this.port = port;
           this.type = controllerType;
         }
@@ -173,11 +175,11 @@ class Controller {
         }
         if (eventName === 'controller:settings') {
           this.type = args[0];
-          this.settings = { ...args[1] };
+          this.settings = args[1];
         }
         if (eventName === 'controller:state') {
           this.type = args[0];
-          this.state = { ...args[1] };
+          this.state = args[1];
         }
 
         const listeners = ensureArray(this.listeners[eventName]);
@@ -188,7 +190,7 @@ class Controller {
     });
 
     this.socket.on('startup', (data) => {
-      const { loadedControllers, baudrates, ports } = { ...data };
+      const { loadedControllers, baudrates, ports } = data;
 
       this.loadedControllers = ensureArray(loadedControllers);
 
@@ -331,7 +333,7 @@ class Controller {
     if (!port) {
       return;
     }
-    this.socket && this.socket.emit.apply(this.socket, ['command', port, cmd].concat(args));
+    this.socket && this.socket.emit(...['command', port, cmd].concat(args));
   }
 
   // Writes data to the serial port.

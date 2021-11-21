@@ -58,7 +58,7 @@ class MDI extends PureComponent {
 
     moveRecord: (from, to) => {
       this.setState((state) => {
-        const records = [...this.state.records];
+        const records = this.state.records.slice();
         records.splice(to < 0 ? records.length + to : to, 0, records.splice(from, 1)[0]);
         return {
           records: records,
@@ -81,7 +81,7 @@ class MDI extends PureComponent {
     },
 
     updateRecord: (id, options) => {
-      const records = [...this.state.records];
+      const records = this.state.records.slice();
       const index = findIndex(records, { id: id });
 
       if (index < 0) {

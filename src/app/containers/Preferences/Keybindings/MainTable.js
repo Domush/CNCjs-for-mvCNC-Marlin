@@ -36,7 +36,7 @@ export default class MainTable extends Component {
   renders = {
     renderShortcutCell: (_, row) => {
       const { keys, isActive, keysName } = row;
-      const shortcut = [...keys][0] === '+' ? ['+'] : keys.split('+');
+      const shortcut = keys.slice()[0] === '+' ? ['+'] : keys.split('+');
 
       const { onEdit, onDelete } = this.props;
 

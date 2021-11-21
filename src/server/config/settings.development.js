@@ -1,6 +1,10 @@
 import os from 'os';
 import path from 'path';
 
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 const maxAge = 0;
 
 export default {

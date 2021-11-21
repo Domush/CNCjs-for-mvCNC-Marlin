@@ -280,7 +280,7 @@ class ProbeWidget extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { minimized } = this.state;
+    const { minimized, probeCommand, useTLO } = this.state;
 
     this.config.set('minimized', minimized);
 
@@ -290,7 +290,6 @@ class ProbeWidget extends PureComponent {
       return;
     }
 
-    const { probeCommand, useTLO } = this.state;
     this.config.set('probeCommand', probeCommand);
     this.config.set('useTLO', useTLO);
 
@@ -646,7 +645,7 @@ class ProbeWidget extends PureComponent {
   }
 
   generateProbeCommands() {
-    const state = { ...this.state };
+    const state = this.state;
     const {
       useSafeProbeOption,
       retractionDistance,
@@ -670,7 +669,12 @@ class ProbeWidget extends PureComponent {
     }
 
     // Grab units for correct modal
-    let zThickness, xyThickness, feedrate, fastFeedrate, retractDistance;
+    let zThickness;
+
+    let xyThickness;
+    let feedrate;
+    let fastFeedrate;
+    let retractDistance;
     const modal = units === METRIC_UNITS ? '21' : '20';
     if (units === METRIC_UNITS) {
       zThickness = touchplate.zThickness.mm;
@@ -797,9 +801,7 @@ class ProbeWidget extends PureComponent {
       canClick: this.canClick(),
       connected: controller.port,
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
     const { status } = controller.state || {};
     const { probeActive } = status || false;
 

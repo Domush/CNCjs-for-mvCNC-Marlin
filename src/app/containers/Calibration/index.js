@@ -43,7 +43,7 @@ const Calibration = ({ modalClose }) => {
           activeTabIndex={tab}
           onClick={(index) => setTab(index)}
           className={styles.tabs}
-        ></TabbedWidget.Tabs>
+        />
         <TabbedWidget.Content>
           <ReduxProvider store={reduxStore}>
             <div className={styles.container}>

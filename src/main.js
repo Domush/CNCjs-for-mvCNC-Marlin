@@ -9,11 +9,14 @@ import log from 'electron-log';
 import path from 'path';
 import fs from 'fs';
 //import menuTemplate from './electron-app/menu-template';
+import { createCommons } from 'simport';
 import WindowManager from './electron-app/WindowManager';
 import launchServer from './server-cli';
 import pkg from './package.json';
 //import './sentryInit';
 import { parseAndReturnGCode } from './electron-app/RecentFiles';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
 
 let windowManager = null;
 let powerSaverId = null;
@@ -70,8 +73,7 @@ const main = () => {
         splashScreen.focus();
       });
 
-      const res = await launchServer();
-      const { address, port, mountPoints } = { ...res };
+      const { address, port, mountPoints } = await launchServer();
       if (!(address && port)) {
         log.error('Unable to start the server at ' + chalk.cyan(`http://${address}:${port}`));
         return;

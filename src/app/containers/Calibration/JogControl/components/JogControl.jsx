@@ -77,7 +77,7 @@ class JogControl extends PureComponent {
   }
 
   render() {
-    const props = { ...this.props };
+    const props = this.props;
 
     return (
       <button

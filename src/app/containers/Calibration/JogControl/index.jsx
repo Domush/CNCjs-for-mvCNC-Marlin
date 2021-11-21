@@ -714,9 +714,7 @@ class AxesWidget extends PureComponent {
       }),
       canJog,
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     return <Axes config={config} state={state} actions={actions} />;
   }

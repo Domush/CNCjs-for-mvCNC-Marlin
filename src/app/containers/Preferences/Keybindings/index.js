@@ -34,7 +34,7 @@ const Shortcuts = ({ active }) => {
           activeTabIndex={tab}
           onClick={(index) => setTab(index)}
           className={styles.tabs}
-        ></TabbedWidget.Tabs>
+        />
         <TabbedWidget.Content>
           <div className={styles.container}>
             {tabs.map((t, index) => {

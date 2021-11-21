@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Visualizer from 'app/widgets/Visualizer';
 
-const VisualizerComponent = ({ gcode, surfacing }) => {
-  return gcode ? (
+const VisualizerComponent = ({ gcode, surfacing }) =>
+  gcode ? (
     <Visualizer isSecondary widgetId="surfacing_visualizer" gcode={gcode} surfacingData={surfacing} />
   ) : (
     <div
@@ -20,7 +20,6 @@ const VisualizerComponent = ({ gcode, surfacing }) => {
       Click Generate G-code Below
     </div>
   );
-};
 
 VisualizerComponent.propTypes = {
   gcode: PropTypes.string,

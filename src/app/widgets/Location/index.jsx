@@ -65,9 +65,7 @@ class LocationWidget extends PureComponent {
         this.setState({
           jog: {
             ...this.state.jog,
-            speeds: {
-              ...speeds,
-            },
+            speeds: speeds,
           },
         });
       }),
@@ -558,8 +556,7 @@ class LocationWidget extends PureComponent {
 
   render() {
     const { widgetId, machinePosition, workPosition, wcs } = this.props;
-    const { minimized, isFullscreen } = this.state;
-    const { units } = this.state;
+    const { minimized, isFullscreen, units } = this.state;
     const canSendCommand = this.canSendCommand();
     const isForkedWidget = widgetId.match(/\w+:[\w\-]+/);
     const config = this.config;
@@ -577,9 +574,7 @@ class LocationWidget extends PureComponent {
         return String(mapPositionToUnits(pos, units));
       }),
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     const gcodes = [
       {

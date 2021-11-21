@@ -1,6 +1,6 @@
-const path = require('path');
-const fs = require('fs').promises;
-const fsBase = require('fs');
+import path from 'path';
+import fs from 'fs/promises';
+import fsBase from 'fs';
 
 const getFileInformation = (file) => {
   const fileName = path.parse(file).base;
@@ -26,8 +26,7 @@ export const parseAndReturnGCode = async ({ filePath }) => {
       return null; // TODO: Handle null as FILENOTFOUND error
     }
 
-    const stats = fsBase.statSync(filePath);
-    const { size } = stats;
+    const { size } = fsBase.statSync(filePath);
 
     const data = await fs.readFile(filePath, 'utf-8');
     return {

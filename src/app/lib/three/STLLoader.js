@@ -68,7 +68,10 @@ STLLoader.prototype = {
 
   parse: function (data) {
     function isBinary(data) {
-      var expect, face_size, n_faces, reader;
+      var expect;
+      var face_size;
+      var n_faces;
+      var reader;
       reader = new DataView(data);
       face_size = (32 / 8) * 3 + (32 / 8) * 3 * 3 + 16 / 8;
       n_faces = reader.getUint32(80, true);
@@ -115,12 +118,15 @@ STLLoader.prototype = {
       var reader = new DataView(data);
       var faces = reader.getUint32(80, true);
 
-      var r,
-        g,
-        b,
-        hasColors = false,
-        colors;
-      var defaultR, defaultG, defaultB, alpha;
+      var r;
+      var g;
+      var b;
+      var hasColors = false;
+      var colors;
+      var defaultR;
+      var defaultG;
+      var defaultB;
+      var alpha;
 
       // process STL header
       // check for default color in header ("COLOR=rgba" sequence).
@@ -203,7 +209,7 @@ STLLoader.prototype = {
       var patternFace = /facet([\s\S]*?)endfacet/g;
       var faceCounter = 0;
 
-      var patternFloat = /[\s]+([+-]?(?:\d*)(?:\.\d*)?(?:[eE][+-]?\d+)?)/.source;
+      var patternFloat = /\s+([+-]?\d*(?:\.\d*)?(?:[Ee][+-]?\d+)?)/.source;
       var patternVertex = new RegExp('vertex' + patternFloat + patternFloat + patternFloat, 'g');
       var patternNormal = new RegExp('normal' + patternFloat + patternFloat + patternFloat, 'g');
 

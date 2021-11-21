@@ -70,14 +70,12 @@ export default class MachineProfile extends Component {
    * @param {Object} e Changed element
    */
   handleChange = (e) => {
-    const { units } = this.state;
+    const { units, machineProfile } = this.state;
     const name = e.target.name;
     const value = Number(Number(e.target.value).toFixed(2)); //.toFixed returns a string, hence the extra Number wrapper
 
     const metricValue = units === 'mm' ? value : convertToMetric(value);
     const imperialValue = units === 'in' ? value : convertToImperial(value);
-
-    const { machineProfile } = this.state;
 
     const MAX_VALUE = 5000;
     const MIN_VALUE = 0;
@@ -185,8 +183,7 @@ export default class MachineProfile extends Component {
     if (Object.keys(settings).length === 0) {
       return true;
     }
-    const controllerSettings = settings.settings;
-    const { $22 } = controllerSettings;
+    const { $22 } = settings.settings;
     // Handle case where endstops enabled - we should be able to enabled
     if ($22 === '1') {
       return false;

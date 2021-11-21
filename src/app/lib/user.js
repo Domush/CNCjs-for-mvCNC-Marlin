@@ -8,7 +8,7 @@ export const signin = ({ token, name, password }) =>
     api
       .signin({ token, name, password })
       .then((res) => {
-        const { enabled = false, token = '', name = '' } = { ...res.body };
+        const { enabled = false, token = '', name = '' } = res.body;
 
         config.set('session.enabled', enabled);
         config.set('session.token', token);
@@ -34,6 +34,4 @@ export const signout = () =>
     resolve();
   });
 
-export const isAuthenticated = () => {
-  return _authenticated;
-};
+export const isAuthenticated = () => _authenticated;

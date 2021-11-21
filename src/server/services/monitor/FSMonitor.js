@@ -12,7 +12,7 @@ class FSMonitor {
       this.unwatch();
       this.root = root;
       this.monitor = monitor;
-      this.files = { ...monitor.files };
+      this.files = monitor.files;
 
       monitor.on('created', (f, stat) => {
         this.files[f] = stat;

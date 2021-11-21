@@ -14,9 +14,7 @@ import store from 'app/store';
 import styles from './index.styl';
 
 class Login extends PureComponent {
-  static propTypes = {
-    ...withRouter.propTypes,
-  };
+  static propTypes = withRouter.propTypes;
 
   state = this.getDefaultState();
 
@@ -83,8 +81,8 @@ class Login extends PureComponent {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const state = { ...this.state };
-    const actions = { ...this.actions };
+    const state = this.state;
+    const actions = this.actions;
     const { alertMessage, authenticating } = state;
 
     if (state.redirectToReferrer) {

@@ -1,7 +1,7 @@
 import Toolpath from 'gcode-toolpath';
 import * as THREE from 'three';
 
-onmessage = function ({ data }) {
+onmessage = ({ data }) => {
   const { content, visualizer } = data;
   const vertices = [];
   const colors = [];

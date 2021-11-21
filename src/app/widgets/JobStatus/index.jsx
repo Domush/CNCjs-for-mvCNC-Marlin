@@ -155,9 +155,7 @@ class JobStatusWidget extends PureComponent {
       isConnected,
     };
 
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     return (
       <div className={styles['job-status-wrapper']}>

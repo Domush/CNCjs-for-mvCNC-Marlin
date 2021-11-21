@@ -67,14 +67,14 @@ export const fetch = (req, res) => {
         totalRecords: Number(totalRecords),
       },
       records: pagedRecords.map((record) => {
-        const { id, mtime, enabled, title, commands } = { ...record };
+        const { id, mtime, enabled, title, commands } = record;
         return { id, mtime, enabled, title, commands };
       }),
     });
   } else {
     res.send({
       records: records.map((record) => {
-        const { id, mtime, enabled, title, commands } = { ...record };
+        const { id, mtime, enabled, title, commands } = record;
         return { id, mtime, enabled, title, commands };
       }),
     });
@@ -82,7 +82,7 @@ export const fetch = (req, res) => {
 };
 
 export const create = (req, res) => {
-  const { enabled = true, title = '', commands = '' } = { ...req.body };
+  const { enabled = true, title = '', commands = '' } = req.body;
 
   if (!title) {
     res.status(ERR_BAD_REQUEST).send({
@@ -131,7 +131,7 @@ export const read = (req, res) => {
     return;
   }
 
-  const { mtime, enabled, title, commands } = { ...record };
+  const { mtime, enabled, title, commands } = record;
   res.send({ id, mtime, enabled, title, commands });
 };
 
@@ -147,7 +147,7 @@ export const update = (req, res) => {
     return;
   }
 
-  const { enabled = record.enabled, title = record.title, commands = record.commands } = { ...req.body };
+  const { enabled = record.enabled, title = record.title, commands = record.commands } = req.body;
 
   // Skip validation for "enabled", "title", and "commands"
 
@@ -185,9 +185,7 @@ export const __delete = (req, res) => {
   }
 
   try {
-    const filteredRecords = records.filter((record) => {
-      return record.id !== id;
-    });
+    const filteredRecords = records.filter((record) => record.id !== id);
     config.set(CONFIG_KEY, filteredRecords);
 
     res.send({ id: record.id });

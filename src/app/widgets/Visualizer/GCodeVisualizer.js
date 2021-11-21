@@ -95,7 +95,7 @@ class GCodeVisualizer {
       const colorAttr = workpiece.geometry.getAttribute('color');
       const defaultColorArray = [...defaultColor.toArray(), 0.3];
       const colorArray = Array.from({ length: v2 - v1 }, () => defaultColorArray).flat();
-      colorAttr.set([...colorArray], offsetIndex);
+      colorAttr.set(colorArray.slice(), offsetIndex);
       // only update the range we've updated;
       colorAttr.updateRange.count = colorArray.length;
       colorAttr.updateRange.offset = offsetIndex;
@@ -107,7 +107,7 @@ class GCodeVisualizer {
       const workpiece = this.group.children[0];
       for (let i = v2; i < v1; ++i) {
         const offsetIndex = i * 4; // Account for RGB buffer
-        workpiece.geometry.attributes.color.set([...this.colors.slice(offsetIndex, offsetIndex + 4)], offsetIndex);
+        workpiece.geometry.attributes.color.set(this.colors.slice(offsetIndex, offsetIndex + 4), offsetIndex);
       }
       workpiece.geometry.attributes.color.needsUpdate = true;
     }

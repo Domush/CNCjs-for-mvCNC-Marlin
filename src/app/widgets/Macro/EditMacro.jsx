@@ -41,7 +41,7 @@ class EditMacro extends PureComponent {
 
   handleDeleteClick = () => {
     const { state, actions } = this.props;
-    const { id, name } = { ...state.modal.params };
+    const { id, name } = state.modal.params;
 
     Confirm({
       title: 'Delete Macro',
@@ -63,7 +63,7 @@ class EditMacro extends PureComponent {
 
   render() {
     const { state, actions } = this.props;
-    const { id, name, content, description } = { ...state.modal.params };
+    const { id, name, content, description } = state.modal.params;
 
     return (
       <Modal size="large" onClose={actions.closeModal} title={i18n._('Edit Macro')}>

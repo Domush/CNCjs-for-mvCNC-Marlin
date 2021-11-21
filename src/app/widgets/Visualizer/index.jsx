@@ -1,3 +1,4 @@
+import { types } from 'putout';
 /* eslint-disable consistent-return */
 import includes from 'lodash/includes';
 import { connect } from 'react-redux';
@@ -86,6 +87,8 @@ const displayWebGLErrorMessage = () => {
   ));
 };
 
+const { File } = types;
+
 class VisualizerWidget extends PureComponent {
   static propTypes = {
     widgetId: PropTypes.string.isRequired,
@@ -163,7 +166,7 @@ class VisualizerWidget extends PureComponent {
       });
     },
     uploadFile: (gcode, meta) => {
-      const { name, size } = { ...meta };
+      const { name, size } = meta;
       // Send toolchange context on file load
       const hooks = store.get('workspace.toolChangeHooks', {});
       const context = {
@@ -225,29 +228,27 @@ class VisualizerWidget extends PureComponent {
         view3D: !!this.visualizer,
       };
 
-      const updater = (state) => {
-        return {
-          gcode: {
-            ...state.gcode,
-            loading: false,
-            rendering: capable.view3D,
-            ready: !capable.view3D,
-            bbox: {
-              min: {
-                x: 0,
-                y: 0,
-                z: 0,
-              },
-              max: {
-                x: 0,
-                y: 0,
-                z: 0,
-              },
+      const updater = (state) => ({
+        gcode: {
+          ...state.gcode,
+          loading: false,
+          rendering: capable.view3D,
+          ready: !capable.view3D,
+          bbox: {
+            min: {
+              x: 0,
+              y: 0,
+              z: 0,
             },
-            name: name,
+            max: {
+              x: 0,
+              y: 0,
+              z: 0,
+            },
           },
-        };
-      };
+          name: name,
+        },
+      });
       const callback = () => {
         // Clear gcode bounding box
         controller.context = {
@@ -950,10 +951,8 @@ class VisualizerWidget extends PureComponent {
     if (!includes([GRBL, MARLIN], controllerType)) {
       return false;
     }
-    if (controllerType === GRBL) {
-      if (activeState !== GRBL_ACTIVE_STATE_RUN) {
-        return false;
-      }
+    if (controllerType === GRBL && activeState !== GRBL_ACTIVE_STATE_RUN) {
+      return false;
     }
 
     return true;
@@ -1043,9 +1042,7 @@ class VisualizerWidget extends PureComponent {
       isConnected,
       isAgitated: this.isAgitated(),
     };
-    const actions = {
-      ...this.actions,
-    };
+    const actions = this.actions;
 
     const showRendering = renderState === RENDER_RENDERING;
     const showLoading = renderState === RENDER_LOADING;

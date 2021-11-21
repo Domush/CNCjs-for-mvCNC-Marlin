@@ -203,7 +203,7 @@ class PreferencesPage extends PureComponent {
         });
       },
       addTool: () => {
-        const tools = [...this.state.tools];
+        const tools = this.state.tools.slice();
         const tool = this.state.tool;
         tools.push(tool);
         tools.sort(this.toolSortCompare);
@@ -213,18 +213,18 @@ class PreferencesPage extends PureComponent {
         pubsub.publish('tools:updated');
       },
       deleteTool: (index) => {
-        const tools = [...this.state.tools];
+        const tools = this.state.tools.slice();
         tools.splice(index, 1);
         this.setState({
-          tools: [...tools],
+          tools: tools.slice(),
         });
         pubsub.publish('tools:updated');
       },
     },
     probe: {
       handleToggleChange: (...keys) => {
-        const probe = { ...this.state.probe };
-        const functions = { ...probe.functions };
+        const probe = this.state.probe;
+        const functions = probe.functions;
 
         keys.forEach((key) => {
           functions[key] = !functions[key];
@@ -232,15 +232,13 @@ class PreferencesPage extends PureComponent {
         this.setState({
           probe: {
             ...probe,
-            functions: {
-              ...functions,
-            },
+            functions: functions,
           },
         });
         pubsub.publish('probe:updated');
       },
       changeRetractionDistance: (e) => {
-        const probeSettings = { ...this.state.probeSettings };
+        const probeSettings = this.state.probeSettings;
         const value = Number(e.target.value).toFixed(3) * 1;
 
         const { units } = this.state;
@@ -259,7 +257,7 @@ class PreferencesPage extends PureComponent {
         });
       },
       changeNormalFeedrate: (e) => {
-        const probeSettings = { ...this.state.probeSettings };
+        const probeSettings = this.state.probeSettings;
         const value = Number(e.target.value).toFixed(3) * 1;
         const { units } = this.state;
 
@@ -277,7 +275,7 @@ class PreferencesPage extends PureComponent {
         });
       },
       changeFastFeedrate: (e) => {
-        const probeSettings = { ...this.state.probeSettings };
+        const probeSettings = this.state.probeSettings;
         const value = Number(e.target.value).toFixed(3) * 1;
         const { units } = this.state;
 
@@ -296,7 +294,7 @@ class PreferencesPage extends PureComponent {
       },
       changeXYThickness: (e) => {
         const value = Number(e.target.value);
-        const probe = { ...this.state.probe };
+        const probe = this.state.probe;
         const { units } = this.state;
 
         const metricValue = units === 'mm' ? value : convertToMetric(value);
@@ -315,7 +313,7 @@ class PreferencesPage extends PureComponent {
       },
       changeZThickness: (e) => {
         const value = Number(e.target.value);
-        const probe = { ...this.state.probe };
+        const probe = this.state.probe;
         const { units } = this.state;
 
         const metricValue = units === 'mm' ? value : convertToMetric(value);
@@ -334,7 +332,7 @@ class PreferencesPage extends PureComponent {
       },
       changePlateWidth: (e) => {
         const value = Number(e.target.value);
-        const probe = { ...this.state.probe };
+        const probe = this.state.probe;
 
         const { units } = this.state;
 
@@ -353,7 +351,7 @@ class PreferencesPage extends PureComponent {
       },
       changePlateLength: (e) => {
         const value = Number(e.target.value);
-        const probe = { ...this.state.probe };
+        const probe = this.state.probe;
 
         const { units } = this.state;
 
@@ -371,7 +369,7 @@ class PreferencesPage extends PureComponent {
         });
       },
       changeConnectivityTest: (value) => {
-        const probeSettings = { ...this.state.probeSettings };
+        const probeSettings = this.state.probeSettings;
         this.setState({
           probeSettings: {
             ...probeSettings,
@@ -596,8 +594,8 @@ class PreferencesPage extends PureComponent {
 
   render() {
     const { modalClose } = this.props;
-    const state = { ...this.state };
-    const actions = { ...this.actions };
+    const state = this.state;
+    const actions = this.actions;
     const { menu, selectedMenu } = state;
 
     return (
@@ -620,7 +618,7 @@ class PreferencesPage extends PureComponent {
             <div className={styles.preferencesOptions}>
               {menu.map((menuItem, index) => (
                 <div key={menuItem.id}>
-                  {<menuItem.component actions={actions} state={state} active={index === selectedMenu} />}
+                  <menuItem.component actions={actions} state={state} active={index === selectedMenu} />
                 </div>
               ))}
             </div>

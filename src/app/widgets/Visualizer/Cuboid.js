@@ -11,7 +11,7 @@ class Cuboid {
       transparent = true,
       dashed = false,
       ...others
-    } = { ...options };
+    } = options;
 
     const geometry = new THREE.BoxGeometry(
       dx, // width

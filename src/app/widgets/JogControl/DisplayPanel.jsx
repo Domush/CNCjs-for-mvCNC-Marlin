@@ -580,8 +580,7 @@ class DisplayPanel extends PureComponent {
   };
 
   renderAxis = (axis) => {
-    const { canClick, units, machinePosition, workPosition, jog } = this.props;
-    const { actions } = this.props;
+    const { canClick, units, machinePosition, workPosition, jog, actions } = this.props;
     const wcs = actions.getWorkCoordinateSystem();
     const lengthUnits = units === METRIC_UNITS ? i18n._('mm') : i18n._('in');
     const degreeUnits = i18n._('deg');

@@ -47,7 +47,7 @@ class RepeatButton extends PureComponent {
   }
 
   render() {
-    const props = { ...this.props };
+    const props = this.props;
 
     delete props.delay;
     delete props.throttle;

@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+const isUndefined = (a) => typeof a === 'undefined';
+
 class GridLine {
   group = new THREE.Object3D();
 
@@ -10,7 +12,7 @@ class GridLine {
   constructor(sizeX, stepX, sizeY, stepY, colorCenterLine, colorGrid) {
     colorGrid = new THREE.Color(colorGrid) || this.colorGrid;
 
-    sizeY = typeof sizeY === 'undefined' ? sizeX : sizeY;
+    sizeY = isUndefined(sizeY) ? sizeX : sizeY;
     stepY = typeof stepY === 'undefined' ? stepX : stepY;
 
     for (let i = -1 * sizeX; i <= sizeX; i += stepX) {

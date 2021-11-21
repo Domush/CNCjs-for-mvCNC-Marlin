@@ -10,6 +10,8 @@ const DEFAULT_FEEDRATE_MAX = 1500;
 const DEFAULT_HERTZ = 10; // 10 times per second
 const DEFAULT_OVERSHOOT = 1;
 
+const isFn = (a) => typeof a === 'function';
+
 class ShuttleControl extends events.EventEmitter {
   zone = 0;
 
@@ -75,7 +77,7 @@ class ShuttleControl extends events.EventEmitter {
     this.timer = null;
     this.queue = [];
     this.emit('flush', accumulatedResult);
-    typeof callback === 'function' && callback(accumulatedResult);
+    isFn(callback) && callback(accumulatedResult);
   }
 }
 

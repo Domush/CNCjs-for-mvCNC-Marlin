@@ -89,7 +89,7 @@ const renderer = (node, treeOptions) => {
   const more = node.hasChildren();
   const paddingLeft = more || loadOnDemand ? depth * 18 : (depth + 1) * 18;
 
-  if (filtered === false) {
+  if (!filtered) {
     return '';
   }
 

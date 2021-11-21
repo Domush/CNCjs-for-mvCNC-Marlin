@@ -47,7 +47,7 @@ class FirmwareSettings extends PureComponent {
     },
     'serialport:close': (options) => {
       const initialState = this.getInitialState();
-      this.setState({ ...initialState });
+      this.setState(initialState);
     },
     'serialport:settings': (type, controllerSettings) => {
       this.setState((state) => ({
@@ -184,28 +184,28 @@ class FirmwareSettings extends PureComponent {
     let six = [0, 1, 1];
     let seven = [1, 1, 1];
 
-    if (new String(zero).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(zero).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 0;
     }
-    if (new String(one).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(one).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 1;
     }
-    if (new String(two).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(two).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 2;
     }
-    if (new String(three).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(three).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 3;
     }
-    if (new String(four).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(four).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 4;
     }
-    if (new String(five).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(five).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 5;
     }
-    if (new String(six).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(six).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 6;
     }
-    if (new String(seven).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(seven).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 7;
     }
 
@@ -228,28 +228,28 @@ class FirmwareSettings extends PureComponent {
     let six = [0, 1, 1];
     let seven = [1, 1, 1];
 
-    if (new String(zero).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(zero).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 0;
     }
-    if (new String(one).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(one).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 1;
     }
-    if (new String(two).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(two).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 2;
     }
-    if (new String(three).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(three).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 3;
     }
-    if (new String(four).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(four).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 4;
     }
-    if (new String(five).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(five).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 5;
     }
-    if (new String(six).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(six).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 6;
     }
-    if (new String(seven).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(seven).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 7;
     }
     this.setState((prevState) => ({
@@ -277,16 +277,16 @@ class FirmwareSettings extends PureComponent {
     let two = [0, 1];
     let three = [1, 1];
 
-    if (new String(zero).valueOf() === new String(bothToggleValues).valueOf()) {
+    if (String(zero).valueOf() === String(bothToggleValues).valueOf()) {
       finalValue = 0;
     }
-    if (new String(one).valueOf() === new String(bothToggleValues).valueOf()) {
+    if (String(one).valueOf() === String(bothToggleValues).valueOf()) {
       finalValue = 1;
     }
-    if (new String(two).valueOf() === new String(bothToggleValues).valueOf()) {
+    if (String(two).valueOf() === String(bothToggleValues).valueOf()) {
       finalValue = 2;
     }
-    if (new String(three).valueOf() === new String(bothToggleValues).valueOf()) {
+    if (String(three).valueOf() === String(bothToggleValues).valueOf()) {
       finalValue = 3;
     }
 
@@ -309,28 +309,28 @@ class FirmwareSettings extends PureComponent {
     let six = [0, 1, 1];
     let seven = [1, 1, 1];
 
-    if (new String(zero).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(zero).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 0;
     }
-    if (new String(one).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(one).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 1;
     }
-    if (new String(two).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(two).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 2;
     }
-    if (new String(three).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(three).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 3;
     }
-    if (new String(four).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(four).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 4;
     }
-    if (new String(five).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(five).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 5;
     }
-    if (new String(six).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(six).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 6;
     }
-    if (new String(seven).valueOf() === new String(allTheValues).valueOf()) {
+    if (String(seven).valueOf() === String(allTheValues).valueOf()) {
       finalValue = 7;
     }
 
@@ -354,7 +354,7 @@ class FirmwareSettings extends PureComponent {
               <button
                 onClick={this.applyNewSettings}
                 type="button"
-                className={this.state.disable ? `${styles.wizardButtonsDisabled}` : `${styles.wizardButtons}`}
+                className={this.state.disable ? String(styles.wizardButtonsDisabled) : String(styles.wizardButtons)}
               >
                 Apply New Settings
               </button>

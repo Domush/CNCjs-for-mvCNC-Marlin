@@ -1,4 +1,4 @@
-onmessage = function ({ data }) {
+onmessage = ({ data }) => {
   const { file, meta } = data;
   const reader = new FileReader();
 
