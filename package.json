@@ -71,7 +71,7 @@
     "eslint:build": "eslint --fix --ext .js --ext .jsx *.js scripts test && prettier --check scripts test",
     "eslint:debug": "echo \"Checking code style...\"; DEBUG=eslint:cli-engine eslint --fix --ext .js --ext .jsx *.js src scripts test",
     "stylint": "stylint src/app",
-    "prettier": "prettier --write src scripts test",
+    "prettier": "prettier --write .",
     "test": "tap test/*.js --no-timeout --node-arg=--require --node-arg=@babel/register --node-arg=--require",
     "coveralls": "tap test/*.js --coverage --coverage-report=text-lcov --nyc-arg=--require --nyc-arg=@babel/register --nyc-arg=--require | coveralls",
     "postinstall": "opencollective postinstall"
