@@ -1,6 +1,6 @@
 {
   "name": "cncjs4marlin",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "gCode sender for Marlin based CNC machines",
   "author": {
     "name": "Edward W <CNCjs@webbsense.com>",
