@@ -2,10 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import { test } from 'tap';
 import ProgressBar from 'progress';
+import {createCommons} from 'simport';
 import Sender, {
     SP_TYPE_SEND_RESPONSE,
     SP_TYPE_CHAR_COUNTING
 } from '../src/server/lib/Sender';
+
+
+const {
+    __filename,
+    __dirname,
+    require
+} = createCommons(import.meta.url);
 
 test('null streaming protocol', (t) => {
     const sender = new Sender(null);

@@ -1,6 +1,6 @@
 # https://stefanscherer.github.io/use-appveyor-to-build-multi-arch-docker-image/
 
-version: "{build}-{branch}"
+version: '{build}-{branch}'
 branches:
   only:
     - master
@@ -8,29 +8,29 @@ branches:
 
 environment:
   matrix:
-#    - job_name: Linux build (arm)
-#      appveyor_build_worker_image: Ubuntu2004
-#      nodejs_version: "14"
-#      ARCH: arm
+    #    - job_name: Linux build (arm)
+    #      appveyor_build_worker_image: Ubuntu2004
+    #      nodejs_version: "14"
+    #      ARCH: arm
     - job_name: Windows build (x86)
       appveyor_build_worker_image: Visual Studio 2019
-      nodejs_version: "14"
+      nodejs_version: '14'
       ARCH: x86
     - job_name: Windows build (x64)
       appveyor_build_worker_image: Visual Studio 2019
-      nodejs_version: "14"
+      nodejs_version: '14'
       ARCH: x64
     - job_name: macOS build (x64)
       appveyor_build_worker_image: macos
-      nodejs_version: "14"
+      nodejs_version: '14'
       ARCH: x64
     - job_name: Linux build (amd64)
       appveyor_build_worker_image: Ubuntu2004
-      nodejs_version: "14"
+      nodejs_version: '14'
       ARCH: amd64
     - job_name: Linux build (arm64)
       appveyor_build_worker_image: Ubuntu2004
-      nodejs_version: "14"
+      nodejs_version: '14'
       ARCH: arm64
   global:
     GH_TOKEN:
@@ -40,8 +40,7 @@ environment:
 
 for:
   # Linux
-  -
-    matrix:
+  - matrix:
       only:
         - job_name: Linux build (amd64)
         - job_name: Linux build (arm)
@@ -286,7 +285,6 @@ for:
             fi
           fi
     test: off
-
     # Packaging artifacts
     # https://www.appveyor.com/docs/packaging-artifacts
     artifacts:
@@ -301,12 +299,11 @@ for:
         draft: true
         prerelease: false
         on:
-          appveyor_repo_tag: true  # deploy on tag push only
-          nodejs_version: "14"
+          appveyor_repo_tag: true # deploy on tag push only
+          nodejs_version: '14'
 
   # macOS
-  -
-    matrix:
+  - matrix:
       only:
         - job_name: macOS build (x64)
       fast_finish: true
@@ -379,7 +376,6 @@ for:
             fi
           fi
     test: off
-
     # Packaging artifacts
     # https://www.appveyor.com/docs/packaging-artifacts
     artifacts:
@@ -394,12 +390,11 @@ for:
         draft: true
         prerelease: false
         on:
-          appveyor_repo_tag: true  # deploy on tag push only
-          nodejs_version: "14"
+          appveyor_repo_tag: true # deploy on tag push only
+          nodejs_version: '14'
 
   # Windows
-  -
-    matrix:
+  - matrix:
       only:
         - job_name: Windows build (x64)
         - job_name: Windows build (x86)
@@ -499,7 +494,6 @@ for:
             }
           }
     test: off
-
     # Packaging artifacts
     # https://www.appveyor.com/docs/packaging-artifacts
     artifacts:
@@ -514,5 +508,5 @@ for:
         draft: true
         prerelease: false
         on:
-          appveyor_repo_tag: true  # deploy on tag push only
-          nodejs_version: "14"
+          appveyor_repo_tag: true # deploy on tag push only
+          nodejs_version: '14'

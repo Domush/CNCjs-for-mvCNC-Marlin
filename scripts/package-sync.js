@@ -6,13 +6,9 @@ import fs from 'fs';
 import path from 'path';
 import findImports from 'find-imports';
 
-import {createCommons} from 'simport';
+import { createCommons } from 'simport';
 
-const {
-  __filename,
-  __dirname,
-  require
-} = createCommons(import.meta.url);
+const { __filename, __dirname, require } = createCommons(import.meta.url);
 
 // Copy necessary properties from 'package.json' to 'src/package.json'
 const pkg = require('../package.json');

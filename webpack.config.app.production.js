@@ -1,21 +1,26 @@
-const crypto = require('crypto');
-const path = require('path');
-const boolean = require('boolean');
-const dotenv = require('dotenv');
-const CSSSplitWebpackPlugin = require('css-split-webpack-plugin').default;
-const findImports = require('find-imports');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const without = require('lodash/without');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const nib = require('nib');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const stylusLoader = require('stylus-loader');
-const TerserPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const babelConfig = require('./babel.config.cjs');
-const buildConfig = require('./build.config.cjs');
+import crypto from 'crypto';
+import path from 'path';
+import boolean from 'boolean';
+import dotenv from 'dotenv';
+import _CSSSplitWebpackPlugin from 'css-split-webpack-plugin';
+import { createCommons } from 'simport';
+import findImports from 'find-imports';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import without from 'lodash/without';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import nib from 'nib';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import stylusLoader from 'stylus-loader';
+import TerserPlugin from 'terser-webpack-plugin';
+import webpack from 'webpack';
+import ManifestPlugin from 'webpack-manifest-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
+import babelConfig from './babel.config.cjs.js';
+import buildConfig from './build.config.cjs.js';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const CSSSplitWebpackPlugin = _CSSSplitWebpackPlugin.default;
 const pkg = require('./package.json');
 
 const myEslintOptions = {
@@ -41,7 +46,7 @@ const publicPath = ((payload) => {
 const buildVersion = pkg.version;
 const timestamp = new Date().getTime();
 
-module.exports = {
+export default {
   mode: 'production',
   cache: true,
   target: 'web',
@@ -165,10 +170,12 @@ module.exports = {
       },
     ].filter(Boolean),
   },
-  node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
+  resolve: {
+    fallback: {
+      fs: false,
+      net: false,
+      tls: false,
+    },
   },
   optimization: {
     minimizer: [

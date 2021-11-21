@@ -1,10 +1,14 @@
 /* eslint no-console: 0 */
 /* eslint strict: 0 */
-const fs = require('fs');
-const chalk = require('chalk');
+import fs from 'fs';
+import chalk from 'chalk';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 const languages = require('./build.config.cjs').languages;
 
-module.exports = {
+export default {
   options: {
     debug: false,
     removeUnusedKeys: false,
@@ -50,13 +54,11 @@ module.exports = {
     let count = 0;
 
     parser.parseFuncFromString(content, { list: ['i18n._', 'i18n.__'] }, (key, options) => {
-      parser.set(
-        key,
-        Object.assign({}, options, {
-          nsSeparator: false,
-          keySeparator: false,
-        })
-      );
+      parser.set(key, {
+        ...options,
+        nsSeparator: false,
+        keySeparator: false,
+      });
       ++count;
     });
 

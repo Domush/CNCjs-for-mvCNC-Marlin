@@ -1,13 +1,17 @@
-const crypto = require('crypto');
-const path = require('path');
-const boolean = require('boolean');
-const dotenv = require('dotenv');
-const TerserPlugin = require('terser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const babelConfig = require('./babel.config.cjs');
+import crypto from 'crypto';
+import path from 'path';
+import boolean from 'boolean';
+import dotenv from 'dotenv';
+import TerserPlugin from 'terser-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
+import nodeExternals from 'webpack-node-externals';
+import ESLintPlugin from 'eslint-webpack-plugin';
+import { createCommons } from 'simport';
+import babelConfig from './babel.config.cjs.js';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 const pkg = require('./package.json');
 
 const myEslintOptions = {
@@ -32,7 +36,7 @@ const publicPath = ((payload) => {
 })(payload);
 const buildVersion = pkg.version;
 
-module.exports = {
+export default {
   mode: 'production',
   devtool: 'cheap-module-source-map',
   target: 'node', // ignore built-in modules like path, fs, etc.
@@ -105,13 +109,20 @@ module.exports = {
   resolveLoader: {
     modules: [path.resolve(__dirname, 'node_modules')],
   },
-  node: {
-    console: true,
-    global: true,
-    process: true,
-    Buffer: true,
-    __filename: true, // Use relative path
-    __dirname: true, // Use relative path
-    setImmediate: true,
+  resolve: {
+    fallback: {
+      console: false,
+      global: false,
+      process: false,
+      Buffer: false,
+
+      // Use relative path
+      __filename: false,
+
+      // Use relative path
+      __dirname: false,
+
+      setImmediate: false,
+    },
   },
 };

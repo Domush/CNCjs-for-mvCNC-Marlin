@@ -1,17 +1,22 @@
-const path = require('path');
-const CSSSplitWebpackPlugin = require('css-split-webpack-plugin').default;
-const dotenv = require('dotenv');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const without = require('lodash/without');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const nib = require('nib');
-const stylusLoader = require('stylus-loader');
-const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const WriteFileWebpackPlugin = require('write-file-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const babelConfig = require('./babel.config.cjs');
-const buildConfig = require('./build.config.cjs');
+import path from 'path';
+import _CSSSplitWebpackPlugin from 'css-split-webpack-plugin';
+import { createCommons } from 'simport';
+import dotenv from 'dotenv';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import without from 'lodash/without';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import nib from 'nib';
+import stylusLoader from 'stylus-loader';
+import webpack from 'webpack';
+import ManifestPlugin from 'webpack-manifest-plugin';
+import WriteFileWebpackPlugin from 'write-file-webpack-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
+import babelConfig from './babel.config.cjs.js';
+import buildConfig from './build.config.cjs.js';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const CSSSplitWebpackPlugin = _CSSSplitWebpackPlugin.default;
 const pkg = require('./package.json');
 
 const myEslintOptions = {
@@ -25,7 +30,7 @@ const publicPath = process.env.PUBLIC_PATH || '';
 const buildVersion = pkg.version;
 const timestamp = new Date().getTime();
 
-module.exports = {
+export default {
   mode: 'development',
   cache: true,
   target: 'web',
@@ -133,10 +138,12 @@ module.exports = {
       },
     ],
   },
-  node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
+  resolve: {
+    fallback: {
+      fs: false,
+      net: false,
+      tls: false,
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
