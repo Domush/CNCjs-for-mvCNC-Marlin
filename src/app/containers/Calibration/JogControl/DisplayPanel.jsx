@@ -5,10 +5,8 @@ import noop from 'lodash/noop';
 import PropTypes from 'prop-types';
 // import both default and named
 import React from 'react';
-  import { PureComponent } from 'react';// import both default and named
-import React from 'react';
-  import { PureComponent } from 'react'; import { MenuItem } from 'app/components/Dropdown';
-}
+import { PureComponent } from 'react';
+import { MenuItem } from 'app/components/Dropdown';
 import Image from 'app/components/Image';
 import { Tooltip } from 'app/components/Tooltip';
 import controller from 'app/lib/controller';

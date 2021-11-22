@@ -1,26 +1,33 @@
-import chainedFunction from 'chained-function';
-import ensureArray from 'ensure-array';
-import includes from 'lodash/includes';
-import noop from 'lodash/noop';
-import PropTypes from 'prop-types';
-// import both default and named
-import React from 'react';
-  import {PureComponent} from 'react';// import both default and named
-import React from 'react';
-  import {PureComponent} from 'react'; import {MenuItem} from 'app/components/Dropdown';
-}
-import Image from 'app/components/Image';
-import {Tooltip} from 'app/components/Tooltip';
-import controller from 'app/lib/controller';
-import i18n from 'app/lib/i18n';
+import { MenuItem } from 'app/components/Dropdown';
+import { PureComponent } from 'react';
+import { Tooltip } from 'app/components/Tooltip';
 import AxisLabel from './components/AxisLabel.js';
 import AxisSubscript from './components/AxisSubscript.js';
+import chainedFunction from 'chained-function';
+import controller from 'app/lib/controller';
+import ensureArray from 'ensure-array';
+import i18n from 'app/lib/i18n';
+import Image from 'app/components/Image';
+import includes from 'lodash/includes';
+import noop from 'lodash/noop';
 import Panel from './components/Panel.js';
-import PositionLabel from './components/PositionLabel.js';
 import PositionInput from './components/PositionInput.js';
+import PositionLabel from './components/PositionLabel.js';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Taskbar from './components/Taskbar.js';
 import TaskbarButton from './components/TaskbarButton.js';
-import {AXIS_E, AXIS_X, AXIS_Y, AXIS_Z, AXIS_A, AXIS_B, AXIS_C, IMPERIAL_UNITS, METRIC_UNITS} from '../../constants.js';
+import {
+  AXIS_E,
+  AXIS_X,
+  AXIS_Y,
+  AXIS_Z,
+  AXIS_A,
+  AXIS_B,
+  AXIS_C,
+  IMPERIAL_UNITS,
+  METRIC_UNITS,
+} from '../../constants.js';
 import styles from './index.styl.js';
 import iconMinus from './images/minus.svg.js';
 import iconPlus from './images/plus.svg.js';

@@ -1,17 +1,15 @@
 // import both default and named
 import React from 'react';
-  import {PureComponent} from 'react';// import both default and named
-import React from 'react';
-  import {PureComponent} from 'react'; import {runAction} from 'app/lib/gamepad';
-}
+import { PureComponent } from 'react';
+import { runAction } from 'app/lib/gamepad';
 import combokeys from 'app/lib/combokeys';
 import controller from 'app/lib/controller';
-import {Marlin} from 'app/constants';
+import { Marlin } from 'app/constants';
 import store from 'app/store';
 import HelpModal from 'app/containers/Help';
 import NavSidebarLink from './NavSideBarLink.js';
 import styles from './index.styl.js';
-import {MODAL_NONE, MODAL_PREFERENCES, MODAL_SURFACING, MODAL_CALIBRATE, MODAL_HELP} from './constants.js';
+import { MODAL_NONE, MODAL_PREFERENCES, MODAL_SURFACING, MODAL_CALIBRATE, MODAL_HELP } from './constants.js';
 import Preferences from '../Preferences/Preferences.js';
 // import Firmware from '../Firmware/Firmware';
 import Surfacing from '../Surfacing.js';
