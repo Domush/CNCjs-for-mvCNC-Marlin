@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const Triangle = ({ children }) => <div className={styles.triangle}>{children}</div>;
 

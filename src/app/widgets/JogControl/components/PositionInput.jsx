@@ -1,7 +1,9 @@
 import cx from 'classnames';
 import noop from 'lodash/noop';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 
 class PositionInput extends PureComponent {
   static propTypes = {

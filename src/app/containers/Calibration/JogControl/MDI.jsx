@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Container, Row, Col } from 'app/components/GridSystem';
 import { Button } from 'app/components/Buttons';
 import controller from 'app/lib/controller';

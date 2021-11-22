@@ -3,8 +3,12 @@ import React from 'react';
 import logo from 'app/images/icon-round.png';
 import canadaFlagIcon from 'app/images/canada-flag-icon.png';
 
-import { version } from '../../../../package.json';
-import styles from './index.styl';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const { version: version } = require('../../../../package.json');
+const styles = require('./index.styl');
 
 const HeaderArea = () => (
   <div className={styles.headerArea}>

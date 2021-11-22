@@ -1,7 +1,7 @@
 import React from 'react';
 import TooltipCustom from 'app/components/TooltipCustom/ToolTip';
-import Input from '../../components/Input';
-import styles from '../../index.styl';
+import Input from '../../components/Input.js';
+import styles from '../../index.styl.js';
 
 const AddTool = ({ actions, state }) => {
   const { tool } = state;

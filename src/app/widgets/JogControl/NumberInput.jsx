@@ -1,6 +1,8 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import ControlledNumberInput from 'app/components/ControlledNumberInput';
-import styles from './numberInput.styl';
+import styles from './numberInput.styl.js';
 
 class NumberInput extends PureComponent {
   constructor(props) {

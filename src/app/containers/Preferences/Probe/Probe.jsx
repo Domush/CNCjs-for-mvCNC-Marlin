@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const Probe = ({ id, xyThickness, zThickness, functions, handleDelete }) => (
   <div className={styles.tool}>

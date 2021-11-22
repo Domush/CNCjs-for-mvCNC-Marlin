@@ -1,13 +1,12 @@
-/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import get from 'lodash/get';
 import { connect } from 'react-redux';
-import { in2mm, mm2in } from '../../../lib/units';
-import styles from './IdleInfo.styl';
-import FileStat from './FileStat';
-import { IMPERIAL_UNITS, METRIC_UNITS } from '../../../constants';
+import { in2mm, mm2in } from '../../../lib/units.js';
+import styles from './IdleInfo.styl.js';
+import FileStat from './FileStat.js';
+import { IMPERIAL_UNITS, METRIC_UNITS } from '../../../constants.js';
 
 /**
  * Idle Information component displaying job information when status is set to idle

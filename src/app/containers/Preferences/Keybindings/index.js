@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useState } from 'react';
 
 import TabbedWidget from 'app/components/TabbedWidget';
 
-import KeyboardShortcuts from './Keybindings';
-import Joystick from './Joystick';
+import KeyboardShortcuts from './Keybindings.js';
+import Joystick from './Joystick.js';
 
-import SettingWrapper from '../components/SettingWrapper';
-import styles from '../index.styl';
+import SettingWrapper from '../components/SettingWrapper.js';
+import styles from '../index.styl.js';
 
 const tabs = [
   {

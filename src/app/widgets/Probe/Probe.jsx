@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 
-import { MODAL_PREVIEW } from './constants';
-import ProbeImage from './ProbeImage';
-import ProbeDiameter from './ProbeDiameter';
-import styles from './index.styl';
+import { MODAL_PREVIEW } from './constants.js';
+import ProbeImage from './ProbeImage.js';
+import ProbeDiameter from './ProbeDiameter.js';
+import styles from './index.styl.js';
 
 class Probe extends PureComponent {
   static propTypes = {

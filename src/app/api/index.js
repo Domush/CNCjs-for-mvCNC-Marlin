@@ -1,7 +1,7 @@
 import ensureArray from 'ensure-array';
 import superagent from 'superagent';
 import superagentUse from 'superagent-use';
-import store from '../store';
+import store from '../store.js';
 
 const bearer = (request) => {
   const token = store.get('session.token');
@@ -697,11 +697,13 @@ export default {
 
   // State
   getState,
+
   setState,
   unsetState,
 
   // G-code
   loadGCode,
+
   fetchGCode,
   downloadGCode,
 
@@ -716,6 +718,7 @@ export default {
 
   // Settings
   commands,
+
   events,
   machines,
   macros,

@@ -1,39 +1,58 @@
-import ensureArray from 'ensure-array';
-import * as parser from 'gcode-parser';
-import Toolpath from 'gcode-toolpath';
-import _ from 'lodash';
-import map from 'lodash/map';
-import SerialConnection from '../../lib/SerialConnection';
-import EventTrigger from '../../lib/EventTrigger';
-import Feeder from '../../lib/Feeder';
-import Sender, { SP_TYPE_CHAR_COUNTING } from '../../lib/Sender';
-import Workflow, { WORKFLOW_STATE_IDLE, WORKFLOW_STATE_PAUSED, WORKFLOW_STATE_RUNNING } from '../../lib/Workflow';
-import delay from '../../lib/delay';
-import ensurePositiveNumber from '../../lib/ensure-positive-number';
-import evaluateAssignmentExpression from '../../lib/evaluate-assignment-expression';
-import logger from '../../lib/logger';
-import translateExpression from '../../lib/translate-expression';
-import config from '../../services/configstore';
-import monitor from '../../services/monitor';
-import taskRunner from '../../services/taskrunner';
-import { getOutlineGcode } from '../../lib/outlineService';
-import store from '../../store';
-import { GLOBAL_OBJECTS as globalObjects, WRITE_SOURCE_CLIENT, WRITE_SOURCE_FEEDER } from '../constants';
-import GrblRunner from './GrblRunner';
-import {
-  GRBL,
-  GRBL_ACTIVE_STATE_RUN,
-  GRBL_ACTIVE_STATE_HOLD,
-  GRBL_REALTIME_COMMANDS,
-  GRBL_ALARMS,
-  GRBL_ERRORS,
-  GRBL_SETTINGS,
-  GRBL_ACTIVE_STATE_HOME,
-} from './constants';
-import { METRIC_UNITS } from '../../../app/constants';
-import FlashingFirmware from '../../lib/Firmware/Flashing/firmwareflashing';
-import ApplyFirmwareProfile from '../../lib/Firmware/Profiles/ApplyFirmwareProfile';
-import { determineMachineZeroFlagSet, determineMaxMovement, getAxisMaximumLocation } from '../../lib/homing';
+const ensureArray = require('ensure-array');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const parser = require('gcode-parser');
+const Toolpath = require('gcode-toolpath');
+const _ = require('lodash');
+const map = require('lodash/map');
+const SerialConnection = require('../../lib/SerialConnection');
+const EventTrigger = require('../../lib/EventTrigger');
+const Feeder = require('../../lib/Feeder');
+const Sender = require('../../lib/Sender');
+const { SP_TYPE_CHAR_COUNTING: SP_TYPE_CHAR_COUNTING } = Sender;
+const Workflow = require('../../lib/Workflow');
+
+const {
+  WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
+  WORKFLOW_STATE_PAUSED: WORKFLOW_STATE_PAUSED,
+  WORKFLOW_STATE_RUNNING: WORKFLOW_STATE_RUNNING,
+} = Workflow;
+const delay = require('../../lib/delay');
+const ensurePositiveNumber = require('../../lib/ensure-positive-number');
+const evaluateAssignmentExpression = require('../../lib/evaluate-assignment-expression');
+const logger = require('../../lib/logger');
+const translateExpression = require('../../lib/translate-expression');
+const config = require('../../services/configstore/index.js');
+const monitor = require('../../services/monitor/index.js');
+const taskRunner = require('../../services/taskrunner/index.js');
+const { getOutlineGcode: getOutlineGcode } = require('../../lib/outlineService');
+const store = require('../../store');
+const {
+  GLOBAL_OBJECTS: globalObjects,
+  WRITE_SOURCE_CLIENT: WRITE_SOURCE_CLIENT,
+  WRITE_SOURCE_FEEDER: WRITE_SOURCE_FEEDER,
+} = require('../constants');
+const GrblRunner = require('./GrblRunner');
+const {
+  GRBL: GRBL,
+  GRBL_ACTIVE_STATE_RUN: GRBL_ACTIVE_STATE_RUN,
+  GRBL_ACTIVE_STATE_HOLD: GRBL_ACTIVE_STATE_HOLD,
+  GRBL_REALTIME_COMMANDS: GRBL_REALTIME_COMMANDS,
+  GRBL_ALARMS: GRBL_ALARMS,
+  GRBL_ERRORS: GRBL_ERRORS,
+  GRBL_SETTINGS: GRBL_SETTINGS,
+  GRBL_ACTIVE_STATE_HOME: GRBL_ACTIVE_STATE_HOME,
+} = require('./constants');
+const { METRIC_UNITS: METRIC_UNITS } = require('../../../app/constants');
+const FlashingFirmware = require('../../lib/Firmware/Flashing/firmwareflashing');
+const ApplyFirmwareProfile = require('../../lib/Firmware/Profiles/ApplyFirmwareProfile');
+const {
+  determineMachineZeroFlagSet: determineMachineZeroFlagSet,
+  determineMaxMovement: determineMaxMovement,
+  getAxisMaximumLocation: getAxisMaximumLocation,
+} = require('../../lib/homing');
 
 // % commands
 const WAIT = '%wait';

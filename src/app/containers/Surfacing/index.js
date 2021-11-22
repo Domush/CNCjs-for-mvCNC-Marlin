@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 
 import reduxStore from 'app/store/redux';
 import Modal from 'app/components/ToolModal/ToolModal';
-import Surfacing from './Surfacing';
+import Surfacing from './Surfacing.js';
 
 /**
  * @component Surfacing

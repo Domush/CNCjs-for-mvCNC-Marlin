@@ -5,8 +5,8 @@ import reduxStore from 'app/store/redux';
 import get from 'lodash/get';
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 import Select from 'react-select';
-import Keypad from '../JogControl';
-import styles from '../index.styl';
+import Keypad from '../JogControl.js';
+import styles from '../index.styl.js';
 
 const axisList = [
   { label: 'X', value: 'x' },

@@ -1,6 +1,8 @@
 import classNames from 'classnames';
-import React, { forwardRef } from 'react';
-import styles from './index.styl';
+// import both default and named
+import React from 'react';
+import { forwardRef } from 'react';
+import styles from './index.styl.js';
 
 const Content = ({ className, active, ...props }) => (
   <div {...props} className={classNames(className, styles.widgetContent)} />

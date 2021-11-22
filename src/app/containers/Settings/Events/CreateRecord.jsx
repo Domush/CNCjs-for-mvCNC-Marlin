@@ -2,14 +2,20 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import Modal from 'app/components/Modal';
 import { ToastNotification } from 'app/components/Notifications';
 import ToggleSwitch from 'app/components/ToggleSwitch';
 import { Form, Select, Textarea } from 'app/components/Validation';
-import i18n from 'app/lib/i18n';
-import * as validations from 'app/lib/validations';
-import styles from '../form.styl';
+const i18n = require('app/lib/i18n');
+const validations = require('app/lib/validations');
+const styles = require('../form.styl');
 
 const SYSTEM_EVENTS = [
   // The following events are only available with system trigger (i.e. scripts)

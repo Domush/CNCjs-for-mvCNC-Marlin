@@ -5,10 +5,10 @@ import ToggleSwitch from 'app/components/ToggleSwitch';
 // import { TOUCHPLATE_TYPE_AUTOZERO, TOUCHPLATE_TYPE_STANDARD } from 'app/lib/constants';
 import { TOUCHPLATE_TYPE_AUTOZERO } from 'app/lib/constants';
 
-import Fieldset from '../components/Fieldset';
-import Input from '../components/Input';
+import Fieldset from '../components/Fieldset.js';
+import Input from '../components/Input.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const ProbeSettings = ({ state, probeActions, values, type }) => {
   const { probeSettings, units } = state;

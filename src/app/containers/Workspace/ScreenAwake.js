@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useEffect } from 'react';
 import useStayAwake from 'use-stay-awake';
 
 const ScreenAwake = ({ children }) => {

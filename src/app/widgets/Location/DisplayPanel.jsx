@@ -1,6 +1,3 @@
-/* eslint-disable dot-notation */
-/* eslint-disable jsx-a11y/heading-has-content */
-
 import ensureArray from 'ensure-array';
 import includes from 'lodash/includes';
 import MachinePositionInput from 'app/widgets/Location/components/MachinePositionInput';
@@ -8,13 +5,15 @@ import { connect } from 'react-redux';
 import _isEqual from 'lodash/isEqual';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import controller from 'app/lib/controller';
 import store from 'app/store';
 import { getHomingLocation, getMovementGCode } from 'app/widgets/Location/RapidPosition';
-import Panel from './components/Panel';
-import PositionLabel from './components/PositionLabel';
-import GoToButton from './components/GoToButton';
+import Panel from './components/Panel.js';
+import PositionLabel from './components/PositionLabel.js';
+import GoToButton from './components/GoToButton.js';
 
 import {
   AXIS_E,
@@ -29,11 +28,11 @@ import {
   GRBL_ACTIVE_STATE_IDLE,
   WORKFLOW_STATE_RUNNING,
   GRBL_ACTIVE_STATE_ALARM,
-} from '../../constants';
-import styles from './index.styl';
-import AxisButton from './components/AxisButton';
-import FunctionButton from '../../components/FunctionButton/FunctionButton';
-import QuickPositionButton from './components/QuickPositionButton';
+} from '../../constants.js';
+import styles from './index.styl.js';
+import AxisButton from './components/AxisButton.js';
+import FunctionButton from '../../components/FunctionButton/FunctionButton.js';
+import QuickPositionButton from './components/QuickPositionButton.js';
 
 class DisplayPanel extends PureComponent {
   static propTypes = {

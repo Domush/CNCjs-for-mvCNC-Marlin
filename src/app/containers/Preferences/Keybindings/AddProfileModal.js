@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -9,9 +11,9 @@ import ToolModal from 'app/components/ToolModal/ToolModal';
 import Button from 'app/components/FunctionButton/FunctionButton';
 
 // import ProfileItem from './ProfileItem';
-import Input from '../components/Input';
+import Input from '../components/Input.js';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const AddProfileModal = ({ onClose, onAdd }) => {
   const [gamepadInfo, setGamepadInfo] = useState(null);

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import ToggleSwitch from 'react-switch';
 import PropTypes from 'prop-types';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const Switch = ({ label, checked, onChange, className, style, disabled }) => (
   <div className={classnames(styles['toggle-item'], className)} style={style}>

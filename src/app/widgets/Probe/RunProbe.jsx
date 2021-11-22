@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import Modal from 'app/components/Modal';
 import i18n from 'app/lib/i18n';
 import combokeys from 'app/lib/combokeys';
-import gamepad, { runAction } from 'app/lib/gamepad';
-import styles from './index.styl';
-import ProbeCircuitStatus from './ProbeCircuitStatus';
-import ProbeImage from './ProbeImage';
-import FunctionButton from '../../components/FunctionButton/FunctionButton';
-import { Toaster, TOASTER_INFO } from '../../lib/toaster/ToasterLib';
+// import both default and named
+import gamepad from 'app/lib/gamepad';
+import { runAction } from 'app/lib/gamepad';
+import styles from './index.styl.js';
+import ProbeCircuitStatus from './ProbeCircuitStatus.js';
+import ProbeImage from './ProbeImage.js';
+import FunctionButton from '../../components/FunctionButton/FunctionButton.js';
+import { Toaster, TOASTER_INFO } from '../../lib/toaster/ToasterLib.js';
 
 class RunProbe extends PureComponent {
   static propTypes = {

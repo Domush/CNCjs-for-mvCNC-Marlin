@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '../index.styl';
-import idleStyles from './IdleInfo.styl';
-import LoaderBar from './LoaderBar';
+import styles from '../index.styl.js';
+import idleStyles from './IdleInfo.styl.js';
+import LoaderBar from './LoaderBar.js';
 
 const FileProcessingLoader = () => (
   <div className={idleStyles.idleInfo}>

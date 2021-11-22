@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Select from 'react-select';
 import map from 'lodash/map';
 
@@ -8,9 +10,9 @@ import controller from 'app/lib/controller';
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 import MacroVariableDropdown from 'app/components/MacroVariableDropdown';
 
-import Fieldset from '../components/Fieldset';
+import Fieldset from '../components/Fieldset.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const options = ['Ignore', 'Pause', 'Code'];
 

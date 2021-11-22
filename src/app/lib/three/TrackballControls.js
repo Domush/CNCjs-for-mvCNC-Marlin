@@ -1,5 +1,8 @@
-/* eslint-disable */
-import * as THREE from 'three';
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const THREE = require('three');
 
 /**
  * @author Eberhard Graether / http://egraether.com/

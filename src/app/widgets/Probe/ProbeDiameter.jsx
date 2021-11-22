@@ -4,8 +4,8 @@ import CreatableSelect from 'react-select/creatable';
 import store from 'app/store';
 import { TOUCHPLATE_TYPE_AUTOZERO, PROBE_TYPE_AUTO, PROBE_TYPE_TIP } from 'app/lib/constants';
 
-import styles from './index.styl';
-import { METRIC_UNITS } from '../../constants';
+import styles from './index.styl.js';
+import { METRIC_UNITS } from '../../constants.js';
 
 const convertAvailableTools = (tools, units) => {
   const optionLabels = [];

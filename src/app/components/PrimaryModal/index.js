@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'app/components/Modal';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const PrimaryModal = ({ children, onClose, title, footer, size }) => (
   <Modal onClose={onClose} size={size}>

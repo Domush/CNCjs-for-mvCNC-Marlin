@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ToolModalButton from 'app/components/ToolModalButton/ToolModalButton';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const Actions = ({ handleGenerateGcode, handleLoadGcode, surfacing, canLoad }) => {
   const canGenerateGcode = Object.keys(surfacing).every((key) => surfacing[key]);

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './IdleInfo.styl';
+import styles from './IdleInfo.styl.js';
 
 const FileStat = ({ label, children }) => (
   <div className={styles.fileStat}>

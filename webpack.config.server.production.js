@@ -8,7 +8,7 @@ import webpack from 'webpack';
 import nodeExternals from 'webpack-node-externals';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import { createCommons } from 'simport';
-import babelConfig from './babel.config.cjs.js';
+import babelConfig from './babel.config.json';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 
@@ -109,20 +109,13 @@ export default {
   resolveLoader: {
     modules: [path.resolve(__dirname, 'node_modules')],
   },
-  resolve: {
-    fallback: {
-      console: false,
-      global: false,
-      process: false,
-      Buffer: false,
-
-      // Use relative path
-      __filename: false,
-
-      // Use relative path
-      __dirname: false,
-
-      setImmediate: false,
-    },
+  node: {
+    console: true,
+    global: true,
+    process: true,
+    Buffer: true,
+    __filename: true, // Use relative path
+    __dirname: true, // Use relative path
+    setImmediate: true,
   },
 };

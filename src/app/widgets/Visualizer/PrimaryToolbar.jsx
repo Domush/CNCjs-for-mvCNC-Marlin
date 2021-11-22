@@ -2,31 +2,36 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import colornames from 'colornames';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Button } from 'app/components/Buttons';
-import Dropdown, { MenuItem } from 'app/components/Dropdown';
+// import both default and named
+import Dropdown from 'app/components/Dropdown';
+import { MenuItem } from 'app/components/Dropdown';
 import I18n from 'app/components/I18n';
 import Space from 'app/components/Space';
 import controller from 'app/lib/controller';
-import i18n from 'app/lib/i18n';
-import * as WebGL from 'app/lib/three/WebGL';
-import {
-  // Grbl
-  GRBL,
-  GRBL_ACTIVE_STATE_IDLE,
-  GRBL_ACTIVE_STATE_RUN,
-  GRBL_ACTIVE_STATE_HOLD,
-  GRBL_ACTIVE_STATE_DOOR,
-  GRBL_ACTIVE_STATE_HOME,
-  GRBL_ACTIVE_STATE_SLEEP,
-  GRBL_ACTIVE_STATE_ALARM,
-  GRBL_ACTIVE_STATE_CHECK,
-  // Marlin
-  MARLIN,
-  // Workflow
-  WORKFLOW_STATE_IDLE,
-} from 'app/constants';
-import styles from './index.styl';
+const i18n = require('app/lib/i18n');
+const WebGL = require('app/lib/three/WebGL');
+const {
+  GRBL: GRBL,
+  GRBL_ACTIVE_STATE_IDLE: GRBL_ACTIVE_STATE_IDLE,
+  GRBL_ACTIVE_STATE_RUN: GRBL_ACTIVE_STATE_RUN,
+  GRBL_ACTIVE_STATE_HOLD: GRBL_ACTIVE_STATE_HOLD,
+  GRBL_ACTIVE_STATE_DOOR: GRBL_ACTIVE_STATE_DOOR,
+  GRBL_ACTIVE_STATE_HOME: GRBL_ACTIVE_STATE_HOME,
+  GRBL_ACTIVE_STATE_SLEEP: GRBL_ACTIVE_STATE_SLEEP,
+  GRBL_ACTIVE_STATE_ALARM: GRBL_ACTIVE_STATE_ALARM,
+  GRBL_ACTIVE_STATE_CHECK: GRBL_ACTIVE_STATE_CHECK,
+  MARLIN: MARLIN,
+  WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
+} = require('app/constants');
+const styles = require('./index.styl');
 
 class PrimaryToolbar extends PureComponent {
   static propTypes = {
@@ -80,14 +85,14 @@ class PrimaryToolbar extends PureComponent {
       }[activeState];
 
       stateText = {
-        [GRBL_ACTIVE_STATE_IDLE]: i18n.t('controller:Grbl.activeState.idle'),
-        [GRBL_ACTIVE_STATE_RUN]: i18n.t('controller:Grbl.activeState.run'),
-        [GRBL_ACTIVE_STATE_HOLD]: i18n.t('controller:Grbl.activeState.hold'),
-        [GRBL_ACTIVE_STATE_DOOR]: i18n.t('controller:Grbl.activeState.door'),
-        [GRBL_ACTIVE_STATE_HOME]: i18n.t('controller:Grbl.activeState.home'),
-        [GRBL_ACTIVE_STATE_SLEEP]: i18n.t('controller:Grbl.activeState.sleep'),
-        [GRBL_ACTIVE_STATE_ALARM]: i18n.t('controller:Grbl.activeState.alarm'),
-        [GRBL_ACTIVE_STATE_CHECK]: i18n.t('controller:Grbl.activeState.check'),
+        [GRBL_ACTIVE_STATE_IDLE]: i18n.t('Grbl.activeState.idle'),
+        [GRBL_ACTIVE_STATE_RUN]: i18n.t('Grbl.activeState.run'),
+        [GRBL_ACTIVE_STATE_HOLD]: i18n.t('Grbl.activeState.hold'),
+        [GRBL_ACTIVE_STATE_DOOR]: i18n.t('Grbl.activeState.door'),
+        [GRBL_ACTIVE_STATE_HOME]: i18n.t('Grbl.activeState.home'),
+        [GRBL_ACTIVE_STATE_SLEEP]: i18n.t('Grbl.activeState.sleep'),
+        [GRBL_ACTIVE_STATE_ALARM]: i18n.t('Grbl.activeState.alarm'),
+        [GRBL_ACTIVE_STATE_CHECK]: i18n.t('Grbl.activeState.check'),
       }[activeState];
     }
 

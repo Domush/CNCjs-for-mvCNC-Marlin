@@ -1,10 +1,10 @@
 /* eslint max-len: 0 */
 /* eslint no-console: 0 */
-import path from 'path';
-import isElectron from 'is-electron';
-import program from 'commander';
-import { createCommons } from 'simport';
-import pkg from './package.json';
+const path = require('path');
+const isElectron = require('is-electron');
+const program = require('commander');
+const { createCommons: createCommons } = require('simport');
+const pkg = require('./package.json');
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

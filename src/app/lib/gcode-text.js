@@ -1,5 +1,5 @@
 import ensureArray from 'ensure-array';
-import i18n from './i18n';
+import i18n from './i18n.js';
 
 export default (word, group, object) => {
   const resText = {

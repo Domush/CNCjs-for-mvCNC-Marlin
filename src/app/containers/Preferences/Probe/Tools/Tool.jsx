@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../index.styl';
+import styles from '../../index.styl.js';
 
 const Tool = ({ metricDiameter, imperialDiameter, type, onDelete }) => (
   <div className={styles.tool}>

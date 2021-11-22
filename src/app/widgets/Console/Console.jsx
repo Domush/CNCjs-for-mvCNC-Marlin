@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import i18n from 'app/lib/i18n';
-import Terminal from './Terminal';
-import styles from './index.styl';
+import Terminal from './Terminal.js';
+import styles from './index.styl.js';
 
 class Console extends PureComponent {
   static propTypes = {

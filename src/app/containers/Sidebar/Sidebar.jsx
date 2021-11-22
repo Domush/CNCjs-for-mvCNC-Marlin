@@ -1,8 +1,10 @@
 import classNames from 'classnames';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import i18n from 'app/lib/i18n';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 class Sidebar extends PureComponent {
   static propTypes = withRouter.propTypes;

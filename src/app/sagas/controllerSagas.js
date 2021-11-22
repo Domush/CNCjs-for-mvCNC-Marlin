@@ -1,17 +1,33 @@
-import store from 'app/store';
-import reduxStore from 'app/store/redux';
-import controller from 'app/lib/controller';
-import pubsub from 'pubsub-js';
-import * as controllerActions from 'app/actions/controllerActions';
-import * as connectionActions from 'app/actions/connectionActions';
-import * as fileActions from 'app/actions/fileInfoActions';
-import { Confirm } from 'app/components/ConfirmationDialog/ConfirmationDialogLib';
-import { Toaster, TOASTER_INFO, TOASTER_UNTIL_CLOSE, TOASTER_SUCCESS } from 'app/lib/toaster/ToasterLib';
-import EstimateWorker from 'app/workers/Estimate.worker';
-import VisualizeWorker from 'app/workers/Visualize.worker';
-import { estimateResponseHandler } from 'app/workers/Estimate.response';
-import { visualizeResponse, shouldVisualize } from 'app/workers/Visualize.response';
-import { RENDER_LOADING, RENDER_RENDERED, VISUALIZER_SECONDARY } from 'app/constants';
+const store = require('app/store');
+const reduxStore = require('app/store/redux');
+const controller = require('app/lib/controller');
+const pubsub = require('pubsub-js');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const controllerActions = require('app/actions/controllerActions');
+const connectionActions = require('app/actions/connectionActions');
+const fileActions = require('app/actions/fileInfoActions');
+const { Confirm: Confirm } = require('app/components/ConfirmationDialog/ConfirmationDialogLib');
+const {
+  Toaster: Toaster,
+  TOASTER_INFO: TOASTER_INFO,
+  TOASTER_UNTIL_CLOSE: TOASTER_UNTIL_CLOSE,
+  TOASTER_SUCCESS: TOASTER_SUCCESS,
+} = require('app/lib/toaster/ToasterLib');
+const EstimateWorker = require('app/workers/Estimate.worker');
+const VisualizeWorker = require('app/workers/Visualize.worker');
+const { estimateResponseHandler: estimateResponseHandler } = require('app/workers/Estimate.response');
+const {
+  visualizeResponse: visualizeResponse,
+  shouldVisualize: shouldVisualize,
+} = require('app/workers/Visualize.response');
+const {
+  RENDER_LOADING: RENDER_LOADING,
+  RENDER_RENDERED: RENDER_RENDERED,
+  VISUALIZER_SECONDARY: VISUALIZER_SECONDARY,
+} = require('app/constants');
 
 export function* initialize() {
   /* Health check - every 3 minutes */

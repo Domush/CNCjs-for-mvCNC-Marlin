@@ -1,5 +1,9 @@
-import Toolpath from 'gcode-toolpath';
-import * as THREE from 'three';
+const Toolpath = require('gcode-toolpath');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const THREE = require('three');
 
 onmessage = ({ data }) => {
   const { content, visualizer } = data;

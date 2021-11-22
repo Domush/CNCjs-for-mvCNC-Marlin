@@ -1,5 +1,6 @@
-/* eslint-disable no-restricted-globals */
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import mainController from 'app/lib/controller';
@@ -7,7 +8,7 @@ import { Toaster, TOASTER_SUCCESS } from 'app/lib/toaster/ToasterLib';
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 import { Confirm } from 'app/components/ConfirmationDialog/ConfirmationDialogLib';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const OFFSET_THRESHOLD = 2; //in mm. If the FM is less than or equal to this number, only a small warning message would be enough
 

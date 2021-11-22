@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const TimelineItem = ({ date, text }) => (
   <div className={styles.timelineItem}>

@@ -1,3 +1,3 @@
-import MachineProfiles from './MachineProfiles';
+import MachineProfiles from './MachineProfiles.js';
 
 export default MachineProfiles;

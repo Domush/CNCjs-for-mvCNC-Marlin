@@ -1,20 +1,26 @@
 // import '@babel/polyfill';
-import { app, ipcMain, dialog, powerSaveBlocker, powerMonitor } from 'electron';
-import { autoUpdater } from 'electron-updater';
-import Store from 'electron-store';
-import chalk from 'chalk';
-import mkdirp from 'mkdirp';
-import isOnline from 'is-online';
-import log from 'electron-log';
-import path from 'path';
-import fs from 'fs';
+const {
+  app: app,
+  ipcMain: ipcMain,
+  dialog: dialog,
+  powerSaveBlocker: powerSaveBlocker,
+  powerMonitor: powerMonitor,
+} = require('electron');
+const { autoUpdater: autoUpdater } = require('electron-updater');
+const Store = require('electron-store');
+const chalk = require('chalk');
+const mkdirp = require('mkdirp');
+const isOnline = require('is-online');
+const log = require('electron-log');
+const path = require('path');
+const fs = require('fs');
 //import menuTemplate from './electron-app/menu-template';
-import { createCommons } from 'simport';
-import WindowManager from './electron-app/WindowManager';
-import launchServer from './server-cli';
-import pkg from './package.json';
+const { createCommons: createCommons } = require('simport');
+const WindowManager = require('./electron-app/WindowManager');
+const launchServer = require('./server-cli');
+const pkg = require('./package.json');
 //import './sentryInit';
-import { parseAndReturnGCode } from './electron-app/RecentFiles';
+const { parseAndReturnGCode: parseAndReturnGCode } = require('./electron-app/RecentFiles');
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

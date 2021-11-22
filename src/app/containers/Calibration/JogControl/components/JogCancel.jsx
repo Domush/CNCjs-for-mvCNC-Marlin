@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { GRBL_ACTIVE_STATE_JOG, GRBL_ACTIVE_STATE_RUN } from 'app/constants';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const JogCancel = ({ activeState, ...props }) => (
   <button

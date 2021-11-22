@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './GcodeViewer.styl';
+import styles from './GcodeViewer.styl.js';
 
 const GcodeViewer = ({ gcode }) => (
   <div className={styles.wrapper}>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from 'app/components/Modal';
 import { Button } from 'app/components/Buttons';
 
-import { modalStyle, modalHeaderStyle, modalTitleStyle, modalBodyStyle, modalFooterStyle } from './modalStyle';
+import { modalStyle, modalHeaderStyle, modalTitleStyle, modalBodyStyle, modalFooterStyle } from './modalStyle.js';
 
 const ValidationModal = ({ onProceed, onCancel, invalidGcode }) => {
   const { list } = invalidGcode;

@@ -1,27 +1,36 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable no-new-wrappers */
+const { createCommons: createCommons } = require('simport');
 
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Modal from 'app/components/Modal';
-import controller from 'app/lib/controller';
-import CategoryTag from 'app/containers/Firmware/CategoryTag';
-import map from 'lodash/map';
-import get from 'lodash/get';
-import download from 'downloadjs';
-import store from 'app/store';
-import { GRBL, GRBL_ACTIVE_STATE_IDLE } from 'app/constants';
-import TooltipCustom from '../../components/TooltipCustom/ToolTip';
-import Loading from '../../components/Loader';
-import { Toaster, TOASTER_INFO, TOASTER_DANGER, TOASTER_UNTIL_CLOSE } from '../../lib/toaster/ToasterLib';
-import ToolsNotificationModal from '../../components/ToolsNotificationModal/Modal';
-import styles from './index.styl';
-import InputController from './Settings/Inputs/InputController';
-import * as GRBL_SETTINGS from '../../../server/controllers/Grbl/constants';
-import NotConnectedWarning from './NotConnectedWarning';
-import WidgetConfig from '../../widgets/WidgetConfig';
-import ToolModalButton from '../../components/ToolModalButton/ToolModalButton';
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+{
+  const React = require('react');
+  const { PureComponent: PureComponent } = React;
+}
+const PropTypes = require('prop-types');
+const { connect: connect } = require('react-redux');
+const Modal = require('app/components/Modal');
+const controller = require('app/lib/controller');
+const CategoryTag = require('app/containers/Firmware/CategoryTag');
+const map = require('lodash/map');
+const get = require('lodash/get');
+const download = require('downloadjs');
+const store = require('app/store');
+const { GRBL: GRBL, GRBL_ACTIVE_STATE_IDLE: GRBL_ACTIVE_STATE_IDLE } = require('app/constants');
+const TooltipCustom = require('../../components/TooltipCustom/ToolTip.js');
+const Loading = require('../../components/Loader.js');
+const {
+  Toaster: Toaster,
+  TOASTER_INFO: TOASTER_INFO,
+  TOASTER_DANGER: TOASTER_DANGER,
+  TOASTER_UNTIL_CLOSE: TOASTER_UNTIL_CLOSE,
+} = require('../../lib/toaster/ToasterLib.js');
+const ToolsNotificationModal = require('../../components/ToolsNotificationModal/Modal.js');
+const styles = require('./index.styl.js');
+const InputController = require('./Settings/Inputs/InputController.js');
+const GRBL_SETTINGS = require('../../../server/controllers/Grbl/constants.js');
+const NotConnectedWarning = require('./NotConnectedWarning');
+const WidgetConfig = require('../../widgets/WidgetConfig');
+const ToolModalButton = require('../../components/ToolModalButton/ToolModalButton');
 
 class Firmware extends PureComponent {
   static propTypes = {

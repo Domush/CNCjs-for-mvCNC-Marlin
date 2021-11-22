@@ -5,10 +5,10 @@ import Tooltip from 'app/components/TooltipCustom/ToolTip';
 import defaultState from 'app/store/defaultState';
 import { METRIC_UNITS } from 'app/constants';
 
-import Input from './components/Input';
-import MachinePosition from './components/MachinePosition';
-import styles from './index.styl';
-import inputStyles from './components/input.styl';
+import Input from './components/Input.js';
+import MachinePosition from './components/MachinePosition.js';
+import styles from './index.styl.js';
+import inputStyles from './components/input.styl.js';
 
 const InputArea = ({ values, onChange, onSelect, units }) => {
   const { widgets } = defaultState;

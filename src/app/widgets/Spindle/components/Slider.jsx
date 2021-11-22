@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const Slider = ({ step = 1, min = 0, max = 100, value = 50, onChange = null, label = 'Range', unitString = 'RPM' }) => (
   <div className={styles.sliderWrapper}>

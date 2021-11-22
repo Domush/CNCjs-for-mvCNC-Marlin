@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { PureComponent } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import pubsub from 'pubsub-js';
-import { trackPage } from '../lib/analytics';
-import Workspace from './Workspace';
-import styles from './App.styl';
+import { trackPage } from '../lib/analytics.js';
+import Workspace from './Workspace.js';
+import styles from './App.styl.js';
 
 class App extends PureComponent {
   static propTypes = withRouter.propTypes;

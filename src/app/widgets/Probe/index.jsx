@@ -2,7 +2,9 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import map from 'lodash/map';
 import Space from 'app/components/Space';
@@ -13,22 +15,12 @@ import pubsub from 'pubsub-js';
 import { TOUCHPLATE_TYPE_AUTOZERO, PROBE_TYPE_AUTO, PROBE_TYPE_TIP, TOUCHPLATE_TYPE_ZERO } from 'app/lib/constants';
 import store from 'app/store';
 import { mm2in } from 'app/lib/units';
-import WidgetConfig from '../WidgetConfig';
-import Probe from './Probe';
-import RunProbe from './RunProbe';
-import {
-  // Units
-  METRIC_UNITS,
-  // Grbl
-  GRBL,
-  GRBL_ACTIVE_STATE_IDLE,
-  // Marlin
-  MARLIN,
-  // Workflow
-  WORKFLOW_STATE_IDLE,
-} from '../../constants';
-import { MODAL_NONE, MODAL_PREVIEW } from './constants';
-import styles from './index.styl';
+import WidgetConfig from '../WidgetConfig.js';
+import Probe from './Probe.js';
+import RunProbe from './RunProbe.js';
+import { METRIC_UNITS, GRBL, GRBL_ACTIVE_STATE_IDLE, MARLIN, WORKFLOW_STATE_IDLE } from '../../constants.js';
+import { MODAL_NONE, MODAL_PREVIEW } from './constants.js';
+import styles from './index.styl.js';
 
 class ProbeWidget extends PureComponent {
   static propTypes = {

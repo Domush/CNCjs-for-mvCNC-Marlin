@@ -7,7 +7,7 @@ import Anchor from 'app/components/Anchor';
 import Space from 'app/components/Space';
 import settings from 'app/config/settings';
 import i18n from 'app/lib/i18n';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const UpdateStatusContainer = (props) => {
   const { checking, current, latest, lastUpdate } = props;

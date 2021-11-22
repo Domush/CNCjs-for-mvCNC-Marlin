@@ -2,12 +2,12 @@ import find from 'lodash/find';
 import castArray from 'lodash/castArray';
 import isPlainObject from 'lodash/isPlainObject';
 import uuid from 'uuid';
-import settings from '../config/settings';
-import logger from '../lib/logger';
-import taskRunner from '../services/taskrunner';
-import config from '../services/configstore';
-import { getPagingRange } from './paging';
-import { ERR_BAD_REQUEST, ERR_NOT_FOUND, ERR_INTERNAL_SERVER_ERROR } from '../constants';
+import settings from '../config/settings.js';
+import logger from '../lib/logger.js';
+import taskRunner from '../services/taskrunner/index.js';
+import config from '../services/configstore/index.js';
+import { getPagingRange } from './paging.js';
+import { ERR_BAD_REQUEST, ERR_NOT_FOUND, ERR_INTERNAL_SERVER_ERROR } from '../constants.js';
 
 const log = logger('api:commands');
 const CONFIG_KEY = 'commands';

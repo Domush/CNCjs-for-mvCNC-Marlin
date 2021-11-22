@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskbarButton from './TaskbarButton';
+import TaskbarButton from './TaskbarButton.js';
 
 const Taskbar = ({ children, style, ...props }) => (
   <div

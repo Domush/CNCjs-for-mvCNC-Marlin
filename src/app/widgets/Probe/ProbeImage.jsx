@@ -1,10 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import Image from 'app/components/Image';
-import styles from './index.styl';
-import XProbe from './assets/x_probe.svg';
-import YProbe from './assets/y_probe.svg';
-import XYZProbe from './assets/xyz_probe.svg';
+import styles from './index.styl.js';
+import XProbe from './assets/x_probe.svg.js';
+import YProbe from './assets/y_probe.svg.js';
+import XYZProbe from './assets/xyz_probe.svg.js';
 
 const ProbeImage = ({ probeCommand, visible = true }) => {
   const getProbeImage = () => {

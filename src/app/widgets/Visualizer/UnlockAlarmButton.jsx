@@ -1,9 +1,6 @@
-/* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable react/jsx-indent */
-
 import React from 'react';
 import classnames from 'classnames';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const UnlockAlarmButton = ({ onClick, newMessage, alarmCode }) => {
   let message = 'Click to Unlock Machine';

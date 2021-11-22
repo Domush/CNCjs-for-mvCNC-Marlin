@@ -1,17 +1,24 @@
-import cx from 'classnames';
-import qs from 'qs';
-import React, { PureComponent } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
-import Anchor from 'app/components/Anchor';
-import { Notification } from 'app/components/Notifications';
-import Space from 'app/components/Space';
-import settings from 'app/config/settings';
-import controller from 'app/lib/controller';
-import i18n from 'app/lib/i18n';
-import log from 'app/lib/log';
-import * as user from 'app/lib/user';
-import store from 'app/store';
-import styles from './index.styl';
+const cx = require('classnames');
+const qs = require('qs');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+{
+  const React = require('react');
+  const { PureComponent: PureComponent } = React;
+}
+const { withRouter: withRouter, Redirect: Redirect } = require('react-router-dom');
+const Anchor = require('app/components/Anchor');
+const { Notification: Notification } = require('app/components/Notifications');
+const Space = require('app/components/Space');
+const settings = require('app/config/settings');
+const controller = require('app/lib/controller');
+const i18n = require('app/lib/i18n');
+const log = require('app/lib/log');
+const user = require('app/lib/user');
+const store = require('app/store');
+const styles = require('./index.styl');
 
 class Login extends PureComponent {
   static propTypes = withRouter.propTypes;

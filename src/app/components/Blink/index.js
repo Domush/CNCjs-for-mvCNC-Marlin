@@ -1,3 +1,3 @@
-import Blink from './Blink';
+import Blink from './Blink.js';
 
 export default Blink;

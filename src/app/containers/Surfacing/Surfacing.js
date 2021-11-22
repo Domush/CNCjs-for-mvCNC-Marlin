@@ -1,5 +1,7 @@
 import { types } from 'putout';
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import pubsub from 'pubsub-js';
 import { inRange, throttle } from 'lodash';
@@ -11,13 +13,13 @@ import controller from 'app/lib/controller';
 import { METRIC_UNITS, IMPERIAL_UNITS, VISUALIZER_PRIMARY, VISUALIZER_SECONDARY } from 'app/constants';
 import api from 'app/api';
 
-import Visualizer from './Visualizer';
-import InputArea from './InputArea';
-import ActionArea from './components/actions';
-import styles from './index.styl';
-import Generator from './helpers/Generator';
-import GcodeViewer from './components/GcodeViewer';
-import TabArea from './TabArea';
+import Visualizer from './Visualizer.js';
+import InputArea from './InputArea.js';
+import ActionArea from './components/actions.js';
+import styles from './index.styl.js';
+import Generator from './helpers/Generator.js';
+import GcodeViewer from './components/GcodeViewer.js';
+import TabArea from './TabArea.js';
 
 /**
  * @component Surfacing

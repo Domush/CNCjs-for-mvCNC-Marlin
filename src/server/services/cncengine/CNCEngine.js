@@ -4,19 +4,16 @@ import noop from 'lodash/noop';
 import SerialPort from 'serialport';
 import socketIO from 'socket.io';
 //import socketioJwt from 'socketio-jwt';
-import EventTrigger from '../../lib/EventTrigger';
-import logger from '../../lib/logger';
+import EventTrigger from '../../lib/EventTrigger.js';
+import logger from '../../lib/logger.js';
 // import settings from '../../config/settings';
-import store from '../../store';
-import config from '../configstore';
-import taskRunner from '../taskrunner';
-import { GrblController, MarlinController } from '../../controllers';
-import { GRBL } from '../../controllers/Grbl/constants';
-import { MARLIN } from '../../controllers/Marlin/constants';
-import {
-  authorizeIPAddress,
-  //validateUser
-} from '../../access-control';
+import store from '../../store/index.js';
+import config from '../configstore/index.js';
+import taskRunner from '../taskrunner/index.js';
+import { GrblController, MarlinController } from '../../controllers/index.js';
+import { GRBL } from '../../controllers/Grbl/constants.js';
+import { MARLIN } from '../../controllers/Marlin/constants.js';
+import { authorizeIPAddress } from '../../access-control.js';
 
 const log = logger('service:cncengine');
 

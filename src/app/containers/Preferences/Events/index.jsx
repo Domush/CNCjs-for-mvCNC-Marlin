@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useEffect, useState } from 'react';
 
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 import { Toaster, TOASTER_DANGER, TOASTER_SUCCESS } from 'app/lib/toaster/ToasterLib';
 import api from 'app/api';
 import ToggleSwitch from 'app/components/ToggleSwitch';
 
-import Fieldset from '../components/Fieldset';
-import SettingWrapper from '../components/SettingWrapper';
-import GeneralArea from '../components/GeneralArea';
+import Fieldset from '../components/Fieldset.js';
+import SettingWrapper from '../components/SettingWrapper.js';
+import GeneralArea from '../components/GeneralArea.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const Events = ({ active }) => {
   const [programStartEvent, setProgramStartEvent] = useState(null);

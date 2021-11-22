@@ -3,7 +3,9 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import combokeys from 'app/lib/combokeys';
 import controller from 'app/lib/controller';
 import { preventDefault } from 'app/lib/dom-events';
@@ -14,25 +16,21 @@ import pubsub from 'pubsub-js';
 import { connect } from 'react-redux';
 import store from 'app/store';
 import {
-  // Units
   IMPERIAL_UNITS,
   IMPERIAL_STEPS,
   METRIC_UNITS,
   METRIC_STEPS,
-  // Grbl
   GRBL,
-  // Marlin
   MARLIN,
-  // Workflow
   GRBL_ACTIVE_STATE_JOG,
   GRBL_ACTIVE_STATE_IDLE,
   WORKFLOW_STATE_IDLE,
 } from 'app/constants';
-import Axes from './Axes';
+import Axes from './Axes.js';
 // import ShuttleControl from './ShuttleControl';
-import JogHelper from './jogHelper';
+import JogHelper from './jogHelper.js';
 
-import { MODAL_NONE, DEFAULT_AXES, SPEED_NORMAL, SPEED_PRECISE } from './constants';
+import { MODAL_NONE, DEFAULT_AXES, SPEED_NORMAL, SPEED_PRECISE } from './constants.js';
 
 class AxesWidget extends PureComponent {
   pubsubTokens = [];

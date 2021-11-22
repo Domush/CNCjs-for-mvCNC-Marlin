@@ -1,3 +1,3 @@
-import ModalTemplate from './ModalTemplate';
+import ModalTemplate from './ModalTemplate.js';
 
 export default ModalTemplate;

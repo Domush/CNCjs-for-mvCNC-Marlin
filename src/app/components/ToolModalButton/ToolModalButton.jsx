@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const ToolModalButton = ({ className, icon = 'fas fa-info', children, ...props }) => (
   <button className={cx(styles.toolModalButton, className)} {...props}>

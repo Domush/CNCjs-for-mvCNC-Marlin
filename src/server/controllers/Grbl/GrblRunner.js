@@ -1,17 +1,17 @@
 import events from 'events';
 import _ from 'lodash';
-import decimalPlaces from '../../lib/decimal-places';
-import GrblLineParser from './GrblLineParser';
-import GrblLineParserResultStatus from './GrblLineParserResultStatus';
-import GrblLineParserResultOk from './GrblLineParserResultOk';
-import GrblLineParserResultError from './GrblLineParserResultError';
-import GrblLineParserResultAlarm from './GrblLineParserResultAlarm';
-import GrblLineParserResultParserState from './GrblLineParserResultParserState';
-import GrblLineParserResultParameters from './GrblLineParserResultParameters';
-import GrblLineParserResultFeedback from './GrblLineParserResultFeedback';
-import GrblLineParserResultSettings from './GrblLineParserResultSettings';
-import GrblLineParserResultStartup from './GrblLineParserResultStartup';
-import { GRBL_ACTIVE_STATE_IDLE, GRBL_ACTIVE_STATE_ALARM } from './constants';
+import decimalPlaces from '../../lib/decimal-places.js';
+import GrblLineParser from './GrblLineParser.js';
+import GrblLineParserResultStatus from './GrblLineParserResultStatus.js';
+import GrblLineParserResultOk from './GrblLineParserResultOk.js';
+import GrblLineParserResultError from './GrblLineParserResultError.js';
+import GrblLineParserResultAlarm from './GrblLineParserResultAlarm.js';
+import GrblLineParserResultParserState from './GrblLineParserResultParserState.js';
+import GrblLineParserResultParameters from './GrblLineParserResultParameters.js';
+import GrblLineParserResultFeedback from './GrblLineParserResultFeedback.js';
+import GrblLineParserResultSettings from './GrblLineParserResultSettings.js';
+import GrblLineParserResultStartup from './GrblLineParserResultStartup.js';
+import { GRBL_ACTIVE_STATE_IDLE, GRBL_ACTIVE_STATE_ALARM } from './constants.js';
 
 class GrblRunner extends events.EventEmitter {
   state = {

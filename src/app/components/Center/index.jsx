@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const Center = ({ className, horizontal, vertical, stretched, ...props }) => (
   <div

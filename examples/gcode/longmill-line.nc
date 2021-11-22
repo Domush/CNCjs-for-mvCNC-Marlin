@@ -147,7 +147,6 @@ G00 Z 5.0000
 (End cutting path id: path7360-9)
 
 
-
 (Start cutting path id: path7309-4)
 (Change tool to Cylindrical cutter)
 
@@ -163,7 +162,6 @@ G00 Z 5.0000
 
 (End cutting path id: path7309-4)
 
-
 (Start cutting path id: path7232-3-1)
 (Change tool to Cylindrical cutter)
 
@@ -175,7 +173,6 @@ G01 X 222.9090 Y 0.8793 Z -1.0 F 600.0000
 G00 Z 5.0000
 
 (End cutting path id: path7232-3-1)
-
 
 
 (Start cutting path id: path7232-2-8)
@@ -191,7 +188,6 @@ G00 Z 5.0000
 
 (End cutting path id: path7232-2-8)
 
-
 (Start cutting path id: path7232-4-6)
 (Change tool to Cylindrical cutter)
 
@@ -204,7 +200,6 @@ G01 X 300.8467 Y 0.9535 Z -1.0
 G00 Z 5.0000
 
 (End cutting path id: path7232-4-6)
-
 
 (Footer)
 M5

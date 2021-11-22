@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './index.styl';
-import TooltipCustom from '../../components/TooltipCustom/ToolTip';
-import NumberInput from './NumberInput';
-import { METRIC_UNITS } from '../../constants';
+import styles from './index.styl.js';
+import TooltipCustom from '../../components/TooltipCustom/ToolTip.js';
+import NumberInput from './NumberInput.js';
+import { METRIC_UNITS } from '../../constants.js';
 
 const SpeedControl = ({ state, actions }) => {
   const { units, jog } = state;

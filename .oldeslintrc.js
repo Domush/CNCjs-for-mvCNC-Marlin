@@ -1,8 +1,8 @@
-const path = require('path');
-// import path from 'path';
+// const path = require('path');
+import path from 'path';
 
-module.exports = {
-  extends: ['trendmicro', 'plugin:prettier/recommended'],
+export default {
+  extends: ['plugin:prettier/recommended'],
   parser: '@babel/eslint-parser',
   env: {
     browser: true,
@@ -70,6 +70,7 @@ module.exports = {
     'no-comma-dangle': 'off',
     'no-extra-parens': 'off',
     'no-extra-semi': 'off',
+    'no-console': 'off',
     'no-floating-decimal': 'off',
     'no-mixed-spaces-and-tabs': 'off',
     'no-multi-spaces': 'off',

@@ -3,14 +3,16 @@ import pubsub from 'pubsub-js';
 import store from 'app/store';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { mapPositionToPreferredUnits } from 'app/lib/units';
-import WidgetConfig from '../WidgetConfig';
-import JobStatus from './JobStatus';
-import { METRIC_UNITS, SPINDLE_MODE, WORKFLOW_STATE_IDLE, WORKFLOW_STATE_PAUSED } from '../../constants';
-import FileProcessingLoader from './components/FileProcessingLoader';
-import styles from './index.styl';
+import WidgetConfig from '../WidgetConfig.js';
+import JobStatus from './JobStatus.js';
+import { METRIC_UNITS, SPINDLE_MODE, WORKFLOW_STATE_IDLE, WORKFLOW_STATE_PAUSED } from '../../constants.js';
+import FileProcessingLoader from './components/FileProcessingLoader.js';
+import styles from './index.styl.js';
 
 class JobStatusWidget extends PureComponent {
   static propTypes = {

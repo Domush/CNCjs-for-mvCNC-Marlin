@@ -1,5 +1,5 @@
-import monitor from '../services/monitor';
-import { ERR_NOT_FOUND, ERR_INTERNAL_SERVER_ERROR } from '../constants';
+import monitor from '../services/monitor/index.js';
+import { ERR_NOT_FOUND, ERR_INTERNAL_SERVER_ERROR } from '../constants.js';
 
 export const getFiles = (req, res) => {
   const path = req.body.path || req.query.path || '';

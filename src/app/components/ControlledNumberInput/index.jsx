@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import debounce from 'lodash/debounce';
 
 const ControlledNumberInput = ({ className, value, type = 'decimal', externalOnChange = null, ...props }) => {

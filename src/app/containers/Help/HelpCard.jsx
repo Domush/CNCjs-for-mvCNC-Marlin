@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const HelpCard = ({ title, text, link, icon, linkText }) => (
   <div className={styles.cardBase}>

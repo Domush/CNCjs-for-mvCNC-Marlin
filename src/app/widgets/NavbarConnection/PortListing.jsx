@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Index.styl';
+import styles from './Index.styl.js';
 
 const PortListing = ({ port, inuse, baudrate, controllerType, onClick }) => (
   <button className={styles.PortListing} onClick={onClick} type="button">

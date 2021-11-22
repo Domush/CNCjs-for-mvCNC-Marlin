@@ -3,7 +3,9 @@ import escape from 'lodash/escape';
 import get from 'lodash/get';
 import throttle from 'lodash/throttle';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { ProgressBar } from 'react-bootstrap';
 import VirtualList from 'react-tiny-virtual-list';
@@ -12,7 +14,7 @@ import Anchor from 'app/components/Anchor';
 import Panel from 'app/components/Panel';
 import i18n from 'app/lib/i18n';
 import { formatBytes } from 'app/lib/numeral';
-import styles from './dashboard.styl';
+import styles from './dashboard.styl.js';
 
 class Dashboard extends PureComponent {
   static propTypes = {

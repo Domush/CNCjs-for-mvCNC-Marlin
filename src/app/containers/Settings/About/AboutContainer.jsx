@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import settings from 'app/config/settings';
 import i18n from 'app/lib/i18n';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const AboutContainer = ({ version }) => (
   <div className={styles.aboutContainer}>

@@ -1,4 +1,8 @@
-import * as THREE from 'three';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const THREE = require('three');
 
 const isUndefined = (a) => typeof a === 'undefined';
 

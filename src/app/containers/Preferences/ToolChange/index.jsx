@@ -1,7 +1,7 @@
 import React from 'react';
-import SettingWrapper from '../components/SettingWrapper';
-import GeneralArea from '../components/GeneralArea';
-import ToolChange from './ToolChange';
+import SettingWrapper from '../components/SettingWrapper.js';
+import GeneralArea from '../components/GeneralArea.js';
+import ToolChange from './ToolChange.js';
 
 const EventWidget = ({ active }) => (
   <SettingWrapper title="Tool Change" show={active}>

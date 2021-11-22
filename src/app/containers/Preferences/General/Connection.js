@@ -2,10 +2,10 @@ import React from 'react';
 
 import Tooltip from 'app/components/TooltipCustom/ToolTip';
 import ToggleSwitch from 'app/components/ToggleSwitch';
-import Fieldset from '../components/Fieldset';
-import Baudrates from './Baudrates';
+import Fieldset from '../components/Fieldset.js';
+import Baudrates from './Baudrates.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const Connection = ({ state, actions }) => {
   const { autoReconnect, controller } = state;

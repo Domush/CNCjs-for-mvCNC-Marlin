@@ -1,7 +1,7 @@
 import _set from 'lodash/set';
 import { parse } from 'esprima';
-import evaluateExpression from './evaluate-expression';
-import logger from './logger';
+import evaluateExpression from './evaluate-expression.js';
+import logger from './logger.js';
 
 const log = logger('evaluate-assignment-expression');
 

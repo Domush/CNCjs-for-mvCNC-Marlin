@@ -1,21 +1,22 @@
-/* eslint-disable react/self-closing-comp */
 import ensureArray from 'ensure-array';
 import frac from 'frac';
 import _uniqueId from 'lodash/uniqueId';
 import _includes from 'lodash/includes';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import styled from 'styled-components';
 import { MenuItem } from 'app/components/Dropdown';
 import Space from 'app/components/Space';
 import controller from 'app/lib/controller';
 import i18n from 'app/lib/i18n';
 import { IMPERIAL_UNITS, IMPERIAL_STEPS, METRIC_UNITS, METRIC_STEPS } from 'app/constants';
-import Fraction from './components/Fraction';
-import styles from './index.styl';
-import JogControl from './components/JogControl';
-import JogCancel from './components/JogCancel';
+import Fraction from './components/Fraction.js';
+import styles from './index.styl.js';
+import JogControl from './components/JogControl.js';
+import JogCancel from './components/JogCancel.js';
 
 const KeypadText = styled.span`
   position: relative;

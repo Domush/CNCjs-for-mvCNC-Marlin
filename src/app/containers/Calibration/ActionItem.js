@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const ActionItem = ({
   checked,

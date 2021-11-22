@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { loadRecentFile } from './ClientRecentFiles';
-import styles from './RecentFileList.styl';
+import { loadRecentFile } from './ClientRecentFiles.js';
+import styles from './RecentFileList.styl.js';
 
 const RecentFileList = ({ visible, recentFiles, setShowPullout }) => (
   <div className={cx({ [styles.hidden]: !visible })}>

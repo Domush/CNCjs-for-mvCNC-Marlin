@@ -1,26 +1,17 @@
-import fs from 'fs';
-import chalk from 'chalk';
-import { createCommons } from 'simport';
+const fs = require('fs');
+const chalk = require('chalk');
+const { createCommons: createCommons } = require('simport');
 
-const { __filename, __dirname, require } = createCommons(import.meta.url);
+const _languages = require('./build.config.cjs');
+const languages = _languages.languages;
 
-const languages = require('./build.config.cjs').languages;
-
-export default {
-  src: [
-    'src/app/**/*.{html,hbs,js,jsx}',
-    // Use ! to filter out files or directories
-    '!src/app/{vendor,i18n}/**',
-    '!test/**',
-    '!**/node_modules/**',
-  ],
-  dest: './',
+module.exports = {
   options: {
     debug: false,
-    removeUnusedKeys: true,
+    removeUnusedKeys: false,
     sort: false,
     func: {
-      list: [], // Use an empty array to bypass the default list: i18n.t, i18next.t
+      list: ['i18n.t', 't'],
       extensions: ['.js', '.jsx'],
     },
     trans: {
@@ -34,28 +25,25 @@ export default {
     },
     lngs: languages,
     ns: [
-      'gcode',
       'resource', // default
     ],
     defaultNs: 'resource',
-    defaultValue: (lng, ns, key) => {
-      if (lng === 'en') {
-        return key; // Use key as value for base language
-      }
-      return ''; // Return empty string for other languages
-    },
+    defaultValue: '__L10N__', // to indicate that a default value has not been defined for the key
     resource: {
-      loadPath: 'src/app/i18n/{{lng}}/{{ns}}.json',
-      savePath: 'src/app/i18n/{{lng}}/{{ns}}.json', // or 'src/app/i18n/${lng}/${ns}.saveAll.json'
-      jsonIndent: 4,
+      loadPath: 'src/server/i18n/{{lng}}/{{ns}}.json',
+      savePath: 'src/server/i18n/{{lng}}/{{ns}}.json', // or 'src/server/i18n/${lng}/${ns}.saveAll.json'
+      jsonIndent: 2,
     },
     nsSeparator: ':', // namespace separator
     keySeparator: '.', // key separator
+    pluralSeparator: '_', // plural separator
+    contextSeparator: '_', // context separator
     interpolation: {
       prefix: '{{',
       suffix: '}}',
     },
   },
+
   transform: function (file, enc, done) {
     const parser = this.parser;
     const content = fs.readFileSync(file.path, enc);

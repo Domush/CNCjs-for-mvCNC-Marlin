@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import WidgetListItem from './WidgetListItem';
+import WidgetListItem from './WidgetListItem.js';
 
 const WidgetList = (props) => {
   const { list, onChange } = props;

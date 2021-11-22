@@ -1,7 +1,11 @@
-import React from 'react';
-import * as Paginations from '@trendmicro/react-paginations';
-import '@trendmicro/react-paginations/dist/react-paginations.css';
-import i18n from 'app/lib/i18n';
+const React = require('react');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const Paginations = require('@trendmicro/react-paginations');
+import('@trendmicro/react-paginations/dist/react-paginations.css');
+const i18n = require('app/lib/i18n');
 
 export const TablePagination = (props) => (
   <Paginations.TablePagination

@@ -3,7 +3,7 @@ import Modal from 'app/components/Modal';
 import { Button } from 'app/components/Buttons';
 import PropTypes from 'prop-types';
 
-import { modalStyle, modalHeaderStyle, modalTitleStyle, modalBodyStyle, modalFooterStyle } from './modalStyle';
+import { modalStyle, modalHeaderStyle, modalTitleStyle, modalBodyStyle, modalFooterStyle } from './modalStyle.js';
 
 const WarningModal = ({ onContinue, onIgnoreWarning, onCancel, invalidLine }) => (
   <Modal size="md" onClose={onContinue} style={modalStyle} disableOverlay>

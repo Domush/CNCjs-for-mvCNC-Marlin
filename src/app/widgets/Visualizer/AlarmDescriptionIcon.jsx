@@ -1,7 +1,7 @@
 import React from 'react';
 import { GRBL_ALARMS } from 'server/controllers/Grbl/constants';
 import Tooltip from 'app/components/TooltipCustom/ToolTip';
-import styles from './workflow-control.styl';
+import styles from './workflow-control.styl.js';
 
 const getCodeDescription = (code = 1) => {
   const alarm = GRBL_ALARMS.find((alarm) => alarm.code === code);

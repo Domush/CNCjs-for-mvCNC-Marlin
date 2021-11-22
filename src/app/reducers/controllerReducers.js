@@ -10,9 +10,9 @@ import {
   UPDATE_SENDER_STATUS,
   UPDATE_WORKFLOW_STATE,
   UPDATE_HOMING_FLAG,
-} from '../actions/controllerActions';
-import { in2mm } from '../lib/units';
-import { WORKFLOW_STATE_IDLE } from '../constants';
+} from '../actions/controllerActions.js';
+import { in2mm } from '../lib/units.js';
+import { WORKFLOW_STATE_IDLE } from '../constants.js';
 
 const initialState = {
   type: '',

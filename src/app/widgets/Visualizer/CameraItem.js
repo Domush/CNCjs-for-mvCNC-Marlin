@@ -5,7 +5,7 @@ import cx from 'classnames';
 import { Tooltip } from 'app/components/Tooltip';
 import i18n from 'app/lib/i18n';
 
-import styles from './camera-control-area.styl';
+import styles from './camera-control-area.styl.js';
 
 /**
  * Camera Item component used to allow changing camera angles

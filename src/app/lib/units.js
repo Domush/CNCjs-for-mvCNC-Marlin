@@ -1,4 +1,4 @@
-import { IMPERIAL_UNITS, METRIC_UNITS } from '../constants';
+import { IMPERIAL_UNITS, METRIC_UNITS } from '../constants.js';
 
 // Converts value from millimeters to inches
 export const mm2in = (val = 0) => val / 25.4;

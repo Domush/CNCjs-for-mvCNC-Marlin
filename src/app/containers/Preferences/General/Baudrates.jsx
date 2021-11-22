@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import map from 'lodash/map';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const defaultBaudrates = [250000, 115200, 57600, 38400, 19200, 9600, 2400];
 

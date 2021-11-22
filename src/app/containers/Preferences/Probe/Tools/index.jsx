@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../../index.styl';
-import Tool from './Tool';
-import AddTool from './AddTool';
-import Fieldset from '../../components/Fieldset';
+import styles from '../../index.styl.js';
+import Tool from './Tool.js';
+import AddTool from './AddTool.js';
+import Fieldset from '../../components/Fieldset.js';
 
 const ToolSettings = ({ active, state, actions }) => {
   const { tools } = state;

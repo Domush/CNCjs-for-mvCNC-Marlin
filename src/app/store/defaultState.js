@@ -15,13 +15,8 @@ import {
   SPIRAL_MOVEMENT,
   START_POSITION_BACK_LEFT,
 } from 'app/constants';
-import {
-  MODAL_PREFERENCES,
-  // MODAL_FIRMWARE,
-  MODAL_SURFACING,
-  MODAL_CALIBRATE,
-} from 'app/containers/NavSidebar/constants';
-import { SPEED_NORMAL, SPEED_PRECISE, SPEED_RAPID } from '../widgets/JogControl/constants';
+import { MODAL_PREFERENCES, MODAL_SURFACING, MODAL_CALIBRATE } from 'app/containers/NavSidebar/constants';
+import { SPEED_NORMAL, SPEED_PRECISE, SPEED_RAPID } from '../widgets/JogControl/constants.js';
 
 const AXIS_X = 'x';
 const AXIS_Y = 'y';

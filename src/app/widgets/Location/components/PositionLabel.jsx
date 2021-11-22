@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../constants';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../constants.js';
 
 const PositionLabel = ({ value, small }) => {
   value = String(value);

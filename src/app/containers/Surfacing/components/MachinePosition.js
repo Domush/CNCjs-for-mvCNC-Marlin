@@ -15,7 +15,7 @@ import {
   START_POSITION_FRONT_RIGHT,
 } from 'app/constants';
 
-import styles from './machine-position.styl';
+import styles from './machine-position.styl.js';
 
 const MachinePosition = ({ current, type, onChange }) => {
   const positionRadioButtons = [

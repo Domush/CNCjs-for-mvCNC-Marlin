@@ -1,11 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { team, timeline } from './tools';
+import { team, timeline } from './tools.js';
 
-import TimelineItem from './TimelineItem';
-import TimelineArrow from './TimelineArrow';
-import styles from './index.styl';
+import TimelineItem from './TimelineItem.js';
+import TimelineArrow from './TimelineArrow.js';
+import styles from './index.styl.js';
 
 const MainArea = () => (
   <div>

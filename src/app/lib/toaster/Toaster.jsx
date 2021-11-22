@@ -1,10 +1,12 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import pubsub from 'pubsub-js';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
-import styles from './toaster.styl';
-import Toast from './Toast';
-import { TOASTER_DEFAULT, TOASTER_UNTIL_CLOSE } from './ToasterLib';
+import styles from './toaster.styl.js';
+import Toast from './Toast.js';
+import { TOASTER_DEFAULT, TOASTER_UNTIL_CLOSE } from './ToasterLib.js';
 
 class Toaster extends PureComponent {
   pubsubTokens = [];

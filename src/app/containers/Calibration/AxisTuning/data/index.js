@@ -1,20 +1,21 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useState } from 'react';
 
 import controller from 'app/lib/controller';
 import Button from 'app/components/FunctionButton/FunctionButton';
 import store from 'app/store';
 
-import x1 from '../assets/X_axis-calibration_1.png';
-import x2 from '../assets/X_axis-calibration_2.png';
-import y1 from '../assets/Y_axis-calibration_1.png';
-import y2 from '../assets/Y_axis-calibration_2.png';
-import z1 from '../assets/Z_axis-calibration_1.png';
-import z2 from '../assets/Z_axis-calibration_2.png';
+import x1 from '../assets/X_axis-calibration_1.png.js';
+import x2 from '../assets/X_axis-calibration_2.png.js';
+import y1 from '../assets/Y_axis-calibration_1.png.js';
+import y2 from '../assets/Y_axis-calibration_2.png.js';
+import z1 from '../assets/Z_axis-calibration_1.png.js';
+import z2 from '../assets/Z_axis-calibration_2.png.js';
 
-import Input from '../../Input';
+import Input from '../../Input.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const inputStyle = {
   width: '100px',

@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as WebGL from 'app/lib/three/WebGL';
-import { SURFACING_VISUALIZER_CONTAINER_ID } from 'app/constants';
+import { createCommons } from 'simport';
 
-import Visualizer from './Visualizer';
-import Loading from './Loading';
-import Rendering from './Rendering';
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const WebGL = require('app/lib/three/WebGL');
+const { SURFACING_VISUALIZER_CONTAINER_ID: SURFACING_VISUALIZER_CONTAINER_ID } = require('app/constants');
+
+const Visualizer = require('./Visualizer');
+const Loading = require('./Loading');
+const Rendering = require('./Rendering');
 
 const SecondaryVisualizer = ({
   state,

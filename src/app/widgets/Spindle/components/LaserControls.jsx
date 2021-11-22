@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import styles from '../index.styl';
-import FunctionButton from '../../../components/FunctionButton/FunctionButton';
-import Slider from './Slider';
+import styles from '../index.styl.js';
+import FunctionButton from '../../../components/FunctionButton/FunctionButton.js';
+import Slider from './Slider.js';
 
 const LaserControls = ({ actions, state }) => {
   const { laser, canClick } = state;

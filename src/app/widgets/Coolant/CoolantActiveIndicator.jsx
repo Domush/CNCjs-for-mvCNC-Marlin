@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import cx from 'classnames';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const CoolantActiveIndicator = ({ showIndicator }) => (
   <div className={styles.indicatorRow}>

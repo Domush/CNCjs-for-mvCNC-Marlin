@@ -1,7 +1,7 @@
 import util from 'util';
 import chalk from 'chalk';
 import winston from 'winston';
-import settings from '../config/settings';
+import settings from '../config/settings.js';
 
 // https://code.google.com/p/v8/wiki/JavaScriptStackTraceApi
 const getStackTrace = () => {

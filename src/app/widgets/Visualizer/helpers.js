@@ -1,5 +1,9 @@
-import * as THREE from 'three';
-import STLLoader from 'app/lib/three/STLLoader';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const THREE = require('three');
+const STLLoader = require('app/lib/three/STLLoader');
 
 const getBoundingBox = (object) => {
   const box = new THREE.Box3().setFromObject(object);

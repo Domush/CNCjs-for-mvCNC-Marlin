@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Index.styl';
+import styles from './Index.styl.js';
 
 const UnrecognizedDevices = ({ ports = [], onClick }) => (
   <button className={styles.otherDevices} onClick={onClick} type="button">

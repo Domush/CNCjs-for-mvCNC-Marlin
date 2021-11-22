@@ -1,18 +1,20 @@
-/* eslint-disable no-new-wrappers */
-/* eslint-disable indent */
-/* eslint-disable import/no-useless-path-segments */
-import React, { PureComponent } from 'react';
+import { createCommons } from 'simport';
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import map from 'lodash/map';
-import { Toaster, TOASTER_SUCCESS } from '../../../lib/toaster/ToasterLib';
+import { Toaster, TOASTER_SUCCESS } from '../../../lib/toaster/ToasterLib.js';
 // import WarningModal from './WarningModal';
-import controller from '../../../lib/controller';
-import styles from '../index.styl';
-import * as GRBL_SETTINGS from '../../../../server/controllers/Grbl/constants';
-import { GRBL } from '../../../constants';
-import Controller from '../../../widgets/Grbl/Controller';
-import InputController from './Inputs/InputController';
+import controller from '../../../lib/controller.js';
+const styles = require('../index.styl.js');
+const GRBL_SETTINGS = require('../../../../server/controllers/Grbl/constants.js');
+const { GRBL: GRBL } = require('../../../constants');
+const Controller = require('../../../widgets/Grbl/Controller');
+const InputController = require('./Inputs/InputController');
 
 class FirmwareSettings extends PureComponent {
   static propTypes = {

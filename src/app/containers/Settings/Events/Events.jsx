@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
-import CreateRecord from './CreateRecord';
-import UpdateRecord from './UpdateRecord';
-import TableRecords from './TableRecords';
-import { MODAL_CREATE_RECORD, MODAL_UPDATE_RECORD } from './constants';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
+import CreateRecord from './CreateRecord.js';
+import UpdateRecord from './UpdateRecord.js';
+import TableRecords from './TableRecords.js';
+import { MODAL_CREATE_RECORD, MODAL_UPDATE_RECORD } from './constants.js';
 
 class Events extends PureComponent {
   static propTypes = {

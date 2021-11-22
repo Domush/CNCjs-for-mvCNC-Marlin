@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ActionItem from '../ActionItem';
+import ActionItem from '../ActionItem.js';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const Step = ({ actions, currentAction, onChange }) => (
   <div className={styles.actionItemContainer}>

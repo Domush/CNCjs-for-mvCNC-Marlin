@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { FlexContainer, Row, Col } from '../GridSystem';
-import iconError from './icon-error-48.png';
-import iconWarning from './icon-warning-48.png';
-import iconInfo from './icon-info-48.png';
-import iconSuccess from './icon-success-48.png';
+import { FlexContainer, Row, Col } from '../GridSystem.js';
+import iconError from './icon-error-48.png.js';
+import iconWarning from './icon-warning-48.png.js';
+import iconInfo from './icon-info-48.png.js';
+import iconSuccess from './icon-success-48.png.js';
 
 const Icon = styled.i`
   vertical-align: top;

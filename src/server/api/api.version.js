@@ -2,7 +2,7 @@ import url from 'url';
 import registryUrl from 'registry-url';
 import registryAuthToken from 'registry-auth-token';
 import request from 'superagent';
-import { ERR_INTERNAL_SERVER_ERROR } from '../constants';
+import { ERR_INTERNAL_SERVER_ERROR } from '../constants.js';
 
 const pkgName = 'cncjs4marlin';
 

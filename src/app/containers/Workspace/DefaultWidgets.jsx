@@ -1,10 +1,12 @@
 import classNames from 'classnames';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import store from 'app/store';
 import pubsub from 'pubsub-js';
-import styles from './widgets.styl';
-import JobStatusWidget from '../../widgets/JobStatus';
-import VisualizerWidget from '../../widgets/Visualizer';
+import styles from './widgets.styl.js';
+import JobStatusWidget from '../../widgets/JobStatus.js';
+import VisualizerWidget from '../../widgets/Visualizer.js';
 
 class DefaultWidgets extends PureComponent {
   state = {

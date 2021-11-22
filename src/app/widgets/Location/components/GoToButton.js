@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const GoToButton = ({ onClick, disabled }) => (
   <button tabIndex={-1} disabled={disabled} onClick={onClick} onKeyDown={onClick} className={styles['go-to-button']}>

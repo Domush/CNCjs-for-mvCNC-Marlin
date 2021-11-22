@@ -1,4 +1,4 @@
-import { GCodeProcessor } from '../lib/gcodeProcessor/GCodeProcessor';
+import { GCodeProcessor } from '../lib/gcodeProcessor/GCodeProcessor.js';
 
 onmessage = ({ data }) => {
   const { content, name, size, feedArray = null, accelArray = null } = data;

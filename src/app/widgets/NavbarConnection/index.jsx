@@ -8,12 +8,14 @@ import includes from 'lodash/includes';
 //import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import pubsub from 'pubsub-js';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import controller from 'app/lib/controller';
 import i18n from 'app/lib/i18n';
 import log from 'app/lib/log';
-import WidgetConfig from '../WidgetConfig';
-import NavbarConnection from './NavbarConnection';
+import WidgetConfig from '../WidgetConfig.js';
+import NavbarConnection from './NavbarConnection.js';
 
 class NavbarConnectionWidget extends PureComponent {
   static propTypes = {

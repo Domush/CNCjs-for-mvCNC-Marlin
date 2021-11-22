@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { Toaster, TOASTER_SUCCESS } from 'app/lib/toaster/ToasterLib';
 import store from 'app/store';
-import gamepad, { shortcutComboBuilder } from 'app/lib/gamepad';
+// import both default and named
+import gamepad from 'app/lib/gamepad';
+import { shortcutComboBuilder } from 'app/lib/gamepad';
 import Button from 'app/components/FunctionButton/FunctionButton';
 import Modal from 'app/components/ToolModal/ToolModal';
 
-import Input from '../components/Input';
+import Input from '../components/Input.js';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 let queue = [];
 

@@ -1,12 +1,12 @@
 import events from 'events';
 import _ from 'lodash';
-import MarlinLineParser from './MarlinLineParser';
-import MarlinLineParserResultStart from './MarlinLineParserResultStart';
-import MarlinLineParserResultFirmware from './MarlinLineParserResultFirmware';
-import MarlinLineParserResultPosition from './MarlinLineParserResultPosition';
-import MarlinLineParserResultOk from './MarlinLineParserResultOk';
-import MarlinLineParserResultEcho from './MarlinLineParserResultEcho';
-import MarlinLineParserResultError from './MarlinLineParserResultError';
+import MarlinLineParser from './MarlinLineParser.js';
+import MarlinLineParserResultStart from './MarlinLineParserResultStart.js';
+import MarlinLineParserResultFirmware from './MarlinLineParserResultFirmware.js';
+import MarlinLineParserResultPosition from './MarlinLineParserResultPosition.js';
+import MarlinLineParserResultOk from './MarlinLineParserResultOk.js';
+import MarlinLineParserResultEcho from './MarlinLineParserResultEcho.js';
+import MarlinLineParserResultError from './MarlinLineParserResultError.js';
 
 class MarlinRunner extends events.EventEmitter {
   state = {

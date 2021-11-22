@@ -1,4 +1,6 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 class Blink extends PureComponent {

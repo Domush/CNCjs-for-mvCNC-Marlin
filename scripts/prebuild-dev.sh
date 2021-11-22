@@ -6,9 +6,9 @@ rm -rf output/*
 pushd src
 cp -af package.json ../output/
 cross-env NODE_ENV=development babel "*.js" \
-    --config-file ../babel.config.cjs \
+    --config-file ../babel.config.json \
     --out-dir ../output
 cross-env NODE_ENV=development babel "electron-app/**/*.js" \
-    --config-file ../babel.config.cjs \
+    --config-file ../babel.config.json \
     --out-dir ../output/electron-app
 popd

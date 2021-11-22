@@ -1,21 +1,29 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import * as WebGL from 'app/lib/three/WebGL';
-import { GRBL_ACTIVE_STATE_ALARM, GRBL_ACTIVE_STATE_HOLD, WORKFLOW_STATE_IDLE } from 'app/constants';
-import Widget from 'app/components/Widget';
-import ToggleSwitch from 'app/components/ToggleSwitch';
-import UnlockButton from 'app/widgets/Visualizer/UnlockButton';
-import WorkflowControl from './WorkflowControl';
-import MachineStatusArea from './MachineStatusArea';
-import ValidationModal from './ValidationModal';
-import WarningModal from './WarningModal';
-import Visualizer from './Visualizer';
-import Loading from './Loading';
-import Rendering from './Rendering';
-import WatchDirectory from './WatchDirectory';
-import { MODAL_WATCH_DIRECTORY } from './constants';
-import styles from './index.styl';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const WebGL = require('app/lib/three/WebGL');
+const {
+  GRBL_ACTIVE_STATE_ALARM: GRBL_ACTIVE_STATE_ALARM,
+  GRBL_ACTIVE_STATE_HOLD: GRBL_ACTIVE_STATE_HOLD,
+  WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
+} = require('app/constants');
+const Widget = require('app/components/Widget');
+const ToggleSwitch = require('app/components/ToggleSwitch');
+const UnlockButton = require('app/widgets/Visualizer/UnlockButton');
+const WorkflowControl = require('./WorkflowControl');
+const MachineStatusArea = require('./MachineStatusArea');
+const ValidationModal = require('./ValidationModal');
+const WarningModal = require('./WarningModal');
+const Visualizer = require('./Visualizer');
+const Loading = require('./Loading');
+const Rendering = require('./Rendering');
+const WatchDirectory = require('./WatchDirectory');
+const { MODAL_WATCH_DIRECTORY: MODAL_WATCH_DIRECTORY } = require('./constants');
+const styles = require('./index.styl');
 
 const PrimaryVisualizer = ({
   actions,

@@ -13,7 +13,6 @@ electron-builder.yml
 yarn.lock
 *_server_log.txt
 
-
 # Logs
 logs
 *.log

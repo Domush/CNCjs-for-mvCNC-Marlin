@@ -1,22 +1,24 @@
 import Modal from 'app/components/Modal';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import pubsub from 'pubsub-js';
 import _ from 'lodash';
 import controller from 'app/lib/controller';
 import Events from 'app/containers/Preferences/ToolChange';
 import ProgramEvents from 'app/containers/Preferences/Events';
 import gamepad from 'app/lib/gamepad';
-import { Toaster, TOASTER_SUCCESS } from '../../lib/toaster/ToasterLib';
-import General from './General';
-import Shortcuts from './Keybindings';
-import ProbeSettings from './Probe';
-import WidgetConfig from '../../widgets/WidgetConfig';
-import VisualizerSettings from './Visualizer';
-import About from './About';
-import store from '../../store';
-import styles from './index.styl';
-import { METRIC_UNITS } from '../../constants';
-import { convertToImperial, convertToMetric } from './calculate';
+import { Toaster, TOASTER_SUCCESS } from '../../lib/toaster/ToasterLib.js';
+import General from './General.js';
+import Shortcuts from './Keybindings.js';
+import ProbeSettings from './Probe.js';
+import WidgetConfig from '../../widgets/WidgetConfig.js';
+import VisualizerSettings from './Visualizer.js';
+import About from './About.js';
+import store from '../../store.js';
+import styles from './index.styl.js';
+import { METRIC_UNITS } from '../../constants.js';
+import { convertToImperial, convertToMetric } from './calculate.js';
 
 class PreferencesPage extends PureComponent {
   probeConfig = new WidgetConfig('probe');

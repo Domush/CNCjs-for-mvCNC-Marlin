@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const ImageDiagram = ({ actions, currentAction }) => {
   const imgIndex = currentAction === actions.length ? currentAction - 1 : currentAction;

@@ -2,7 +2,9 @@ import cx from 'classnames';
 // import trimEnd from 'lodash/trimEnd';
 import PerfectScrollbar from 'perfect-scrollbar';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
@@ -11,8 +13,8 @@ import store from 'app/store';
 import controller from 'app/lib/controller';
 import Button from 'app/components/FunctionButton/FunctionButton';
 import { MAX_TERMINAL_INPUT_ARRAY_SIZE } from 'app/lib/constants';
-import History from './History';
-import styles from './index.styl';
+import History from './History.js';
+import styles from './index.styl.js';
 
 class TerminalWrapper extends PureComponent {
   static propTypes = {

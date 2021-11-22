@@ -1,6 +1,10 @@
-import * as THREE from 'three';
-import log from 'app/lib/log';
-import CombinedCamera from 'app/lib/three/CombinedCamera';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const THREE = require('three');
+const log = require('app/lib/log');
+const CombinedCamera = require('app/lib/three/CombinedCamera');
 
 const FOV_MIN = 15;
 const TARGET0 = new THREE.Vector3(0, 0, 0);

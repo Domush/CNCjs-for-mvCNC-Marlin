@@ -1,13 +1,13 @@
-import { MenuItem as DropdownMenuItem } from '../Dropdown';
-import Widget from './Widget';
-import Header from './Header';
-import Content from './Content';
-import Footer from './Footer';
-import Sortable from './Sortable';
-import Title from './Title';
-import Button from './Button';
-import DropdownButton from './DropdownButton';
-import Controls from './Controls';
+import { MenuItem as DropdownMenuItem } from '../Dropdown.js';
+import Widget from './Widget.js';
+import Header from './Header.js';
+import Content from './Content.js';
+import Footer from './Footer.js';
+import Sortable from './Sortable.js';
+import Title from './Title.js';
+import Button from './Button.js';
+import DropdownButton from './DropdownButton.js';
+import Controls from './Controls.js';
 
 Widget.Header = Header;
 Widget.Content = Content;

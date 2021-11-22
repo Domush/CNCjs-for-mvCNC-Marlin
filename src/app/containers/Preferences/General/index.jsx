@@ -1,12 +1,12 @@
 import React from 'react';
-import JoggingPresets from './JoggingPresets';
-import MachineProfile from './MachineProfile';
-import SettingWrapper from '../components/SettingWrapper';
-import Connection from './Connection';
-import GeneralArea from '../components/GeneralArea';
-import Workspace from './Workspace';
-import Movement from './Movement';
-import Settings from './Settings';
+import JoggingPresets from './JoggingPresets.js';
+import MachineProfile from './MachineProfile.js';
+import SettingWrapper from '../components/SettingWrapper.js';
+import Connection from './Connection.js';
+import GeneralArea from '../components/GeneralArea.js';
+import Workspace from './Workspace.js';
+import Movement from './Movement.js';
+import Settings from './Settings.js';
 
 const General = ({ active, state, actions }) => (
   <SettingWrapper title="General" show={active}>

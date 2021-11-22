@@ -1,18 +1,20 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import store from 'app/store';
 import TabbedWidget from 'app/components/TabbedWidget';
 import controller from 'app/lib/controller';
 import CoolantWidget from 'app/widgets/Coolant';
-import WidgetConfig from '../WidgetConfig';
-import ProbeWidget from '../Probe';
-import MacroWidget from '../Macro';
-import ConsoleWidget from '../Console';
+import WidgetConfig from '../WidgetConfig.js';
+import ProbeWidget from '../Probe.js';
+import MacroWidget from '../Macro.js';
+import ConsoleWidget from '../Console.js';
 
 // import LaserWidget from '../Laser';
-import SpindleWidget from '../Spindle';
+import SpindleWidget from '../Spindle.js';
 
-import { MODAL_NONE } from './constants';
+import { MODAL_NONE } from './constants.js';
 
 class SecondaryFunctionality extends PureComponent {
   static propTypes = {

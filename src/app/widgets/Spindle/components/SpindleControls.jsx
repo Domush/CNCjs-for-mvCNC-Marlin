@@ -1,7 +1,7 @@
 import React from 'react';
-import FunctionButton from '../../../components/FunctionButton/FunctionButton';
-import Slider from './Slider';
-import styles from '../index.styl';
+import FunctionButton from '../../../components/FunctionButton/FunctionButton.js';
+import Slider from './Slider.js';
+import styles from '../index.styl.js';
 
 const SpindleControls = ({ actions, state }) => {
   const { canClick } = state;

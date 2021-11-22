@@ -1,6 +1,10 @@
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 // import colornames from 'colornames';
-import * as THREE from 'three';
-import log from 'app/lib/log';
+const THREE = require('three');
+const log = require('app/lib/log');
 
 class GCodeVisualizer {
   constructor(theme) {

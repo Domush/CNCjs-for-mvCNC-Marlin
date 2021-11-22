@@ -3,7 +3,7 @@ import { END } from 'redux-saga';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import mainReducer from 'app/reducers';
-import sagaMiddleware from './saga';
+import sagaMiddleware from './saga.js';
 
 const env = process.env.NODE_ENV;
 

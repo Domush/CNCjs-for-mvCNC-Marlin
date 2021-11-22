@@ -1,5 +1,6 @@
-/* eslint-disable no-restricted-globals */
-import React, { useEffect, useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Toaster, TOASTER_SUCCESS } from 'app/lib/toaster/ToasterLib';
 import { Confirm } from 'app/components/ConfirmationDialog/ConfirmationDialogLib';
@@ -8,7 +9,7 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const setEepromSetting = (setting, value) => {
   controller.command('gcode', `${setting}=${value}`);

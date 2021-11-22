@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './index.styl';
-import ReconnectButton from './ReconnectButton';
+import styles from './index.styl.js';
+import ReconnectButton from './ReconnectButton.js';
 
 const NotConnectedWarning = ({ handleConnect }) => (
   <div>

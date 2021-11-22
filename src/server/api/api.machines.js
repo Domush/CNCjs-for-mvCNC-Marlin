@@ -4,12 +4,12 @@ import _find from 'lodash/find';
 import _castArray from 'lodash/castArray';
 import _isPlainObject from 'lodash/isPlainObject';
 import uuid from 'uuid';
-import settings from '../config/settings';
-import { ensureNumber, ensureString } from '../lib/ensure-type';
-import logger from '../lib/logger';
-import config from '../services/configstore';
-import { getPagingRange } from './paging';
-import { ERR_BAD_REQUEST, ERR_NOT_FOUND, ERR_INTERNAL_SERVER_ERROR } from '../constants';
+import settings from '../config/settings.js';
+import { ensureNumber, ensureString } from '../lib/ensure-type.js';
+import logger from '../lib/logger.js';
+import config from '../services/configstore/index.js';
+import { getPagingRange } from './paging.js';
+import { ERR_BAD_REQUEST, ERR_NOT_FOUND, ERR_INTERNAL_SERVER_ERROR } from '../constants.js';
 
 const log = logger('api:machines');
 const CONFIG_KEY = 'machines';

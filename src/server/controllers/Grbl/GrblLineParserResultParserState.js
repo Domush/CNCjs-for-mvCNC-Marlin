@@ -5,7 +5,7 @@ import _get from 'lodash/get';
 import _includes from 'lodash/includes';
 import _set from 'lodash/set';
 import _trim from 'lodash/trim';
-import { GRBL_MODAL_GROUPS } from './constants';
+import { GRBL_MODAL_GROUPS } from './constants.js';
 
 class GrblLineParserResultParserState {
   // * Grbl v0.9

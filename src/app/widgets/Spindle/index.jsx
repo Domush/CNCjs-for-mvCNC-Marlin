@@ -1,4 +1,6 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import classNames from 'classnames';
 import includes from 'lodash/includes';
 import debounce from 'lodash/debounce';
@@ -6,11 +8,13 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import pubsub from 'pubsub-js';
 import { connect } from 'react-redux';
-import gamepad, { runAction } from 'app/lib/gamepad';
+// import both default and named
+import gamepad from 'app/lib/gamepad';
+import { runAction } from 'app/lib/gamepad';
 import combokeys from 'app/lib/combokeys';
 import Widget from 'app/components/Widget';
 import controller from 'app/lib/controller';
-import WidgetConfig from '../WidgetConfig';
+import WidgetConfig from '../WidgetConfig.js';
 import {
   GRBL,
   GRBL_ACTIVE_STATE_HOLD,
@@ -19,12 +23,12 @@ import {
   MARLIN,
   SPINDLE_MODE,
   WORKFLOW_STATE_RUNNING,
-} from '../../constants';
-import styles from './index.styl';
-import SpindleControls from './components/SpindleControls';
-import LaserControls from './components/LaserControls';
-import ModalToggle from './components/ModalToggle';
-import ActiveIndicator from './components/ActiveIndicator';
+} from '../../constants.js';
+import styles from './index.styl.js';
+import SpindleControls from './components/SpindleControls.js';
+import LaserControls from './components/LaserControls.js';
+import ModalToggle from './components/ModalToggle.js';
+import ActiveIndicator from './components/ActiveIndicator.js';
 
 class SpindleWidget extends PureComponent {
   static propTypes = {

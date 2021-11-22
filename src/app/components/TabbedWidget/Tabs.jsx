@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
-import WidgetStyles from '../Widget/index.styl';
-import Tab from './Tab';
-import styles from './index.styl';
+import WidgetStyles from '../Widget/index.styl.js';
+import Tab from './Tab.js';
+import styles from './index.styl.js';
 
 const Tabs = ({ className, tabs, activeTabIndex, onClick, ...props }) => (
   <div {...props} className={classNames(className, WidgetStyles.widgetHeader, styles.tabRow)}>

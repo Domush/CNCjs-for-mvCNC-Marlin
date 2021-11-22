@@ -1,8 +1,12 @@
-import pubsub from 'pubsub-js';
-import reduxStore from 'app/store/redux';
-import * as fileActions from 'app/actions/fileInfoActions';
-import store from 'app/store';
-import { RENDER_RENDERING } from 'app/constants';
+const pubsub = require('pubsub-js');
+const reduxStore = require('app/store/redux');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const fileActions = require('app/actions/fileInfoActions');
+const store = require('app/store');
+const { RENDER_RENDERING: RENDER_RENDERING } = require('app/constants');
 
 export const visualizeResponse = ({ data }) => {
   pubsub.publish('file:load', data);

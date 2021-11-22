@@ -2,11 +2,11 @@ import events from 'events';
 import Mousetrap from 'mousetrap';
 import api from 'app/api';
 import { MACRO_CATEGORY } from 'app/constants';
-import log from './log';
-import { preventDefault } from './dom-events';
-import { modifierKeys } from './constants';
+import log from './log.js';
+import { preventDefault } from './dom-events.js';
+import { modifierKeys } from './constants.js';
 
-import store from '../store';
+import store from '../store.js';
 
 const STOP_CMD = 'STOP_JOG';
 const MACRO = 'MACRO';

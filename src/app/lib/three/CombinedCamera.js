@@ -1,3 +1,7 @@
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 /**
  *    @author zz85 / http://twitter.com/blurspline / http://www.lab4games.net/zz85/blog
  *
@@ -8,7 +12,7 @@
  *
  */
 
-import * as THREE from 'three';
+const THREE = require('three');
 
 class CombinedCamera extends THREE.Camera {
   constructor(width, height, fov, near, far, orthoNear, orthoFar) {

@@ -1,3 +1,3 @@
-import Settings from './Settings';
+import Settings from './Settings.js';
 
 export default Settings;

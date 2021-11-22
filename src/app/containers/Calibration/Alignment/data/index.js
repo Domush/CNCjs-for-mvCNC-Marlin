@@ -1,13 +1,14 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useState } from 'react';
 
 import store from 'app/store';
 import controller from 'app/lib/controller';
 import Button from 'app/components/FunctionButton/FunctionButton';
 
-import Input from '../../Input';
+import Input from '../../Input.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const inputStyle = {
   width: '100px',

@@ -8,7 +8,9 @@ import _findIndex from 'lodash/findIndex';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import pubsub from 'pubsub-js';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import api from 'app/api';
 import { ERR_CONFLICT, ERR_PRECONDITION_FAILED } from 'app/api/constants';
@@ -16,15 +18,15 @@ import settings from 'app/config/settings';
 import Breadcrumbs from 'app/components/Breadcrumbs';
 import i18n from 'app/lib/i18n';
 import store from 'app/store';
-import General from './General';
-import Workspace from './Workspace';
-import MachineProfiles from './MachineProfiles';
-import UserAccounts from './UserAccounts';
-import Controller from './Controller';
-import Commands from './Commands';
-import Events from './Events';
-import About from './About';
-import styles from './index.styl';
+import General from './General.js';
+import Workspace from './Workspace.js';
+import MachineProfiles from './MachineProfiles.js';
+import UserAccounts from './UserAccounts.js';
+import Controller from './Controller.js';
+import Commands from './Commands.js';
+import Events from './Events.js';
+import About from './About.js';
+import styles from './index.styl.js';
 
 const mapSectionPathToId = (path = '') => {
   return _camelCase(path.split('/')[0] || '');

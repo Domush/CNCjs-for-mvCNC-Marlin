@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
 
 import store from 'app/store';
 import ToolModal from 'app/components/ToolModal/ToolModal';
 import Button from 'app/components/FunctionButton/FunctionButton';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const AddActionModal = ({ onClose }) => {
   const [commands, setCommands] = useState([]);

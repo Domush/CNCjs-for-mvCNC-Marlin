@@ -5,7 +5,7 @@ import variables from 'app/constants/variables';
 import Space from 'app/components/Space';
 import insertAtCaret from 'app/widgets/Macro/insertAtCaret';
 import uniqueId from 'lodash/uniqueId';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const MacroVariableDropdown = ({ textarea, label = '' }) => (
   <div className="form-group">

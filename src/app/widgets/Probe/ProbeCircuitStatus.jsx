@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const ProbeCircuitStatus = ({ probeActive, connected }) => (
   <div className={styles.probeStatus}>

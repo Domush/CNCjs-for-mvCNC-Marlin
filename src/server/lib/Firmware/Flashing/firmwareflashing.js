@@ -1,7 +1,7 @@
 import AvrgirlArduino from 'avrgirl-arduino';
-import hex from '!file-loader!./grblsept15.hex';
-import logger from '../../logger';
-import store from '../../../store';
+import hex from '!file-loader!./grblsept15.hex.js';
+import logger from '../../logger.js';
+import store from '../../../store.js';
 
 const log = logger('FlashLib: ');
 const FlashingFirmware = (recievedPortNumber) => {

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import SettingWrapper from '../components/SettingWrapper';
-import GeneralArea from '../components/GeneralArea';
+import SettingWrapper from '../components/SettingWrapper.js';
+import GeneralArea from '../components/GeneralArea.js';
 
-import VisualizerOptions from './VisualizerOptions';
-import Theme from './Theme';
+import VisualizerOptions from './VisualizerOptions.js';
+import Theme from './Theme.js';
 
 const VisualizerSettings = ({ active, state, actions }) => (
   <SettingWrapper title="Visualizer" show={active}>

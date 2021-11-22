@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import React from 'react';
 
 import store from 'app/store';
@@ -7,7 +6,7 @@ import Button from 'app/components/FunctionButton/FunctionButton';
 import { Confirm } from 'app/components/ConfirmationDialog/ConfirmationDialogLib';
 import { Toaster, TOASTER_DANGER } from 'app/lib/toaster/ToasterLib';
 
-import Fieldset from '../components/Fieldset';
+import Fieldset from '../components/Fieldset.js';
 
 const Settings = () => {
   const inputRef = React.createRef();

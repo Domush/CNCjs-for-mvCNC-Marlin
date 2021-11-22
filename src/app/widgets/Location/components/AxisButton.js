@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../constants';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../constants.js';
 
 //Main styles
 const Container = styled.div`

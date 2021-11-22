@@ -1,6 +1,6 @@
 import store from 'app/store';
 import pubsub from 'pubsub-js';
-import { TOASTER_DANGER, Toaster } from '../../lib/toaster/ToasterLib';
+import { TOASTER_DANGER, Toaster } from '../../lib/toaster/ToasterLib.js';
 
 export const RECENT_FILE_LIMIT = 5;
 

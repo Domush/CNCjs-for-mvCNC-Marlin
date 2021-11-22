@@ -1,16 +1,22 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import Slider from 'rc-slider';
-import React, { PureComponent } from 'react';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Button } from 'app/components/Buttons';
 import Modal from 'app/components/Modal';
 import Space from 'app/components/Space';
 import { ToastNotification } from 'app/components/Notifications';
 import { Form, Input, Textarea } from 'app/components/Validation';
 import FormGroup from 'app/components/FormGroup';
-import i18n from 'app/lib/i18n';
-import * as validations from 'app/lib/validations';
-import styles from '../form.styl';
+const i18n = require('app/lib/i18n');
+const validations = require('app/lib/validations');
+const styles = require('../form.styl');
 
 class CreateRecord extends PureComponent {
   static propTypes = {

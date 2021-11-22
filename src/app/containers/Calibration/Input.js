@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const Input = ({ value, units, onChange, additionalProps, className, style, disabled }) => (
   <div className={classNames(styles.input, 'form-group', className)}>

@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import controller from 'app/lib/controller';
 import { mapPositionToUnits } from 'app/lib/units';
 import { METRIC_UNITS } from 'app/constants';
-import styles from './Overrides.styl';
-import FeedControlButton from './FeedControlButton';
+import styles from './Overrides.styl.js';
+import FeedControlButton from './FeedControlButton.js';
 
 /**
  * Settings Area component to display override controls for user

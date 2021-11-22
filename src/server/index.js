@@ -16,14 +16,15 @@ import size from 'lodash/size';
 import trimEnd from 'lodash/trimEnd';
 import uniqWith from 'lodash/uniqWith';
 import webappengine from 'webappengine';
-import settings from './config/settings';
-import app from './app';
-import cncengine from './services/cncengine';
-import monitor from './services/monitor';
-import config from './services/configstore';
-import { ensureString } from './lib/ensure-type';
-import logger, { setLevel } from './lib/logger';
-import urljoin from './lib/urljoin';
+import settings from './config/settings.js';
+import app from './app.js';
+import cncengine from './services/cncengine/index.js';
+import monitor from './services/monitor/index.js';
+import config from './services/configstore/index.js';
+import { ensureString } from './lib/ensure-type.js';
+import logger from './lib/logger.js';
+import { setLevel } from './lib/logger.js';
+import urljoin from './lib/urljoin.js';
 
 const log = logger('init');
 

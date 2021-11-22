@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ControlledNumberInput from 'app/components/ControlledNumberInput';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const Input = ({ value, label, units, onChange, additionalProps, className }) => (
   <div

@@ -1,5 +1,5 @@
-import Toggler from './Toggler';
-import TogglerIcon from './TogglerIcon';
+import Toggler from './Toggler.js';
+import TogglerIcon from './TogglerIcon.js';
 
 Toggler.Icon = TogglerIcon;
 

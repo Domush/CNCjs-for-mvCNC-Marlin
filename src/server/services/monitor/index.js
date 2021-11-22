@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import minimatch from 'minimatch';
-import FSMonitor from './FSMonitor';
+import FSMonitor from './FSMonitor.js';
 
 const monitor = new FSMonitor();
 

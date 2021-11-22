@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { PRIMARY_COLOR, SECONDARY_COLOR, BORDER_COLOR } from './constants';
+import { PRIMARY_COLOR, SECONDARY_COLOR, BORDER_COLOR } from './constants.js';
 
 const Button = styled.button`
   border: 1px solid ${BORDER_COLOR};

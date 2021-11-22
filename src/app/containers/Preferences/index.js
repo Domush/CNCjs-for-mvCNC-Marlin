@@ -1,3 +1,3 @@
-import Preferences from './Preferences';
+import Preferences from './Preferences.js';
 
 export default Preferences;

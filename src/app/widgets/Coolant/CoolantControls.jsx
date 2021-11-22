@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 import controller from 'app/lib/controller';
 import { GRBL_ACTIVE_STATE_IDLE } from 'app/constants';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const sendM7 = () => {
   controller.command('gcode', 'M7');

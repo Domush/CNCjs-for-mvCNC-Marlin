@@ -1,9 +1,11 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { find } from 'lodash';
 import UnrecognizedDevices from 'app/widgets/NavbarConnection/UnrecognizedDevices';
-import PortListing from './PortListing';
-import styles from './Index.styl';
+import PortListing from './PortListing.js';
+import styles from './Index.styl.js';
 
 class NavbarConnection extends PureComponent {
   static propTypes = {

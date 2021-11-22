@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Provider as ReduxProvider } from 'react-redux';
 import ToolIntroduction from 'app/containers/Calibration/Alignment/ToolIntroduction';
 import reduxStore from 'app/store/redux';
 import Modal from 'app/components/Modal';
-import Step from './Step';
-import NavigationButtons from './NavigationButtons';
-import TriangleDiagram from '../TriangleDiagram';
-import Result from './Result';
-import Keypad from '../JogControl';
-import introImage from './assets/XY_squaring_example.jpg';
+import Step from './Step.js';
+import NavigationButtons from './NavigationButtons.js';
+import TriangleDiagram from '../TriangleDiagram.js';
+import Result from './Result.js';
+import Keypad from '../JogControl.js';
+import introImage from './assets/XY_squaring_example.jpg.js';
 
-import styles from './index.styl';
-import { step1, step2 } from './data';
+import styles from './index.styl.js';
+import { step1, step2 } from './data.js';
 
 const Alignment = ({ onClose }) => {
   const initialShapes = {

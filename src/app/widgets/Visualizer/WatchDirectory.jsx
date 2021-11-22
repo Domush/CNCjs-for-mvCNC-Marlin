@@ -1,13 +1,15 @@
 import path from 'path';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import InfiniteTree from 'react-infinite-tree';
 import api from 'app/api';
 import Modal from 'app/components/Modal';
 import i18n from 'app/lib/i18n';
-import renderer from './renderer';
-import styles from './renderer.styl';
+import renderer from './renderer.js';
+import styles from './renderer.styl.js';
 
 class WatchDirectory extends PureComponent {
   static propTypes = {

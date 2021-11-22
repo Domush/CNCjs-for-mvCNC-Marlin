@@ -1,3 +1,3 @@
-import Events from './Events';
+import Events from './Events.js';
 
 export default Events;

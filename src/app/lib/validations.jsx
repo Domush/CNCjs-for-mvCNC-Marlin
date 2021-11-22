@@ -1,6 +1,5 @@
-/* eslint react/prop-types: 0 */
 import React from 'react';
-import i18n from './i18n';
+import i18n from './i18n.js';
 
 const Error = (props) => <div {...props} style={{ color: '#A94442' }} />;
 

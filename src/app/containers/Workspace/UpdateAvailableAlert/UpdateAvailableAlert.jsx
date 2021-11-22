@@ -1,7 +1,9 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import cx from 'classnames';
 import pubsub from 'pubsub-js';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 class UpdateAvailableAlert extends PureComponent {
   constructor(props) {

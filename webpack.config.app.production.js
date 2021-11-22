@@ -15,8 +15,8 @@ import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
-import babelConfig from './babel.config.cjs.js';
-import buildConfig from './build.config.cjs.js';
+import babelConfig from './babel.config.json';
+import buildConfig from './build.config.cjs';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 
@@ -170,12 +170,10 @@ export default {
       },
     ].filter(Boolean),
   },
-  resolve: {
-    fallback: {
-      fs: false,
-      net: false,
-      tls: false,
-    },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
   },
   optimization: {
     minimizer: [
@@ -189,7 +187,7 @@ export default {
         NODE_ENV: JSON.stringify('production'),
         BUILD_VERSION: JSON.stringify(buildVersion),
         LANGUAGES: JSON.stringify(buildConfig.languages),
-        TRACKING_ID: JSON.stringify(buildConfig.analytics.trackingId),
+        // TRACKING_ID: JSON.stringify(buildConfig.analytics.trackingId),
       },
     }),
     new stylusLoader.OptionsPlugin({

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import pubsub from 'pubsub-js';
-import styles from './RecentFileList.styl';
-import RecentFileList from './RecentFileList';
-import { getRecentFiles } from './ClientRecentFiles';
+import styles from './RecentFileList.styl.js';
+import RecentFileList from './RecentFileList.js';
+import { getRecentFiles } from './ClientRecentFiles.js';
 
 const RecentFileButton = () => {
   const [showPullout, setShowPullout] = useState(false);

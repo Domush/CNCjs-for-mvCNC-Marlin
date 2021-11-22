@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import TooltipCustom from 'app/components/TooltipCustom/ToolTip';
 import { Confirm } from 'app/components/ConfirmationDialog/ConfirmationDialogLib';
 
-import { WORKFLOW_STATE_IDLE, WORKFLOW_STATE_PAUSED } from '../../constants';
+import { WORKFLOW_STATE_IDLE, WORKFLOW_STATE_PAUSED } from '../../constants.js';
 
-import MacroItem from './MacroItem';
-import styles from './index.styl';
+import MacroItem from './MacroItem.js';
+import styles from './index.styl.js';
 
 class Macro extends PureComponent {
   static propTypes = {

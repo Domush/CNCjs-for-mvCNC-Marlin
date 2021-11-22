@@ -1,5 +1,9 @@
-import debug from 'debug';
-import pkg from '../package.json';
+const debug = require('debug');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const pkg = require('../package.json');
 
 const log = {
   debug: debug(pkg + ':debug'),

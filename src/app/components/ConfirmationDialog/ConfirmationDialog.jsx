@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import pubsub from 'pubsub-js';
 import cx from 'classnames';
-import styles from './index.styl';
-import ConfirmationDialogButton from './ConfirmationDialogButton';
-import { DIALOG_CONFIRM, DIALOG_CANCEL } from './ConfirmationDialogLib';
+import styles from './index.styl.js';
+import ConfirmationDialogButton from './ConfirmationDialogButton.js';
+import { DIALOG_CONFIRM, DIALOG_CANCEL } from './ConfirmationDialogLib.js';
 
 const ConfirmationDialog = () => {
   const [show, setShow] = useState(false);

@@ -1,4 +1,3 @@
-/* eslint callback-return: 0 */
 import fs from 'fs';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -37,13 +36,12 @@ import config from './services/configstore';
 import { authorizeIPAddress, validateUser } from './access-control';
 import { ERR_FORBIDDEN } from './constants';
 
-// if (process.env.NODE_ENV === 'development') {
-import _webpackDevServer from './webpack-dev-server';
-
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 
+import _webpackDevServer from './webpack-dev-server';
+const webpackDevServer = _webpackDevServer.default;
+
 const log = logger('app');
-// }
 
 const renderPage =
   (view = 'index', cb = _noop) =>
@@ -62,7 +60,6 @@ const appMain = () => {
   {
     // Settings
     if (process.env.NODE_ENV === 'development') {
-      const webpackDevServer = _webpackDevServer.default;
       webpackDevServer(app);
 
       // Error handler - https://github.com/expressjs/errorhandler

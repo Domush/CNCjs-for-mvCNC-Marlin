@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Keypad from './Keypad';
+import Keypad from './Keypad.js';
 
 const Axes = (props) => {
   const { state, actions } = props;

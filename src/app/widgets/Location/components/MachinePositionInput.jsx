@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
-import style from './MachinePositionInput.styl';
+// import both default and named
+import React from 'react';
+import { useRef } from 'react';
+import style from './MachinePositionInput.styl.js';
 
 const MachinePositionInput = ({ value, handleManualMovement }) => {
   const inputRef = useRef();

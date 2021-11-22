@@ -1,7 +1,7 @@
 /* eslint no-bitwise: 0 */
 import { generate } from 'escodegen';
 import { parse } from 'esprima';
-import logger from './logger';
+import logger from './logger.js';
 
 const log = logger('evaluate-expression');
 

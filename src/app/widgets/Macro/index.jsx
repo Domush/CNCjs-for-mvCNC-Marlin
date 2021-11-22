@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { connect } from 'react-redux';
 import includes from 'lodash/includes';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import _ from 'lodash';
 import api from 'app/api';
 import store from 'app/store';
@@ -13,25 +15,22 @@ import controller from 'app/lib/controller';
 import combokeys from 'app/lib/combokeys';
 import i18n from 'app/lib/i18n';
 import log from 'app/lib/log';
-import WidgetConfig from '../WidgetConfig';
-import Macro from './Macro';
-import AddMacro from './AddMacro';
-import EditMacro from './EditMacro';
-import RunMacro from './RunMacro';
-import FunctionButton from '../../components/FunctionButton/FunctionButton';
-import { Toaster, TOASTER_SUCCESS, TOASTER_DANGER } from '../../lib/toaster/ToasterLib';
+import WidgetConfig from '../WidgetConfig.js';
+import Macro from './Macro.js';
+import AddMacro from './AddMacro.js';
+import EditMacro from './EditMacro.js';
+import RunMacro from './RunMacro.js';
+import FunctionButton from '../../components/FunctionButton/FunctionButton.js';
+import { Toaster, TOASTER_SUCCESS, TOASTER_DANGER } from '../../lib/toaster/ToasterLib.js';
 import {
-  // Grbl
   GRBL,
   GRBL_ACTIVE_STATE_IDLE,
   GRBL_ACTIVE_STATE_RUN,
-  // Marlin
   MARLIN,
-  // Workflow
   WORKFLOW_STATE_RUNNING,
-} from '../../constants';
-import { MODAL_NONE, MODAL_ADD_MACRO, MODAL_EDIT_MACRO, MODAL_RUN_MACRO } from './constants';
-import styles from './index.styl';
+} from '../../constants.js';
+import { MODAL_NONE, MODAL_ADD_MACRO, MODAL_EDIT_MACRO, MODAL_RUN_MACRO } from './constants.js';
+import styles from './index.styl.js';
 
 class MacroWidget extends PureComponent {
   static propTypes = {

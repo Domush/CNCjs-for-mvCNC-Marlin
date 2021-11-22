@@ -1,4 +1,6 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import without from 'lodash/without';
 import Push from 'push.js';
@@ -11,9 +13,9 @@ import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 import i18n from 'app/lib/i18n';
 import pubsub from 'pubsub-js';
 import NavbarConnection from 'app/widgets/NavbarConnection';
-import styles from './index.styl';
-import NavLogo from '../../components/NavLogo';
-import NavSidebar from '../NavSidebar';
+import styles from './index.styl.js';
+import NavLogo from '../../components/NavLogo.js';
+import NavSidebar from '../NavSidebar.js';
 
 class Header extends PureComponent {
   static propTypes = withRouter.propTypes;

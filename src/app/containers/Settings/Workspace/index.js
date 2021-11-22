@@ -1,3 +1,3 @@
-import Workspace from './Workspace';
+import Workspace from './Workspace.js';
 
 export default Workspace;

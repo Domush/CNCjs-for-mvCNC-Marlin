@@ -1,11 +1,11 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/prop-types */
-import React from 'react';
-import { CSSTransition } from 'react-transition-group';
+const React = require('react');
+const { CSSTransition: CSSTransition } = require('react-transition-group');
 
-import './modal.css';
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+import('./modal.css');
 
 const ToolsNotificationModal = (props) => (
   <CSSTransition in={props.show} unmountOnExit timeout={{ enter: 0, exit: 300 }}>

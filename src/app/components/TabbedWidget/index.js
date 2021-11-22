@@ -1,7 +1,7 @@
-import TabbedWidget from './TabbedWidget';
-import Tabs from './Tabs';
-import Content from './Content';
-import ChildComponent from './ChildComponent';
+import TabbedWidget from './TabbedWidget.js';
+import Tabs from './Tabs.js';
+import Content from './Content.js';
+import ChildComponent from './ChildComponent.js';
 
 TabbedWidget.Tabs = Tabs;
 TabbedWidget.Content = Content;

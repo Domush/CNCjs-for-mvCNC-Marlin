@@ -1,7 +1,11 @@
-import React from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom';
-import * as user from 'app/lib/user';
-import log from 'app/lib/log';
+const React = require('react');
+const { Route: Route, Redirect: Redirect, withRouter: withRouter } = require('react-router-dom');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const user = require('app/lib/user');
+const log = require('app/lib/log');
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route

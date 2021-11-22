@@ -7,7 +7,7 @@ import { GRBL, MARLIN } from 'app/constants';
 import controller from 'app/lib/controller';
 import store from 'app/store';
 import defaultState from 'app/store/defaultState';
-import WidgetManager from './WidgetManager';
+import WidgetManager from './WidgetManager.js';
 
 export const getActiveWidgets = () => {
   const defaultWidgets = store.get('workspace.container.default.widgets', []).map((widgetId) => widgetId.split(':')[0]);

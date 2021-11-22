@@ -2,16 +2,18 @@ import ensureArray from 'ensure-array';
 import styled from 'styled-components';
 import noop from 'lodash/noop';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import api from 'app/api';
 import { Button } from 'app/components/Buttons';
 import Modal from 'app/components/Modal';
 import { Nav, NavItem } from 'app/components/Navs';
 import i18n from 'app/lib/i18n';
-import General from './General';
-import MDI from './MDI';
-import ShuttleXpress from './ShuttleXpress';
-import { DEFAULT_AXES } from '../constants';
+import General from './General.js';
+import MDI from './MDI.js';
+import ShuttleXpress from './ShuttleXpress.js';
+import { DEFAULT_AXES } from '../constants.js';
 
 const TabContent = styled.div`
   padding: 10px 15px;

@@ -1,8 +1,6 @@
-import { createCommons } from 'simport';
+const { createCommons: createCommons } = require('simport');
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
-
-/* eslint-disable */
 
 // ES5
 import('es5-shim/es5-shim');

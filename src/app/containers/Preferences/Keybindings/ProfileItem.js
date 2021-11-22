@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const ProfileItem = ({ title, icon, id, onClick, onDelete }) => (
   <div tabIndex={-1} role="button" onClick={() => onClick(id)} onKeyDown={null} className={styles.profileItem}>

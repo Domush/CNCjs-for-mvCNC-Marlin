@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const NavLogo = ({ updateAvailable = false, onClick }) => (
   <div className={styles.NavLogo}>

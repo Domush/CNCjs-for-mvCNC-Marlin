@@ -6,9 +6,13 @@ import mapValues from 'lodash/mapValues';
 import PropTypes from 'prop-types';
 import store from 'app/store';
 import { connect } from 'react-redux';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import pubsub from 'pubsub-js';
-import gamepad, { runAction } from 'app/lib/gamepad';
+// import both default and named
+import gamepad from 'app/lib/gamepad';
+import { runAction } from 'app/lib/gamepad';
 import Widget from 'app/components/Widget';
 import combokeys from 'app/lib/combokeys';
 import controller from 'app/lib/controller';
@@ -17,25 +21,21 @@ import { mapPositionToUnits } from 'app/lib/units';
 import Select from 'react-select';
 import { limit } from 'app/lib/normalize-range';
 import WidgetConfig from 'app/widgets/WidgetConfig';
-import Location from './Location';
-import Settings from './Settings';
-import ShuttleControl from './ShuttleControl';
+import Location from './Location.js';
+import Settings from './Settings.js';
+import ShuttleControl from './ShuttleControl.js';
 import {
-  // Units
   IMPERIAL_UNITS,
   IMPERIAL_STEPS,
   METRIC_UNITS,
   METRIC_STEPS,
-  // Grbl
   GRBL,
   GRBL_ACTIVE_STATE_IDLE,
   GRBL_ACTIVE_STATE_RUN,
-  // Marlin
   MARLIN,
-  // Workflow
   WORKFLOW_STATE_RUNNING,
   WORKFLOW_STATE_IDLE,
-} from '../../constants';
+} from '../../constants.js';
 import {
   MODAL_NONE,
   MODAL_SETTINGS,
@@ -46,8 +46,8 @@ import {
   Z_MIN,
   FEEDRATE_MAX,
   FEEDRATE_MIN,
-} from './constants';
-import styles from './index.styl';
+} from './constants.js';
+import styles from './index.styl.js';
 
 class LocationWidget extends PureComponent {
   static propTypes = {

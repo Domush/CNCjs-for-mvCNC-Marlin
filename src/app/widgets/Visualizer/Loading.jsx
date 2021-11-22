@@ -1,6 +1,6 @@
 import React from 'react';
 import i18n from 'app/lib/i18n';
-import styles from './loader.styl';
+import styles from './loader.styl.js';
 
 export default () => (
   <div className={styles.loader}>

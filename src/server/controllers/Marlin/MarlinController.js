@@ -1,35 +1,54 @@
 import ensureArray from 'ensure-array';
-import * as parser from 'gcode-parser';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const parser = require('gcode-parser');
 // import Toolpath from 'gcode-toolpath';
-import _ from 'lodash';
-import map from 'lodash/map';
-import SerialConnection from '../../lib/SerialConnection';
-import EventTrigger from '../../lib/EventTrigger';
-import Feeder from '../../lib/Feeder';
-import Sender, { SP_TYPE_CHAR_COUNTING } from '../../lib/Sender';
-import Workflow, { WORKFLOW_STATE_IDLE, WORKFLOW_STATE_PAUSED, WORKFLOW_STATE_RUNNING } from '../../lib/Workflow';
+const _ = require('lodash');
+const map = require('lodash/map');
+const SerialConnection = require('../../lib/SerialConnection');
+const EventTrigger = require('../../lib/EventTrigger');
+const Feeder = require('../../lib/Feeder');
+{
+  const Sender = require('../../lib/Sender');
+
+  const { SP_TYPE_CHAR_COUNTING: SP_TYPE_CHAR_COUNTING } = Sender;
+}
+{
+  const Workflow = require('../../lib/Workflow');
+
+  const {
+    WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
+    WORKFLOW_STATE_PAUSED: WORKFLOW_STATE_PAUSED,
+    WORKFLOW_STATE_RUNNING: WORKFLOW_STATE_RUNNING,
+  } = Workflow;
+}
 // import delay from '../../lib/delay';
-import ensurePositiveNumber from '../../lib/ensure-positive-number';
-import evaluateAssignmentExpression from '../../lib/evaluate-assignment-expression';
-import logger from '../../lib/logger';
-import translateExpression from '../../lib/translate-expression';
-import config from '../../services/configstore';
-import monitor from '../../services/monitor';
-import taskRunner from '../../services/taskrunner';
-import { getOutlineGcode } from '../../lib/outlineService';
-import store from '../../store';
-import {
-  GLOBAL_OBJECTS as globalObjects,
-  WRITE_SOURCE_CLIENT,
-  WRITE_SOURCE_SERVER,
-  WRITE_SOURCE_FEEDER,
-  WRITE_SOURCE_SENDER,
-} from '../constants';
-import MarlinRunner from './MarlinRunner';
-import interpret from './interpret';
-import { MARLIN, QUERY_TYPE_POSITION } from './constants';
-import { METRIC_UNITS } from '../../../app/constants';
-import { determineMaxMovement, getAxisMaximumLocation } from '../../lib/homing';
+const ensurePositiveNumber = require('../../lib/ensure-positive-number');
+const evaluateAssignmentExpression = require('../../lib/evaluate-assignment-expression');
+const logger = require('../../lib/logger');
+const translateExpression = require('../../lib/translate-expression');
+const config = require('../../services/configstore');
+const monitor = require('../../services/monitor');
+const taskRunner = require('../../services/taskrunner');
+const { getOutlineGcode: getOutlineGcode } = require('../../lib/outlineService');
+const store = require('../../store');
+const {
+  GLOBAL_OBJECTS: globalObjects,
+  WRITE_SOURCE_CLIENT: WRITE_SOURCE_CLIENT,
+  WRITE_SOURCE_SERVER: WRITE_SOURCE_SERVER,
+  WRITE_SOURCE_FEEDER: WRITE_SOURCE_FEEDER,
+  WRITE_SOURCE_SENDER: WRITE_SOURCE_SENDER,
+} = require('../constants');
+const MarlinRunner = require('./MarlinRunner');
+const interpret = require('./interpret');
+const { MARLIN: MARLIN, QUERY_TYPE_POSITION: QUERY_TYPE_POSITION } = require('./constants');
+const { METRIC_UNITS: METRIC_UNITS } = require('../../../app/constants');
+const {
+  determineMaxMovement: determineMaxMovement,
+  getAxisMaximumLocation: getAxisMaximumLocation,
+} = require('../../lib/homing');
 
 // % commands
 const WAIT = '%wait';

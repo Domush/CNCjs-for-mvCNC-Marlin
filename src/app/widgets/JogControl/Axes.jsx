@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Keypad from './Keypad';
-import SpeedControls from './SpeedControls';
-import styles from './index.styl';
+import Keypad from './Keypad.js';
+import SpeedControls from './SpeedControls.js';
+import styles from './index.styl.js';
 
 const Axes = (props) => {
   const { state, actions } = props;

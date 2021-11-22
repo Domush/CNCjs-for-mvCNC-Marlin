@@ -3,7 +3,9 @@ import _includes from 'lodash/includes';
 import _set from 'lodash/set';
 import PropTypes from 'prop-types';
 import _uniqueId from 'lodash/uniqueId';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import ForEach from 'react-foreach';
 import { Button } from 'app/components/Buttons';
 import { Checkbox } from 'app/components/Checkbox';

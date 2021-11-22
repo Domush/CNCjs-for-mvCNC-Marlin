@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import FunctionButton from 'app/components/FunctionButton/FunctionButton';
 
-import Keypad from '../JogControl';
+import Keypad from '../JogControl.js';
 
 const ToolIntroduction = ({ readyHandler, isConnected }) => {
   const buttonText = isConnected ? 'Ready to start' : 'You must be connected to a device';

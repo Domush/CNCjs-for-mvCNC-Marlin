@@ -4,17 +4,21 @@ import frac from 'frac';
 import _includes from 'lodash/includes';
 import _uniqueId from 'lodash/uniqueId';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import Repeatable from 'react-repeatable';
 import styled from 'styled-components';
 import { Button } from 'app/components/Buttons';
-import Dropdown, { MenuItem } from 'app/components/Dropdown';
+// import both default and named
+import Dropdown from 'app/components/Dropdown';
+import { MenuItem } from 'app/components/Dropdown';
 import Space from 'app/components/Space';
 import controller from 'app/lib/controller';
 import i18n from 'app/lib/i18n';
-import Fraction from './components/Fraction';
-import { IMPERIAL_UNITS, IMPERIAL_STEPS, METRIC_UNITS, METRIC_STEPS } from '../../constants';
-import styles from './index.styl';
+import Fraction from './components/Fraction.js';
+import { IMPERIAL_UNITS, IMPERIAL_STEPS, METRIC_UNITS, METRIC_STEPS } from '../../constants.js';
+import styles from './index.styl.js';
 
 const KeypadText = styled.span`
   position: relative;

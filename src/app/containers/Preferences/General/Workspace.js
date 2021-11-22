@@ -4,9 +4,9 @@ import { IMPERIAL_UNITS, METRIC_UNITS } from 'app/constants';
 import { RadioGroup, RadioButton } from 'app/components/Radio';
 import Tooltip from 'app/components/TooltipCustom/ToolTip';
 import ToggleSwitch from 'app/components/ToggleSwitch';
-import Fieldset from '../components/Fieldset';
+import Fieldset from '../components/Fieldset.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const Workspace = ({ state, actions }) => {
   const { units, reverseWidgets } = state;

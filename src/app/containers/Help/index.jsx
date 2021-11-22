@@ -1,7 +1,7 @@
 import React from 'react';
 import ToolModal from 'app/components/ToolModal/ToolModal';
 import HelpCard from 'app/containers/Help/HelpCard';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const REPORT_FORM_LINK = 'https://sienci.com/cncjs4marlin-feedback/';
 const DOCUMENTATION_LINK = 'https://resources.sienci.com/view/gs-using-cncjs4marlin/';

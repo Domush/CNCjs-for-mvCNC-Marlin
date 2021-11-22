@@ -1,8 +1,10 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import i18n from 'app/lib/i18n';
 // import Space from 'app/components/Space';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 class NumberInputs extends PureComponent {
   static propTypes = {

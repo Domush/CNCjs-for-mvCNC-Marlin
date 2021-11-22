@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProgressArea from './ProgressArea';
-import SettingsArea from './SettingsArea';
-import styles from './Overrides.styl';
+import ProgressArea from './ProgressArea.js';
+import SettingsArea from './SettingsArea.js';
+import styles from './Overrides.styl.js';
 
 /**
  * Override component responsible for allowing feed rate and spindle overrides as well as displaying their values

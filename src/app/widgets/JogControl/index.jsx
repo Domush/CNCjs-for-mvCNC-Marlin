@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 import cx from 'classnames';
 import ensureArray from 'ensure-array';
 import get from 'lodash/get';
@@ -8,7 +6,9 @@ import mapValues from 'lodash/mapValues';
 import includes from 'lodash/includes';
 import { throttle, inRange } from 'lodash';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import Widget from 'app/components/Widget';
 import combokeys from 'app/lib/combokeys';
 import controller from 'app/lib/controller';
@@ -16,30 +16,29 @@ import { preventDefault } from 'app/lib/dom-events';
 import i18n from 'app/lib/i18n';
 import { in2mm, mm2in, mapPositionToUnits } from 'app/lib/units';
 import { limit } from 'app/lib/normalize-range';
-import gamepad, { runAction } from 'app/lib/gamepad';
+// import both default and named
+import gamepad from 'app/lib/gamepad';
+import { runAction } from 'app/lib/gamepad';
 import WidgetConfig from 'app/widgets/WidgetConfig';
 import pubsub from 'pubsub-js';
 import { connect } from 'react-redux';
-import store from '../../store';
-import Axes from './Axes';
-import ShuttleControl from './ShuttleControl';
-import JogHelper from './jogHelper';
+import store from '../../store.js';
+import Axes from './Axes.js';
+import ShuttleControl from './ShuttleControl.js';
+import JogHelper from './jogHelper.js';
 import {
-  // Units
   IMPERIAL_UNITS,
   IMPERIAL_STEPS,
   METRIC_UNITS,
   METRIC_STEPS,
-  // Workflow
   GRBL_ACTIVE_STATE_JOG,
   GRBL_ACTIVE_STATE_RUN,
   GRBL_ACTIVE_STATE_IDLE,
   WORKFLOW_STATE_IDLE,
-  //GRBL_ACTIVE_STATE_HOLD,
   WORKFLOW_STATE_RUNNING,
-} from '../../constants';
-import { MODAL_NONE, DEFAULT_AXES, SPEED_NORMAL, SPEED_RAPID, SPEED_PRECISE } from './constants';
-import styles from './index.styl';
+} from '../../constants.js';
+import { MODAL_NONE, DEFAULT_AXES, SPEED_NORMAL, SPEED_RAPID, SPEED_PRECISE } from './constants.js';
+import styles from './index.styl.js';
 
 class AxesWidget extends PureComponent {
   static propTypes = {

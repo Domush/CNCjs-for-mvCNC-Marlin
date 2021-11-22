@@ -1,7 +1,8 @@
 import path from 'path';
 import { createCommons } from 'simport';
 import pkg from '../../package.json';
-import { languages } from '../../../build.config.cjs';
+import _languages from '../../../build.config.cjs';
+const languages = _languages.languages;
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

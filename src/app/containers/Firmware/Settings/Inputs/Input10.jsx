@@ -1,10 +1,9 @@
-/* eslint-disable brace-style */
-/* eslint-disable indent */
-/* eslint-disable react/jsx-closing-bracket-location */
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ToggleSwitch from 'app/components/ToggleSwitch';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 class InputTen extends PureComponent {
   static propTypes = {

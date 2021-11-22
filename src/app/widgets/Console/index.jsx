@@ -1,16 +1,18 @@
 import cx from 'classnames';
 import color from 'cli-color';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import uuid from 'uuid';
 import settings from 'app/config/settings';
 //import Space from 'app/components/Space';
 import Widget from 'app/components/Widget';
 import controller from 'app/lib/controller';
 import i18n from 'app/lib/i18n';
-import WidgetConfig from '../WidgetConfig';
-import Console from './Console';
-import styles from './index.styl';
+import WidgetConfig from '../WidgetConfig.js';
+import Console from './Console.js';
+import styles from './index.styl.js';
 
 // The buffer starts with 254 bytes free. The terminating <LF> or <CR> counts as a byte.
 const TERMINAL_COLS = 50;
@@ -175,7 +177,7 @@ class ConsoleWidget extends PureComponent {
 
   render() {
     const { widgetId, embedded, active } = this.props;
-    const { minimized, isFullscreen } = this.state;
+    const { minimized, isFullscreen } = state;
     const isForkedWidget = widgetId.match(/\w+:[\w\-]+/);
     const state = this.state;
     const actions = this.actions;

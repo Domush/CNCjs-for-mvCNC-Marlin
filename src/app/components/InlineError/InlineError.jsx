@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import React from 'react';
-import styles from './InlineError.styl';
+import styles from './InlineError.styl.js';
 
 const InlineError = ({ className, children, ...props }) => (
   <div {...props} className={cx(className, styles['help-block'], styles['help-block-invalid'])}>

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useState } from 'react';
 
 import store from 'app/store';
 import pubsub from 'pubsub-js';
-import TouchPlate from './TouchPlate';
-import ProbeSettings from './ProbeSettings';
-import Tools from './Tools';
+import TouchPlate from './TouchPlate.js';
+import ProbeSettings from './ProbeSettings.js';
+import Tools from './Tools.js';
 
-import GeneralArea from '../components/GeneralArea';
-import SettingWrapper from '../components/SettingWrapper';
+import GeneralArea from '../components/GeneralArea.js';
+import SettingWrapper from '../components/SettingWrapper.js';
 
 const Probe = ({ active, state, actions }) => {
   const [type, setType] = useState(store.get('workspace.probeProfile.touchplateType'));

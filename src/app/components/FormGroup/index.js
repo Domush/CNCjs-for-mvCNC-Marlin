@@ -1,3 +1,3 @@
-import FormGroup from './FormGroup';
+import FormGroup from './FormGroup.js';
 
 export default FormGroup;

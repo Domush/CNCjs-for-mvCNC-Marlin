@@ -1,3 +1,3 @@
-import TabularForm from './TabularForm';
+import TabularForm from './TabularForm.js';
 
 export default TabularForm;

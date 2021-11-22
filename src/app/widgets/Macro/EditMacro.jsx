@@ -1,6 +1,12 @@
 import uniqueId from 'lodash/uniqueId';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown } from 'react-bootstrap';
 import { Button } from 'app/components/Buttons';
@@ -8,13 +14,17 @@ import { Confirm } from 'app/components/ConfirmationDialog/ConfirmationDialogLib
 import Modal from 'app/components/ToolModal/ToolModal';
 import Space from 'app/components/Space';
 import { Form, Input, Textarea } from 'app/components/Validation';
-import i18n from 'app/lib/i18n';
-import * as validations from 'app/lib/validations';
-import insertAtCaret from './insertAtCaret';
-import variables from './variables';
-import styles from './index.styl';
+const i18n = require('app/lib/i18n');
+const validations = require('app/lib/validations');
+const insertAtCaret = require('./insertAtCaret');
+const variables = require('./variables');
+const styles = require('./index.styl');
 
-import { modalContainerStyle, modalBodyStyle, modalFooterStyle } from './modalStyle';
+const {
+  modalContainerStyle: modalContainerStyle,
+  modalBodyStyle: modalBodyStyle,
+  modalFooterStyle: modalFooterStyle,
+} = require('./modalStyle');
 
 const MAX_CHARACTERS = '128';
 

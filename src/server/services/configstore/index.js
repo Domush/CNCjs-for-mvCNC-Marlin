@@ -2,7 +2,7 @@ import events from 'events';
 import fs from 'fs';
 import _ from 'lodash';
 import chalk from 'chalk';
-import logger from '../../lib/logger';
+import logger from '../../lib/logger.js';
 
 const log = logger('service:configstore');
 

@@ -3,13 +3,15 @@ import find from 'lodash/find';
 import includes from 'lodash/includes';
 import union from 'lodash/union';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import Modal from 'app/components/Modal';
 import { GRBL, MARLIN } from 'app/constants';
 import controller from 'app/lib/controller';
 import i18n from 'app/lib/i18n';
 import store from 'app/store';
-import WidgetList from './WidgetList';
+import WidgetList from './WidgetList.js';
 
 class WidgetManager extends PureComponent {
   static propTypes = {

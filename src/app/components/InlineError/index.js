@@ -1,3 +1,3 @@
-import InlineError from './InlineError';
+import InlineError from './InlineError.js';
 
 export default InlineError;

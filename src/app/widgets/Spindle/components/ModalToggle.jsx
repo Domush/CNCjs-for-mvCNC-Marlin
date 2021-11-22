@@ -1,7 +1,7 @@
 import React from 'react';
 import ToggleSwitch from 'app/components/ToggleSwitch';
-import styles from '../index.styl';
-import { LASER_MODE } from '../../../constants';
+import styles from '../index.styl.js';
+import { LASER_MODE } from '../../../constants.js';
 
 const ModalToggle = ({ mode, onChange, ...props }) => {
   const isToggled = mode === LASER_MODE;

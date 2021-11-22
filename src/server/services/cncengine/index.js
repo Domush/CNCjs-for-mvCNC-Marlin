@@ -1,4 +1,4 @@
-import CNCEngine from './CNCEngine';
+import CNCEngine from './CNCEngine.js';
 
 const cncengine = new CNCEngine();
 

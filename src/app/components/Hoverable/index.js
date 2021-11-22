@@ -1,3 +1,3 @@
-import Hoverable from './Hoverable';
+import Hoverable from './Hoverable.js';
 
 export default Hoverable;

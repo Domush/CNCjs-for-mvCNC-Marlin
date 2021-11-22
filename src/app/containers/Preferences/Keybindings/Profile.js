@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useState } from 'react';
 import classnames from 'classnames';
 import store from 'app/store';
 import PropTypes from 'prop-types';
 import { Toaster, TOASTER_SUCCESS } from 'app/lib/toaster/ToasterLib';
 
-import styles from './index.styl';
-import ProfileItem from './ProfileItem';
-import MainTable from './MainTable';
-import ProfileShortcutModal from './ProfileShortcutModal';
+import styles from './index.styl.js';
+import ProfileItem from './ProfileItem.js';
+import MainTable from './MainTable.js';
+import ProfileShortcutModal from './ProfileShortcutModal.js';
 
 const Profile = ({ currentProfile, onUpdateProfiles }) => {
   Profile.propTypes = { currentProfile: PropTypes.object, onUpdateProfiles: PropTypes.func };

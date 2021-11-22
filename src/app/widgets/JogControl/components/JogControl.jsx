@@ -1,8 +1,10 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import throttle from 'lodash/throttle';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 class JogControl extends PureComponent {
   // Time to consider a jog movement to be a continuous movement

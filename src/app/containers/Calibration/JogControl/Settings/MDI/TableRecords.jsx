@@ -1,12 +1,14 @@
 import get from 'lodash/get';
 import take from 'lodash/take';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Button, ButtonGroup } from 'app/components/Buttons';
 import Space from 'app/components/Space';
 import Table from 'app/components/Table';
 import i18n from 'app/lib/i18n';
-import { MODAL_CREATE_RECORD, MODAL_UPDATE_RECORD } from './constants';
+import { MODAL_CREATE_RECORD, MODAL_UPDATE_RECORD } from './constants.js';
 
 class TableRecords extends PureComponent {
   static propTypes = {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import DisplayPanel from './DisplayPanel';
+import DisplayPanel from './DisplayPanel.js';
 
 const Location = (props) => {
   const { state, actions } = props;

@@ -8,7 +8,6 @@ import Sender, {
     SP_TYPE_CHAR_COUNTING
 } from '../src/server/lib/Sender';
 
-
 const {
     __filename,
     __dirname,

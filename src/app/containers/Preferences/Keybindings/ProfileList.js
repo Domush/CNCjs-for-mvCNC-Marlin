@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from 'app/components/FunctionButton/FunctionButton';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
-import { ProfileItem } from './Profile';
+import { ProfileItem } from './Profile.js';
 
 const ProfileList = ({ profiles, onClick, onDelete, onAdd }) => (
   <>

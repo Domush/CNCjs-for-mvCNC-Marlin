@@ -1,3 +1,3 @@
-import Webcam from './Webcam';
+import Webcam from './Webcam.js';
 
 export default Webcam;

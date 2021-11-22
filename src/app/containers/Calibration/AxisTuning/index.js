@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+// import both default and named
+import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ToolIntroduction from 'app/containers/Calibration/AxisTuning/ToolIntroduction';
 import ImageDiagram from 'app/containers/Calibration/AxisTuning/ImageDiagram';
-import Step from './Step';
-import NavigationButtons from './NavigationButtons';
+import Step from './Step.js';
+import NavigationButtons from './NavigationButtons.js';
 //import TriangleDiagram from '../TriangleDiagram';
-import Result from './Result';
+import Result from './Result.js';
 
-import styles from './index.styl';
-import { axisSteps } from './data';
+import styles from './index.styl.js';
+import { axisSteps } from './data.js';
 
 const AxisTuning = ({ onClose }) => {
   const steps = [axisSteps.x];

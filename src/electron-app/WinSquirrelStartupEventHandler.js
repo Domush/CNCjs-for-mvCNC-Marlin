@@ -1,8 +1,7 @@
-/* eslint import/no-unresolved: 0 */
 import path from 'path';
 import { spawn } from 'child_process';
 import { app } from 'electron';
-import log from './log';
+import log from './log.js';
 
 const run = (args, done) => {
   const appPath = path.resolve(process.execPath, '..');

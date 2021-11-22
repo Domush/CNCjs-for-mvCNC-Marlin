@@ -1,5 +1,9 @@
-import { all, call } from 'redux-saga/effects';
-import * as controller from './controllerSagas';
+const { all: all, call: call } = require('redux-saga/effects');
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+const controller = require('./controllerSagas.js');
 
 const sagas = [controller];
 

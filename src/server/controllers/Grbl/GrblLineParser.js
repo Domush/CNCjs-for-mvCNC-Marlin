@@ -1,17 +1,17 @@
 import _ from 'lodash';
-import GrblLineParserResultStatus from './GrblLineParserResultStatus';
-import GrblLineParserResultOk from './GrblLineParserResultOk';
-import GrblLineParserResultError from './GrblLineParserResultError';
-import GrblLineParserResultAlarm from './GrblLineParserResultAlarm';
-import GrblLineParserResultParserState from './GrblLineParserResultParserState';
-import GrblLineParserResultParameters from './GrblLineParserResultParameters';
-import GrblLineParserResultHelp from './GrblLineParserResultHelp';
-import GrblLineParserResultVersion from './GrblLineParserResultVersion';
-import GrblLineParserResultOption from './GrblLineParserResultOption';
-import GrblLineParserResultEcho from './GrblLineParserResultEcho';
-import GrblLineParserResultFeedback from './GrblLineParserResultFeedback';
-import GrblLineParserResultSettings from './GrblLineParserResultSettings';
-import GrblLineParserResultStartup from './GrblLineParserResultStartup';
+import GrblLineParserResultStatus from './GrblLineParserResultStatus.js';
+import GrblLineParserResultOk from './GrblLineParserResultOk.js';
+import GrblLineParserResultError from './GrblLineParserResultError.js';
+import GrblLineParserResultAlarm from './GrblLineParserResultAlarm.js';
+import GrblLineParserResultParserState from './GrblLineParserResultParserState.js';
+import GrblLineParserResultParameters from './GrblLineParserResultParameters.js';
+import GrblLineParserResultHelp from './GrblLineParserResultHelp.js';
+import GrblLineParserResultVersion from './GrblLineParserResultVersion.js';
+import GrblLineParserResultOption from './GrblLineParserResultOption.js';
+import GrblLineParserResultEcho from './GrblLineParserResultEcho.js';
+import GrblLineParserResultFeedback from './GrblLineParserResultFeedback.js';
+import GrblLineParserResultSettings from './GrblLineParserResultSettings.js';
+import GrblLineParserResultStartup from './GrblLineParserResultStartup.js';
 
 // Grbl v1.1
 // https://github.com/gnea/grbl/blob/edge/doc/markdown/interface.md

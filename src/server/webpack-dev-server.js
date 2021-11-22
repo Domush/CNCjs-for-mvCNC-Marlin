@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import logger from './lib/logger';
+import logger from './lib/logger.js';
 
 const log = logger('webpack-dev-server');
 

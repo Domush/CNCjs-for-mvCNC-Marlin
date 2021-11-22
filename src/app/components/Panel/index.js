@@ -1,6 +1,6 @@
-import Panel from './Panel';
-import PanelHeading from './PanelHeading';
-import PanelBody from './PanelBody';
+import Panel from './Panel.js';
+import PanelHeading from './PanelHeading.js';
+import PanelBody from './PanelBody.js';
 
 Panel.Heading = PanelHeading;
 Panel.Body = PanelBody;

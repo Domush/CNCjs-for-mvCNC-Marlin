@@ -5,11 +5,15 @@ import _isEqual from 'lodash/isEqual';
 import ensureArray from 'ensure-array';
 import PropTypes from 'prop-types';
 import pubsub from 'pubsub-js';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import Repeatable from 'react-repeatable';
 import styled from 'styled-components';
 import { Button, ButtonToolbar, ButtonGroup } from 'app/components/Buttons';
-import Dropdown, { MenuItem } from 'app/components/Dropdown';
+// import both default and named
+import Dropdown from 'app/components/Dropdown';
+import { MenuItem } from 'app/components/Dropdown';
 import { FlexContainer, Row, Col } from 'app/components/GridSystem';
 import Image from 'app/components/Image';
 import Space from 'app/components/Space';
@@ -17,17 +21,17 @@ import { Tooltip } from 'app/components/Tooltip';
 import api from 'app/api';
 import i18n from 'app/lib/i18n';
 import store from 'app/store';
-import iconTopView from './images/camera-top-view.png';
-import icon3DView from './images/camera-3d-view.svg';
-import iconFrontView from './images/camera-front-view.png';
-import iconLeftSideView from './images/camera-left-side-view.png';
-import iconRightSideView from './images/camera-right-side-view.png';
-import iconZoomFit from './images/zoom-fit.svg';
-import iconZoomIn from './images/zoom-in.svg';
-import iconZoomOut from './images/zoom-out.svg';
-import iconMoveCamera from './images/move-camera.svg';
-import iconRotateCamera from './images/rotate-camera.svg';
-import { CAMERA_MODE_PAN, CAMERA_MODE_ROTATE } from './constants';
+import iconTopView from './images/camera-top-view.png.js';
+import icon3DView from './images/camera-3d-view.svg.js';
+import iconFrontView from './images/camera-front-view.png.js';
+import iconLeftSideView from './images/camera-left-side-view.png.js';
+import iconRightSideView from './images/camera-right-side-view.png.js';
+import iconZoomFit from './images/zoom-fit.svg.js';
+import iconZoomIn from './images/zoom-in.svg.js';
+import iconZoomOut from './images/zoom-out.svg.js';
+import iconMoveCamera from './images/move-camera.svg.js';
+import iconRotateCamera from './images/rotate-camera.svg.js';
+import { CAMERA_MODE_PAN, CAMERA_MODE_ROTATE } from './constants.js';
 
 const IconButton = styled(Button)`
   display: inline-block;

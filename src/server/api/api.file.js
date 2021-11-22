@@ -1,5 +1,5 @@
-import CNCEngine from '../services/cncengine';
-import { ERR_BAD_REQUEST } from '../constants';
+import CNCEngine from '../services/cncengine/index.js';
+import { ERR_BAD_REQUEST } from '../constants.js';
 
 // Upload files using superagent:
 // https://stackoverflow.com/questions/31748936/how-to-send-files-with-superagent

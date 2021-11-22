@@ -1,7 +1,9 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 class JogControl extends PureComponent {
   static propTypes = {

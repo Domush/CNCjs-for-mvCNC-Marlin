@@ -5,9 +5,9 @@ import map from 'lodash/map';
 import Tooltip from 'app/components/TooltipCustom/ToolTip';
 import { DARK_THEME, LIGHT_THEME } from 'app/widgets/Visualizer/constants';
 
-import Fieldset from '../components/Fieldset';
+import Fieldset from '../components/Fieldset.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const themes = [DARK_THEME, LIGHT_THEME];
 

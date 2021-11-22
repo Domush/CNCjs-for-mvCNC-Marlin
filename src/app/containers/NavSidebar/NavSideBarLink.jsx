@@ -1,8 +1,7 @@
-/* eslint-disable react/button-has-type */
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const NavSidebarLink = ({ label, url = '#', icon, onClick, className, disabled = false }) => (
   <button onClick={onClick} className={cx(styles.linkButton, className)} disabled={disabled}>

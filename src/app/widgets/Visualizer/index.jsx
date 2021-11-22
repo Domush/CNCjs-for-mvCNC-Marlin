@@ -1,5 +1,4 @@
 import { types } from 'putout';
-/* eslint-disable consistent-return */
 import includes from 'lodash/includes';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
@@ -9,50 +8,58 @@ import combokeys from 'app/lib/combokeys';
 import store from 'app/store';
 import reduxStore from 'app/store/redux';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import { createCommons } from 'simport';
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { UPDATE_FILE_INFO, UPDATE_FILE_PROCESSING } from 'app/actions/fileInfoActions';
 import Anchor from 'app/components/Anchor';
 import { Button } from 'app/components/Buttons';
 import ModalTemplate from 'app/components/ModalTemplate';
 import Modal from 'app/components/Modal';
 import controller from 'app/lib/controller';
-import gamepad, { runAction } from 'app/lib/gamepad';
+// import both default and named
+import gamepad from 'app/lib/gamepad';
+import { runAction } from 'app/lib/gamepad';
 import i18n from 'app/lib/i18n';
 import log from 'app/lib/log';
-import portal from 'app/lib/portal';
-import * as WebGL from 'app/lib/three/WebGL';
-import { Toaster, TOASTER_LONG, TOASTER_WARNING } from 'app/lib/toaster/ToasterLib';
-import EstimateWorker from './Estimate.worker';
-import WidgetConfig from '../WidgetConfig';
-import PrimaryVisualizer from './PrimaryVisualizer';
+const portal = require('app/lib/portal');
+const WebGL = require('app/lib/three/WebGL');
+const {
+  Toaster: Toaster,
+  TOASTER_LONG: TOASTER_LONG,
+  TOASTER_WARNING: TOASTER_WARNING,
+} = require('app/lib/toaster/ToasterLib');
+const EstimateWorker = require('./Estimate.worker');
+const WidgetConfig = require('../WidgetConfig');
+const PrimaryVisualizer = require('./PrimaryVisualizer');
 
-import {
-  // Units
-  METRIC_UNITS,
-  // Grbl
-  GRBL,
-  GRBL_ACTIVE_STATE_RUN,
-  // Marlin
-  MARLIN,
-  // Workflow
-  WORKFLOW_STATE_RUNNING,
-  WORKFLOW_STATE_PAUSED,
-  WORKFLOW_STATE_IDLE,
-  RENDER_RENDERING,
-  RENDER_LOADING,
-  GRBL_ACTIVE_STATE_HOLD,
-  VISUALIZER_PRIMARY,
-  VISUALIZER_SECONDARY,
-} from '../../constants';
-import {
-  CAMERA_MODE_PAN,
-  CAMERA_MODE_ROTATE,
-  LIGHT_THEME,
-  LIGHT_THEME_VALUES,
-  DARK_THEME,
-  DARK_THEME_VALUES,
-} from './constants';
-import SecondaryVisualizer from './SecondaryVisualizer';
+const {
+  METRIC_UNITS: METRIC_UNITS,
+  GRBL: GRBL,
+  GRBL_ACTIVE_STATE_RUN: GRBL_ACTIVE_STATE_RUN,
+  MARLIN: MARLIN,
+  WORKFLOW_STATE_RUNNING: WORKFLOW_STATE_RUNNING,
+  WORKFLOW_STATE_PAUSED: WORKFLOW_STATE_PAUSED,
+  WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
+  RENDER_RENDERING: RENDER_RENDERING,
+  RENDER_LOADING: RENDER_LOADING,
+  GRBL_ACTIVE_STATE_HOLD: GRBL_ACTIVE_STATE_HOLD,
+  VISUALIZER_PRIMARY: VISUALIZER_PRIMARY,
+  VISUALIZER_SECONDARY: VISUALIZER_SECONDARY,
+} = require('../../constants');
+const {
+  CAMERA_MODE_PAN: CAMERA_MODE_PAN,
+  CAMERA_MODE_ROTATE: CAMERA_MODE_ROTATE,
+  LIGHT_THEME: LIGHT_THEME,
+  LIGHT_THEME_VALUES: LIGHT_THEME_VALUES,
+  DARK_THEME: DARK_THEME,
+  DARK_THEME_VALUES: DARK_THEME_VALUES,
+} = require('./constants');
+const SecondaryVisualizer = require('./SecondaryVisualizer');
 
 const displayWebGLErrorMessage = () => {
   portal(({ onClose }) => (

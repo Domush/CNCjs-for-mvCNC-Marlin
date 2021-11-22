@@ -1,7 +1,7 @@
 import deepKeys from 'deep-keys';
 import _ from 'lodash';
-import config from '../services/configstore';
-import { ERR_NOT_FOUND } from '../constants';
+import config from '../services/configstore/index.js';
+import { ERR_NOT_FOUND } from '../constants.js';
 
 export const get = (req, res) => {
   const query = req.query || {};

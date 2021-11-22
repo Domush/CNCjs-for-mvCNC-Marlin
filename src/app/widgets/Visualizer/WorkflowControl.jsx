@@ -1,6 +1,4 @@
 import { types } from 'putout';
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 import store from 'app/store';
@@ -9,14 +7,16 @@ import PropTypes from 'prop-types';
 import isElectron from 'is-electron';
 import reduxStore from 'app/store/redux';
 import controller from 'app/lib/controller';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import api from 'app/api';
 import pubsub from 'pubsub-js';
 import i18n from 'app/lib/i18n';
 import Modal from 'app/components/Modal';
 import Input from 'app/containers/Preferences/components/Input';
-import CameraDisplay from './CameraDisplay/CameraDisplay';
-import FunctionButton from '../../components/FunctionButton/FunctionButton';
+import CameraDisplay from './CameraDisplay/CameraDisplay.js';
+import FunctionButton from '../../components/FunctionButton/FunctionButton.js';
 //import ReaderWorker from './FileReader.worker';
 import {
   Toaster,
@@ -25,7 +25,7 @@ import {
   TOASTER_WARNING,
   TOASTER_UNTIL_CLOSE,
   TOASTER_INFO,
-} from '../../lib/toaster/ToasterLib';
+} from '../../lib/toaster/ToasterLib.js';
 import {
   GRBL_ACTIVE_STATE_IDLE,
   GRBL_ACTIVE_STATE_CHECK,
@@ -34,12 +34,12 @@ import {
   WORKFLOW_STATE_PAUSED,
   WORKFLOW_STATE_RUNNING,
   VISUALIZER_PRIMARY,
-} from '../../constants';
+} from '../../constants.js';
 // import { NOTIFICATION_PROGRAM_ERROR } from './constants';
-import styles from './workflow-control.styl';
-import RecentFileButton from './RecentFileButton';
-import { addRecentFile, createRecentFile, createRecentFileFromRawPath } from './ClientRecentFiles';
-import { UPDATE_FILE_INFO } from '../../actions/fileInfoActions';
+import styles from './workflow-control.styl.js';
+import RecentFileButton from './RecentFileButton.js';
+import { addRecentFile, createRecentFile, createRecentFileFromRawPath } from './ClientRecentFiles.js';
+import { UPDATE_FILE_INFO } from '../../actions/fileInfoActions.js';
 
 const { File } = types;
 

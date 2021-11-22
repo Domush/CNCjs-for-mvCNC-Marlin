@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import AxesWidget from 'app/widgets/JogControl';
 import ConsoleWidget from 'app/widgets/Console';
 import JobStatusWidget from 'app/widgets/JobStatus';

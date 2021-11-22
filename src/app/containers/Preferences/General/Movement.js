@@ -2,8 +2,8 @@ import React from 'react';
 
 import Tooltip from 'app/components/TooltipCustom/ToolTip';
 
-import Input from '../components/Input';
-import Fieldset from '../components/Fieldset';
+import Input from '../components/Input.js';
+import Fieldset from '../components/Fieldset.js';
 
 const Movement = ({ state, actions }) => {
   const { units, safeRetractHeight } = state;

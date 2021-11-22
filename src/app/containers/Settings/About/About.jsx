@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
-import AboutContainer from './AboutContainer';
-import HelpContainer from './HelpContainer';
-import UpdateStatusContainer from './UpdateStatusContainer';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
+import AboutContainer from './AboutContainer.js';
+import HelpContainer from './HelpContainer.js';
+import UpdateStatusContainer from './UpdateStatusContainer.js';
 
 class About extends PureComponent {
   static propTypes = {

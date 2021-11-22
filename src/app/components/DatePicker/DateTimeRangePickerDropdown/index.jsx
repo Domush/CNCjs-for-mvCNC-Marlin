@@ -1,11 +1,15 @@
 import _max from 'lodash/max';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Button } from 'app/components/Buttons';
-import Dropdown, { MenuItem } from 'app/components/Dropdown';
+// import both default and named
+import Dropdown from 'app/components/Dropdown';
+import { MenuItem } from 'app/components/Dropdown';
 import i18n from 'app/lib/i18n';
-import DateTimeRangePicker from '../DateTimeRangePicker';
+import DateTimeRangePicker from '../DateTimeRangePicker.js';
 
 const normalizeDateString = (dateString) => {
   let m = moment(dateString);

@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useState } from 'react';
 
 import store from 'app/store';
 import { Toaster, TOASTER_SUCCESS, TOASTER_SHORT } from 'app/lib/toaster/ToasterLib';
 import Button from 'app/components/FunctionButton/FunctionButton';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
-import { Profile } from './Profile';
-import ProfileList from './ProfileList';
-import AddActionModal from './AddActionModal';
-import AddProfileModal from './AddProfileModal';
+import { Profile } from './Profile.js';
+import ProfileList from './ProfileList.js';
+import AddActionModal from './AddActionModal.js';
+import AddProfileModal from './AddProfileModal.js';
 
 const Joystick = () => {
   const [profiles, setProfiles] = useState(store.get('workspace.gamepad.profiles'));

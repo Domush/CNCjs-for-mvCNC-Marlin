@@ -1,4 +1,7 @@
-/* eslint-disable */
+const { createCommons: createCommons } = require('simport');
+
+const { __filename, __dirname, require } = createCommons(import.meta.url);
+
 /**
  * @author aleeper / http://adamleeper.com/
  * @author mrdoob / http://mrdoob.com/
@@ -30,7 +33,7 @@
  *  var mesh = new THREE.Mesh( geometry, material );
  */
 
-import * as THREE from 'three';
+const THREE = require('three');
 
 const STLLoader = function (manager) {
   this.manager = manager !== undefined ? manager : THREE.DefaultLoadingManager;

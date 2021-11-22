@@ -1,8 +1,7 @@
-/* eslint import/no-unresolved: 0 */
-import { app, BrowserWindow, shell } from 'electron';
-import path from 'path';
+const { app: app, BrowserWindow: BrowserWindow, shell: shell } = require('electron');
+const path = require('path');
 
-import { createCommons } from 'simport';
+const { createCommons: createCommons } = require('simport');
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

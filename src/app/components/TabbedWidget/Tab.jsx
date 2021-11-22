@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 const Tab = ({ className, children, active, onClick, ...props }) => (
   <button

@@ -13,7 +13,7 @@ import {
   NOTIFICATION_M6_TOOL_CHANGE,
   NOTIFICATION_M109_SET_EXTRUDER_TEMPERATURE,
   NOTIFICATION_M190_SET_HEATED_BED_TEMPERATURE,
-} from './constants';
+} from './constants.js';
 
 const Notifications = ({ show, type, data, onDismiss, style, ...props }) => (
   <div

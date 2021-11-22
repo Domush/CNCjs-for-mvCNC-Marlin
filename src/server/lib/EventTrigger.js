@@ -1,4 +1,4 @@
-import config from '../services/configstore';
+import config from '../services/configstore/index.js';
 
 const noop = () => {};
 

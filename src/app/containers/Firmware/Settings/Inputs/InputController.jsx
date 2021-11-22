@@ -1,13 +1,12 @@
-/* eslint-disable brace-style */
-/* eslint-disable indent */
-/* eslint-disable react/jsx-closing-bracket-location */
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 // import Space from 'app/components/Space';
-import MaskInputTen from './Input10';
-import NumberInputs from './NumberInputs';
-import SwitchInput from './SwitchInputs';
-import BitShiftInput from './BitShiftInput';
+import MaskInputTen from './Input10.js';
+import NumberInputs from './NumberInputs.js';
+import SwitchInput from './SwitchInputs.js';
+import BitShiftInput from './BitShiftInput.js';
 
 class InputController extends PureComponent {
   static propTypes = {

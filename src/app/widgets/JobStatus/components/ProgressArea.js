@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-import styles from './Overrides.styl';
-import GaugeChart from '../GaugeChart';
+import styles from './Overrides.styl.js';
+import GaugeChart from '../GaugeChart.js';
 
 /**
  * Progress Area component to display running job information

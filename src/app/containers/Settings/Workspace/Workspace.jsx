@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import { Button } from 'app/components/Buttons';
 import ModalTemplate from 'app/components/ModalTemplate';
 import Modal from 'app/components/Modal';
@@ -9,10 +11,10 @@ import i18n from 'app/lib/i18n';
 import log from 'app/lib/log';
 import portal from 'app/lib/portal';
 import store from 'app/store';
-import RestoreDefaults from './RestoreDefaults';
-import ImportSettings from './ImportSettings';
-import styles from './index.styl';
-import { MODAL_RESTORE_DEFAULTS, MODAL_IMPORT_SETTINGS } from './constants';
+import RestoreDefaults from './RestoreDefaults.js';
+import ImportSettings from './ImportSettings.js';
+import styles from './index.styl.js';
+import { MODAL_RESTORE_DEFAULTS, MODAL_IMPORT_SETTINGS } from './constants.js';
 
 class Workspace extends PureComponent {
   static propTypes = {

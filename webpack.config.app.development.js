@@ -11,8 +11,8 @@ import webpack from 'webpack';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import WriteFileWebpackPlugin from 'write-file-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
-import babelConfig from './babel.config.cjs.js';
-import buildConfig from './build.config.cjs.js';
+import babelConfig from './babel.config.json';
+import buildConfig from './build.config.cjs';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 
@@ -138,12 +138,10 @@ export default {
       },
     ],
   },
-  resolve: {
-    fallback: {
-      fs: false,
-      net: false,
-      tls: false,
-    },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -152,7 +150,8 @@ export default {
         NODE_ENV: JSON.stringify('development'),
         BUILD_VERSION: JSON.stringify(buildVersion),
         LANGUAGES: JSON.stringify(buildConfig.languages),
-        TRACKING_ID: JSON.stringify(buildConfig.analytics.trackingId),
+        USE_ES6_IMPORT_META: 1,
+        // TRACKING_ID: JSON.stringify(buildConfig.analytics.trackingId),
       },
     }),
     new webpack.LoaderOptionsPlugin({

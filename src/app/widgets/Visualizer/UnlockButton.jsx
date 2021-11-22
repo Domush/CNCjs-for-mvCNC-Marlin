@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+// import both default and named
+import React from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import controller from 'app/lib/controller';
 import { GRBL_ACTIVE_STATE_ALARM } from 'app/constants';
-import styles from './UnlockButton.styl';
+import styles from './UnlockButton.styl.js';
 
 const UnlockButton = ({ activeState, alarmCode }) => {
   const [isHovering, setIsHovering] = useState(false);

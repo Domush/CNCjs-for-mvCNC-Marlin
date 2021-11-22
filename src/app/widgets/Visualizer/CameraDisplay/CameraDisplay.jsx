@@ -1,8 +1,10 @@
-import React, { PureComponent } from 'react';
+// import both default and named
+import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import i18n from 'app/lib/i18n';
 
-import styles from './index.styl';
+import styles from './index.styl.js';
 
 /**
  * CameraDisplay component used to allow changing of camera angles

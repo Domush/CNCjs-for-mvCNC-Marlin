@@ -3,10 +3,10 @@ import Select from 'react-select';
 import Tooltip from 'app/components/TooltipCustom/ToolTip';
 import { TOUCHPLATE_TYPE_AUTOZERO, TOUCHPLATE_TYPE_STANDARD, TOUCHPLATE_TYPE_ZERO } from 'app/lib/constants';
 
-import Input from '../components/Input';
-import Fieldset from '../components/Fieldset';
+import Input from '../components/Input.js';
+import Fieldset from '../components/Fieldset.js';
 
-import styles from '../index.styl';
+import styles from '../index.styl.js';
 
 const TouchPlate = ({ state, actions, values, type, onTypeChange }) => {
   const { units, probe } = state;
