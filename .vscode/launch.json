@@ -12,6 +12,15 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}\\dist\\cncjs4marlin\\server-cli.js"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch Dev Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}\\output\\server-cli.js"
     }
   ]
 }

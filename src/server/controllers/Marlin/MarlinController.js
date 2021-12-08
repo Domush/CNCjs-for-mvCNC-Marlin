@@ -3,52 +3,45 @@ import { createCommons } from 'simport';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 
-const parser = require('gcode-parser');
+import parser from 'gcode-parser';
 // import Toolpath from 'gcode-toolpath';
-const _ = require('lodash');
-const map = require('lodash/map');
-const SerialConnection = require('../../lib/SerialConnection');
-const EventTrigger = require('../../lib/EventTrigger');
-const Feeder = require('../../lib/Feeder');
-{
-  const Sender = require('../../lib/Sender');
+import _ from 'lodash';
+import map from 'lodash/map';
+import SerialConnection from '../../lib/SerialConnection.js';
+import EventTrigger from '../../lib/EventTrigger.js';
+import Feeder from '../../lib/Feeder.js';
+import Sender from '../../lib/Sender.js';
 
-  const { SP_TYPE_CHAR_COUNTING: SP_TYPE_CHAR_COUNTING } = Sender;
-}
-{
-  const Workflow = require('../../lib/Workflow');
+const { SP_TYPE_CHAR_COUNTING: SP_TYPE_CHAR_COUNTING } = Sender;
+import Workflow from '../../lib/Workflow.js';
 
-  const {
-    WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
-    WORKFLOW_STATE_PAUSED: WORKFLOW_STATE_PAUSED,
-    WORKFLOW_STATE_RUNNING: WORKFLOW_STATE_RUNNING,
-  } = Workflow;
-}
+const {
+  WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
+  WORKFLOW_STATE_PAUSED: WORKFLOW_STATE_PAUSED,
+  WORKFLOW_STATE_RUNNING: WORKFLOW_STATE_RUNNING,
+} = Workflow;
 // import delay from '../../lib/delay';
-const ensurePositiveNumber = require('../../lib/ensure-positive-number');
-const evaluateAssignmentExpression = require('../../lib/evaluate-assignment-expression');
-const logger = require('../../lib/logger');
-const translateExpression = require('../../lib/translate-expression');
-const config = require('../../services/configstore');
-const monitor = require('../../services/monitor');
-const taskRunner = require('../../services/taskrunner');
-const { getOutlineGcode: getOutlineGcode } = require('../../lib/outlineService');
-const store = require('../../store');
-const {
-  GLOBAL_OBJECTS: globalObjects,
-  WRITE_SOURCE_CLIENT: WRITE_SOURCE_CLIENT,
-  WRITE_SOURCE_SERVER: WRITE_SOURCE_SERVER,
-  WRITE_SOURCE_FEEDER: WRITE_SOURCE_FEEDER,
-  WRITE_SOURCE_SENDER: WRITE_SOURCE_SENDER,
-} = require('../constants');
-const MarlinRunner = require('./MarlinRunner');
-const interpret = require('./interpret');
-const { MARLIN: MARLIN, QUERY_TYPE_POSITION: QUERY_TYPE_POSITION } = require('./constants');
-const { METRIC_UNITS: METRIC_UNITS } = require('../../../app/constants');
-const {
-  determineMaxMovement: determineMaxMovement,
-  getAxisMaximumLocation: getAxisMaximumLocation,
-} = require('../../lib/homing');
+import ensurePositiveNumber from '../../lib/ensure-positive-number.js';
+import evaluateAssignmentExpression from '../../lib/evaluate-assignment-expression.js';
+import logger from '../../lib/logger.js';
+import translateExpression from '../../lib/translate-expression.js';
+import config from '../../services/configstore.js';
+import monitor from '../../services/monitor.js';
+import taskRunner from '../../services/taskrunner.js';
+import { getOutlineGcode } from '../../lib/outlineService.js';
+import store from '../../store.js';
+import {
+  GLOBAL_OBJECTS as globalObjects,
+  WRITE_SOURCE_CLIENT,
+  WRITE_SOURCE_SERVER,
+  WRITE_SOURCE_FEEDER,
+  WRITE_SOURCE_SENDER,
+} from '../constants.js';
+import MarlinRunner from './MarlinRunner.js';
+import interpret from './interpret.js';
+import { MARLIN, QUERY_TYPE_POSITION } from './constants.js';
+import { METRIC_UNITS } from '../../../app/constants.js';
+import { determineMaxMovement, getAxisMaximumLocation } from '../../lib/homing.js';
 
 // % commands
 const WAIT = '%wait';

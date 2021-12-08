@@ -1,4 +1,3 @@
-/* eslint jsx-a11y/media-has-caption: 0 */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 

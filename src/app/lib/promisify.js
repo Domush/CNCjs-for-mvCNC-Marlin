@@ -1,4 +1,3 @@
-/* eslint prefer-arrow-callback: 0 */
 const promisify = (fn, options) =>
   function (...args) {
     const { errorFirst = true, thisArg } = options;

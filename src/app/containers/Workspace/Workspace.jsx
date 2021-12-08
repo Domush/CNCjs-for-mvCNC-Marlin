@@ -1,42 +1,31 @@
-const _ = require('lodash');
-const classNames = require('classnames');
-const Dropzone = require('react-dropzone');
-const isElectron = require('is-electron');
-const pubsub = require('pubsub-js');
-const Header = require('app/containers/Header');
-const { createCommons: createCommons } = require('simport');
-
-const { __filename, __dirname, require } = createCommons(import.meta.url);
-
-{
-  const React = require('react');
-  const { PureComponent: PureComponent } = React;
-}
-const { withRouter: withRouter } = require('react-router-dom');
-const api = require('app/api');
-const { Confirm: Confirm } = require('app/components/ConfirmationDialog/ConfirmationDialogLib');
-const { WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE } = require('app/constants');
-const controller = require('app/lib/controller');
-const i18n = require('app/lib/i18n');
-const log = require('app/lib/log');
-const store = require('app/store');
-const widgetManager = require('./WidgetManager.js');
-const DefaultWidgets = require('./DefaultWidgets');
-const PrimaryWidgets = require('./PrimaryWidgets');
-const ScreenAwake = require('./ScreenAwake');
-const FeederPaused = require('./modals/FeederPaused');
-const FeederWait = require('./modals/FeederWait');
-const ServerDisconnected = require('./modals/ServerDisconnected');
-const styles = require('./index.styl');
-const {
-  MODAL_NONE: MODAL_NONE,
-  MODAL_FEEDER_PAUSED: MODAL_FEEDER_PAUSED,
-  MODAL_FEEDER_WAIT: MODAL_FEEDER_WAIT,
-  MODAL_SERVER_DISCONNECTED: MODAL_SERVER_DISCONNECTED,
-} = require('./constants');
-const UpdateAvailableAlert = require('./UpdateAvailableAlert/UpdateAvailableAlert');
-const Toaster = require('../../lib/toaster/Toaster');
-const ConfirmationDialog = require('../../components/ConfirmationDialog/ConfirmationDialog');
+import _ from 'lodash';
+import classNames from 'classnames';
+import Dropzone from 'react-dropzone';
+import isElectron from 'is-electron';
+import pubsub from 'pubsub-js';
+import Header from 'app/containers/Header';
+import React from 'react';
+const { PureComponent: PureComponent } = React;
+import { withRouter } from 'react-router-dom';
+import api from 'app/api';
+import { Confirm } from 'app/components/ConfirmationDialog/ConfirmationDialogLib';
+import { WORKFLOW_STATE_IDLE } from 'app/constants';
+import controller from 'app/lib/controller';
+import i18n from 'app/lib/i18n';
+import log from 'app/lib/log';
+import store from 'app/store';
+import widgetManager from './WidgetManager.js';
+import DefaultWidgets from './DefaultWidgets.js';
+import PrimaryWidgets from './PrimaryWidgets.js';
+import ScreenAwake from './ScreenAwake.js';
+import FeederPaused from './modals/FeederPaused.js';
+import FeederWait from './modals/FeederWait.js';
+import ServerDisconnected from './modals/ServerDisconnected.js';
+import styles from './index.styl.js';
+import { MODAL_NONE, MODAL_FEEDER_PAUSED, MODAL_FEEDER_WAIT, MODAL_SERVER_DISCONNECTED } from './constants.js';
+import UpdateAvailableAlert from './UpdateAvailableAlert/UpdateAvailableAlert.js';
+import Toaster from '../../lib/toaster/Toaster.js';
+import ConfirmationDialog from '../../components/ConfirmationDialog/ConfirmationDialog.js';
 
 const WAIT = '%wait';
 const TOOLCHANGE = '%toolchange';

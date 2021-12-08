@@ -27,7 +27,7 @@ const buildVersion = pkg.version;
 
 export default {
   mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-cheap-module-source-map',
   target: 'node', // ignore built-in modules like path, fs, etc.
   context: path.resolve(__dirname, 'src/server'),
   entry: {
@@ -35,8 +35,29 @@ export default {
   },
   output: {
     path: path.resolve(__dirname, 'output/server'),
-    filename: '[name].js',
-    libraryTarget: 'commonjs2',
+    chunkFilename: `[id].[name].js`,
+    chunkFormat: 'module',
+    chunkLoading: 'import',
+    filename: `[name].js`,
+    pathinfo: true,
+    publicPath: publicPath,
+    clean: true,
+    environment: {
+      // The environment supports arrow functions ('() => { ... }').
+      arrowFunction: true,
+      // The environment supports BigInt as literal (123n).
+      bigIntLiteral: false,
+      // The environment supports const and let for variable declarations.
+      const: true,
+      // The environment supports destructuring ('{ a, b } = obj').
+      destructuring: true,
+      // The environment supports an async import() function to import EcmaScript modules.
+      dynamicImport: true,
+      // The environment supports 'for of' iteration ('for (const x of array) { ... }').
+      forOf: true,
+      // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
+      module: true,
+    },
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -67,18 +88,23 @@ export default {
   },
   externals: [nodeExternals()], // ignore all modules in node_modules folder
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.cjs', '.mjs'],
   },
   resolveLoader: {
     modules: [path.resolve(__dirname, 'node_modules')],
   },
   node: {
-    console: true,
-    global: true,
-    process: true,
-    Buffer: true,
     __filename: true, // Use relative path
     __dirname: true, // Use relative path
-    setImmediate: true,
+    global: true,
+  },
+  experiments: {
+    asyncWebAssembly: true,
+    // buildHttp: true,
+    layers: true,
+    lazyCompilation: true,
+    outputModule: true,
+    syncWebAssembly: true,
+    topLevelAwait: true,
   },
 };

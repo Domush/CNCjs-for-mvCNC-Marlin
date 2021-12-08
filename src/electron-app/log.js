@@ -1,5 +1,6 @@
-const debug = require('debug');
-const { createCommons: createCommons } = require('simport');
+import debug from 'debug';
+
+import { createCommons } from 'simport';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

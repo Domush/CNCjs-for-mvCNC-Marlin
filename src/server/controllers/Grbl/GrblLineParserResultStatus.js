@@ -1,4 +1,3 @@
-/* eslint no-bitwise: ["error", { "allow": ["&", "<<"] }] */
 import _ from 'lodash';
 
 //https://github.com/grbl/grbl/blob/master/grbl/report.c

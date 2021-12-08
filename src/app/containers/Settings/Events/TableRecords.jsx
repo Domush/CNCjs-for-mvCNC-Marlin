@@ -1,4 +1,3 @@
-/* eslint react/jsx-no-bind: 0 */
 import chainedFunction from 'chained-function';
 import take from 'lodash/take';
 import moment from 'moment';

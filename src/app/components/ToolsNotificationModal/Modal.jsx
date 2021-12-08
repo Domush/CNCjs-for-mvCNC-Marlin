@@ -1,9 +1,5 @@
-const React = require('react');
-const { CSSTransition: CSSTransition } = require('react-transition-group');
-
-const { createCommons: createCommons } = require('simport');
-
-const { __filename, __dirname, require } = createCommons(import.meta.url);
+import React from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import('./modal.css');
 

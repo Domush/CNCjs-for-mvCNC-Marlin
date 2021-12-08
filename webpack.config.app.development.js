@@ -13,6 +13,7 @@ import WriteFileWebpackPlugin from 'write-file-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import babelConfig from './babel.config.json';
 import buildConfig from './build.config.cjs';
+import StylintWebpackPlugin from 'stylint-webpack-plugin';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 
@@ -35,7 +36,7 @@ export default {
   cache: true,
   target: 'web',
   context: path.resolve(__dirname, 'src/app'),
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-cheap-module-source-map',
   entry: {
     polyfill: [
       path.resolve(__dirname, 'src/app/polyfill/index.js'),
@@ -48,10 +49,29 @@ export default {
   },
   output: {
     path: path.resolve(__dirname, 'output/app'),
-    chunkFilename: `[name].[hash].bundle.js?_=${timestamp}`,
-    filename: `[name].[hash].bundle.js?_=${timestamp}`,
+    chunkFilename: `[id].[name].bundle.js?_=${timestamp}`,
+    chunkFormat: 'module',
+    chunkLoading: 'import',
+    filename: `[id].[name].bundle.js?_=${timestamp}`,
     pathinfo: true,
     publicPath: publicPath,
+    clean: true,
+    environment: {
+      // The environment supports arrow functions ('() => { ... }').
+      arrowFunction: true,
+      // The environment supports BigInt as literal (123n).
+      bigIntLiteral: false,
+      // The environment supports const and let for variable declarations.
+      const: true,
+      // The environment supports destructuring ('{ a, b } = obj').
+      destructuring: true,
+      // The environment supports an async import() function to import EcmaScript modules.
+      dynamicImport: true,
+      // The environment supports 'for of' iteration ('for (const x of array) { ... }').
+      forOf: true,
+      // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
+      module: true,
+    },
   },
   module: {
     rules: [
@@ -139,6 +159,13 @@ export default {
     ],
   },
   node: {
+    console: true,
+    global: true,
+    process: true,
+    Buffer: true,
+    __filename: true, // Use relative path
+    __dirname: true, // Use relative path
+    setImmediate: true,
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
@@ -156,6 +183,11 @@ export default {
     }),
     new webpack.LoaderOptionsPlugin({
       debug: true,
+    }),
+    new StylintWebpackPlugin({
+      files: 'src/app',
+      // reporter: 'stylint-stylish',
+      // reporterOptions: { verbose: true },
     }),
     new stylusLoader.OptionsPlugin({
       default: {
@@ -195,6 +227,15 @@ export default {
   ],
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.cjs', '.mjs'],
+  },
+  experiments: {
+    asyncWebAssembly: true,
+    buildHttp: true,
+    layers: true,
+    lazyCompilation: true,
+    outputModule: true,
+    syncWebAssembly: true,
+    topLevelAwait: true,
   },
 };

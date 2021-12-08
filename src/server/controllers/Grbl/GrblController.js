@@ -1,58 +1,50 @@
-const ensureArray = require('ensure-array');
-const { createCommons: createCommons } = require('simport');
+import ensureArray from 'ensure-array';
+import { createCommons } from 'simport';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 
-const parser = require('gcode-parser');
-const Toolpath = require('gcode-toolpath');
-const _ = require('lodash');
-const map = require('lodash/map');
-const SerialConnection = require('../../lib/SerialConnection');
-const EventTrigger = require('../../lib/EventTrigger');
-const Feeder = require('../../lib/Feeder');
-const Sender = require('../../lib/Sender');
+import parser from 'gcode-parser';
+import Toolpath from 'gcode-toolpath';
+import _ from 'lodash';
+import map from 'lodash/map';
+import SerialConnection from '../../lib/SerialConnection.js';
+import EventTrigger from '../../lib/EventTrigger.js';
+import Feeder from '../../lib/Feeder.js';
+import Sender from '../../lib/Sender.js';
 const { SP_TYPE_CHAR_COUNTING: SP_TYPE_CHAR_COUNTING } = Sender;
-const Workflow = require('../../lib/Workflow');
+import Workflow from '../../lib/Workflow.js';
 
 const {
   WORKFLOW_STATE_IDLE: WORKFLOW_STATE_IDLE,
   WORKFLOW_STATE_PAUSED: WORKFLOW_STATE_PAUSED,
   WORKFLOW_STATE_RUNNING: WORKFLOW_STATE_RUNNING,
 } = Workflow;
-const delay = require('../../lib/delay');
-const ensurePositiveNumber = require('../../lib/ensure-positive-number');
-const evaluateAssignmentExpression = require('../../lib/evaluate-assignment-expression');
-const logger = require('../../lib/logger');
-const translateExpression = require('../../lib/translate-expression');
-const config = require('../../services/configstore/index.js');
-const monitor = require('../../services/monitor/index.js');
-const taskRunner = require('../../services/taskrunner/index.js');
-const { getOutlineGcode: getOutlineGcode } = require('../../lib/outlineService');
-const store = require('../../store');
-const {
-  GLOBAL_OBJECTS: globalObjects,
-  WRITE_SOURCE_CLIENT: WRITE_SOURCE_CLIENT,
-  WRITE_SOURCE_FEEDER: WRITE_SOURCE_FEEDER,
-} = require('../constants');
-const GrblRunner = require('./GrblRunner');
-const {
-  GRBL: GRBL,
-  GRBL_ACTIVE_STATE_RUN: GRBL_ACTIVE_STATE_RUN,
-  GRBL_ACTIVE_STATE_HOLD: GRBL_ACTIVE_STATE_HOLD,
-  GRBL_REALTIME_COMMANDS: GRBL_REALTIME_COMMANDS,
-  GRBL_ALARMS: GRBL_ALARMS,
-  GRBL_ERRORS: GRBL_ERRORS,
-  GRBL_SETTINGS: GRBL_SETTINGS,
-  GRBL_ACTIVE_STATE_HOME: GRBL_ACTIVE_STATE_HOME,
-} = require('./constants');
-const { METRIC_UNITS: METRIC_UNITS } = require('../../../app/constants');
-const FlashingFirmware = require('../../lib/Firmware/Flashing/firmwareflashing');
-const ApplyFirmwareProfile = require('../../lib/Firmware/Profiles/ApplyFirmwareProfile');
-const {
-  determineMachineZeroFlagSet: determineMachineZeroFlagSet,
-  determineMaxMovement: determineMaxMovement,
-  getAxisMaximumLocation: getAxisMaximumLocation,
-} = require('../../lib/homing');
+import delay from '../../lib/delay.js';
+import ensurePositiveNumber from '../../lib/ensure-positive-number.js';
+import evaluateAssignmentExpression from '../../lib/evaluate-assignment-expression.js';
+import logger from '../../lib/logger.js';
+import translateExpression from '../../lib/translate-expression.js';
+import config from '../../services/configstore/index.js';
+import monitor from '../../services/monitor/index.js';
+import taskRunner from '../../services/taskrunner/index.js';
+import { getOutlineGcode } from '../../lib/outlineService.js';
+import store from '../../store.js';
+import { GLOBAL_OBJECTS as globalObjects, WRITE_SOURCE_CLIENT, WRITE_SOURCE_FEEDER } from '../constants.js';
+import GrblRunner from './GrblRunner.js';
+import {
+  GRBL,
+  GRBL_ACTIVE_STATE_RUN,
+  GRBL_ACTIVE_STATE_HOLD,
+  GRBL_REALTIME_COMMANDS,
+  GRBL_ALARMS,
+  GRBL_ERRORS,
+  GRBL_SETTINGS,
+  GRBL_ACTIVE_STATE_HOME,
+} from './constants.js';
+import { METRIC_UNITS } from '../../../app/constants.js';
+import FlashingFirmware from '../../lib/Firmware/Flashing/firmwareflashing.js';
+import ApplyFirmwareProfile from '../../lib/Firmware/Profiles/ApplyFirmwareProfile.js';
+import { determineMachineZeroFlagSet, determineMaxMovement, getAxisMaximumLocation } from '../../lib/homing.js';
 
 // % commands
 const WAIT = '%wait';

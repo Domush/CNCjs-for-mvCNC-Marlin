@@ -1,15 +1,9 @@
-const { createCommons: createCommons } = require('simport');
-
-const { __filename, __dirname, require } = createCommons(import.meta.url);
-
 import('@trendmicro/react-modal/dist/react-modal.css');
-const Modal = require('@trendmicro/react-modal');
-const chainedFunction = require('chained-function');
-{
-  const React = require('react');
+import Modal from '@trendmicro/react-modal';
+import chainedFunction from 'chained-function';
+import React from 'react';
 
-  const { PureComponent: PureComponent } = React;
-}
+const { PureComponent: PureComponent } = React;
 
 class ModalWrapper extends PureComponent {
   static propTypes = Modal.propTypes;

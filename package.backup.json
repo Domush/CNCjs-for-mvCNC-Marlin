@@ -2,17 +2,7 @@
   "name": "cncjs4marlin",
   "version": "0.1.0",
   "description": "gCode sender for Marlin based CNC machines",
-  "keywords": [
-    "cncjs",
-    "cnc",
-    "gcode",
-    "marlin",
-    "react",
-    "arduino",
-    "stm32",
-    "bigtreetech",
-    "socket.io"
-  ],
+  "keywords": ["cncjs", "cnc", "gcode", "marlin", "react", "arduino", "stm32", "bigtreetech", "socket.io"],
   "repository": {
     "type": "git",
     "url": "https://github.com/Domush/cncjs4marlin"
@@ -26,14 +16,10 @@
   "exports": "./dist/cncjs4marlin/server-cli.js",
   "main": "./dist/cncjs4marlin/server-cli.js",
   "bin": {
-    "cncjs4marlin": "./bin/cncjs4marlin.js"
+    "cnc": "./bin/cnc",
+    "cncjs4marlin": "./bin/cncjs4marlin"
   },
-  "files": [
-    "bin",
-    "dist",
-    "output",
-    "static"
-  ],
+  "files": ["bin", "dist", "output", "static"],
   "scripts": {
     "build": "npm run build-prod",
     "prebuild-dev": "npm run package-sync && bash scripts/prebuild-dev.sh",
@@ -93,9 +79,7 @@
       "node": true
     },
     "parser": "@babel/eslint-parser",
-    "extends": [
-      "plugin:prettier/recommended"
-    ],
+    "extends": ["plugin:prettier/recommended"],
     "rules": {
       "array-bracket-newline": "off",
       "array-bracket-spacing": "off",
@@ -436,6 +420,7 @@
     "three": "0.134.0",
     "universal-logger": "1.0.1",
     "universal-logger-browser": "1.0.2",
+    "use-stay-awake": "0.1.7",
     "utf-8-validate": "5.0.7",
     "uuid": "8.3.2",
     "watch": "1.0.2",
@@ -504,7 +489,7 @@
     "json-loader": "0.5.7",
     "mini-css-extract-plugin": "2.4.5",
     "nib": "1.1.2",
-    "css-minimizer-webpack-plugin": "^3.1.4",
+    "optimize-css-assets-webpack-plugin": "6.0.1",
     "pre-push": "0.1.1",
     "prettier": "2.4.1",
     "progress": "2.0.3",
@@ -517,7 +502,7 @@
     "simport": "1.2.0",
     "style-loader": "3.3.1",
     "stylint": "2.0.0",
-    "stylint-webpack-plugin": "^0.2.1",
+    "stylint-loader": "1.0.0",
     "stylus": "0.55.0",
     "stylus-loader": "6.2.0",
     "tap": "15.1.2",
@@ -562,9 +547,7 @@
     },
     "mac": {
       "category": "public.app-category.productivity",
-      "target": [
-        "dmg"
-      ],
+      "target": ["dmg"],
       "icon": "electron-build/icon.icns"
     },
     "dmg": {
@@ -587,18 +570,12 @@
       ]
     },
     "win": {
-      "target": [
-        "nsis"
-      ],
+      "target": ["nsis"],
       "icon": "electron-build/icon.ico"
     },
     "linux": {
       "category": "Utility",
-      "target": [
-        "AppImage",
-        "deb",
-        "rpm"
-      ]
+      "target": ["AppImage", "deb", "rpm"]
     }
   },
   "collective": {

@@ -1,8 +1,4 @@
-const Breadcrumbs = require('@trendmicro/react-breadcrumbs');
-
-const { createCommons: createCommons } = require('simport');
-
-const { __filename, __dirname, require } = createCommons(import.meta.url);
+import Breadcrumbs from '@trendmicro/react-breadcrumbs';
 
 import('@trendmicro/react-breadcrumbs/dist/react-breadcrumbs.css');
 

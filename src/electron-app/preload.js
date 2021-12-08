@@ -1,4 +1,4 @@
-const { createCommons: createCommons } = require('simport');
+import { createCommons } from 'simport';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

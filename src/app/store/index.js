@@ -1,22 +1,19 @@
-const isElectron = require('is-electron');
-const ensureArray = require('ensure-array');
-const debounce = require('lodash/debounce');
-const difference = require('lodash/difference');
-const get = require('lodash/get');
-const set = require('lodash/set');
-const merge = require('lodash/merge');
-const uniq = require('lodash/uniq');
-const semver = require('semver');
-const { createCommons: createCommons } = require('simport');
-const settings = require('../config/settings');
-const ImmutableStore = require('../lib/immutable-store');
-const log = require('../lib/log');
-const defaultState = require('./defaultState');
-const {
-  JOGGING_CATEGORY: JOGGING_CATEGORY,
-  LOCATION_CATEGORY: LOCATION_CATEGORY,
-  METRIC_UNITS: METRIC_UNITS,
-} = require('../constants');
+import isElectron from 'is-electron';
+import ensureArray from 'ensure-array';
+import debounce from 'lodash/debounce';
+import difference from 'lodash/difference';
+import get from 'lodash/get';
+import set from 'lodash/set';
+import merge from 'lodash/merge';
+import uniq from 'lodash/uniq';
+import semver from 'semver';
+import settings from '../config/settings.js';
+import ImmutableStore from '../lib/immutable-store.js';
+import log from '../lib/log.js';
+import defaultState from './defaultState.js';
+import { JOGGING_CATEGORY, LOCATION_CATEGORY, METRIC_UNITS } from '../constants.js';
+
+import { createCommons } from 'simport';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

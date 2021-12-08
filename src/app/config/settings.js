@@ -1,8 +1,9 @@
-const endsWith = require('lodash/endsWith');
-const mapKeys = require('lodash/mapKeys');
-const sha1 = require('sha1');
-const log = require('app/lib/log');
-const { createCommons: createCommons } = require('simport');
+import endsWith from 'lodash/endsWith';
+import mapKeys from 'lodash/mapKeys';
+import sha1 from 'sha1';
+import log from 'app/lib/log';
+
+import { createCommons } from 'simport';
 
 const { __filename, __dirname, require } = createCommons(import.meta.url);
 

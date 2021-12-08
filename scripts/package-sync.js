@@ -1,6 +1,5 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --experimental-modules
 
-/* eslint max-len: 0 */
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
