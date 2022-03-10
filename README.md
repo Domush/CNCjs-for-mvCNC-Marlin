@@ -1,3 +1,5 @@
-# CNCjs4Marlin
+# CNCjs for mvCNC/Marlin
 
-Merger of gSender, CNCjs with Marlin support
+CNCjs with dedicated mvCNC and Marlin support.
+
+CNCjs is largely a dead project, so I decided to modernize it here.
